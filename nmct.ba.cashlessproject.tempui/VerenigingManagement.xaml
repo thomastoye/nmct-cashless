@@ -1,0 +1,191 @@
+﻿<Window x:Class="nmct.ba.cashlessproject.tempui.VereningManagement"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Vereniging (management)" Height="300" Width="600">
+    <Grid>
+        <DockPanel LastChildFill="True">
+            <!-- <Menu IsMainMenu="True" DockPanel.Dock="Top">
+                <MenuItem Header="Account">
+                    <MenuItem Header="Aanmelden"></MenuItem>
+                    <MenuItem Header="Afmelden"></MenuItem>
+                    <MenuItem Header="Wachtwoord wijzigen"></MenuItem>
+                </MenuItem>
+                <MenuItem Header="Producten">
+                    <MenuItem Header="Toevoegen"></MenuItem>
+                    <MenuItem Header="Lijst"></MenuItem>
+                </MenuItem>
+                <MenuItem Header="Medewerkers">
+                    <MenuItem Header="Toevoegen"></MenuItem>
+                    <MenuItem Header="Lijst"></MenuItem>
+                </MenuItem>
+                <MenuItem Header="Kassa's">
+                    <MenuItem Header="Lijst"></MenuItem>
+                </MenuItem>
+                <MenuItem Header="Klanten">
+                    <MenuItem Header="Lijst"></MenuItem>
+                </MenuItem>
+                <MenuItem Header="Statistieken"></MenuItem>
+            </Menu> -->
+            <TabControl>
+                <TabItem Header="Account">
+                    <StackPanel>
+                        <Button Content="Inloggen">
+                        </Button>
+                        <Button Content="Uitloggen"></Button>
+                        <Button Content="Paswoord wijzigen"></Button>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="Producten">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Content="Prijslijst"></Label>
+                        <Button Grid.Row="0" Grid.Column="3" Content="Toevoegen"></Button>
+                        
+                        <Label Grid.Column="0" Grid.Row="2" Content="Naam"></Label>
+                        <Label Grid.Column="1" Grid.Row="2" Content="Prijs"></Label>
+                        <Label Grid.Column="2" Grid.Row="2" Content="Verwijderen"></Label>
+                        <Label Grid.Column="3" Grid.Row="2" Content="Aanpassen"></Label>
+
+                        <Label Grid.Column="0" Grid.Row="3" Content="Pils"></Label>
+                        <Label Grid.Column="1" Grid.Row="3" Content="€2.00"></Label>
+                        <Button Grid.Column="2" Grid.Row="3" Content="Verwijderen"></Button>
+                        <Button Grid.Column="3" Grid.Row="3" Content="Aanpassen"></Button>
+
+                        <Label Grid.Column="0" Grid.Row="4" Content="Cola"></Label>
+                        <Label Grid.Column="1" Grid.Row="4" Content="€1.50"></Label>
+                        <Button Grid.Column="2" Grid.Row="4" Content="Verwijderen"></Button>
+                        <Button Grid.Column="3" Grid.Row="4" Content="Aanpassen"></Button>
+
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Medewerkers">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Alle medewerkers"></Label>
+                        <Button Grid.Row="0" Grid.Column="2" Content="Toevoegen"></Button>
+                        
+                        <DataGrid x:Name="medewerkersLijstDataGrid" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
+                        </DataGrid>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Kassa's">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Content="Kassa's"></Label>
+
+                        <Label Grid.Column="0" Grid.Row="2" Content="Naam"></Label>
+                        <Label Grid.Column="1" Grid.Row="2" Content="Gebruik"></Label>
+
+                        <Label Grid.Column="0" Grid.Row="3" Content="Kassa #123"></Label>
+                        <Button Grid.Column="1" Grid.Row="3" Content="Gebruik"></Button>
+
+                        <Label Grid.Column="0" Grid.Row="4" Content="Kassa #321"></Label>
+                        <Button Grid.Column="1" Grid.Row="4" Content="Gebruik"></Button>
+
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Klanten">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Content="Klanten"></Label>
+
+                        <Label Grid.Column="0" Grid.Row="2" Content="Naam"></Label>
+                        <Label Grid.Column="1" Grid.Row="2" Content="Adres"></Label>
+                        <Label Grid.Column="2" Grid.Row="2" Content="Balans"></Label>
+                        <Label Grid.Column="3" Grid.Row="2" Content="Aanpassen"></Label>
+
+                        <Label Grid.Column="0" Grid.Row="3" Content="Thomas"></Label>
+                        <Label Grid.Column="1" Grid.Row="3" Content="Teststraat 12"></Label>
+                        <Label Grid.Column="2" Grid.Row="3" Content="€90.00"></Label>
+                        <Button Grid.Column="3" Grid.Row="3" Content="Aanpassen"></Button>
+
+                        <Label Grid.Column="0" Grid.Row="4" Content="Mister X"></Label>
+                        <Label Grid.Column="1" Grid.Row="4" Content="Straattest 21"></Label>
+                        <Label Grid.Column="2" Grid.Row="4" Content="€0.00"></Label>
+                        <Button Grid.Column="3" Grid.Row="4" Content="Aanpassen"></Button>
+
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Statistieken">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        
+                        <Label Grid.Row="0" Grid.Column="0" Content="Verkoop in periode"></Label>
+                        <UniformGrid Grid.Row="1" Grid.Column="0">
+                            <Label Content="Van"></Label>
+                            <DatePicker></DatePicker>
+                        </UniformGrid>
+                        <UniformGrid Grid.Row="2" Grid.Column="0">
+                            <Label Content="Tot"></Label>
+                            <DatePicker></DatePicker>
+                        </UniformGrid>
+                        <Button Grid.Row="3" Grid.Column="0" Content="Toon"></Button>
+
+                   
+                        <Label Grid.Row="0" Grid.Column="1" Content="Verkoop per kassa"></Label>
+                        <ComboBox Grid.Row="1" Grid.Column="1"></ComboBox>
+                        <Button Grid.Row="3" Grid.Column="1" Content="Toon"></Button>
+
+
+                        <Label Grid.Row="0" Grid.Column="2" Content="Verkoop per product"></Label>
+                        <ComboBox Grid.Row="1" Grid.Column="2"></ComboBox>
+                        <Button Grid.Row="3" Grid.Column="2" Content="Toon"></Button>
+                    </Grid>
+                    
+                </TabItem>
+            </TabControl>
+        </DockPanel>
+    </Grid>
+</Window>
