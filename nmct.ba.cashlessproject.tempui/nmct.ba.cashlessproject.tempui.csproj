@@ -53,10 +53,24 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Customer.xaml.cs">
+      <DependentUpon>Customer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Kassa.xaml.cs">
+      <DependentUpon>Kassa.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MedewerkerMock.cs" />
     <Compile Include="VerenigingManagement.xaml.cs">
       <DependentUpon>VerenigingManagement.xaml</DependentUpon>
     </Compile>
+    <Page Include="Customer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Kassa.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
