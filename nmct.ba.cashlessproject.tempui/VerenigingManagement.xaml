@@ -160,6 +160,10 @@
                             <RowDefinition Height="auto"></RowDefinition>
                             <RowDefinition Height="auto"></RowDefinition>
                             <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
                         </Grid.RowDefinitions>
                         
                         <Label Grid.Row="0" Grid.Column="0" Content="Verkoop in periode"></Label>
@@ -171,17 +175,21 @@
                             <Label Content="Tot"></Label>
                             <DatePicker></DatePicker>
                         </UniformGrid>
-                        <Button Grid.Row="3" Grid.Column="0" Content="Toon"></Button>
+                        <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Content="Toon"></Button>
 
                    
                         <Label Grid.Row="0" Grid.Column="1" Content="Verkoop per kassa"></Label>
                         <ComboBox Grid.Row="1" Grid.Column="1"></ComboBox>
-                        <Button Grid.Row="3" Grid.Column="1" Content="Toon"></Button>
 
 
                         <Label Grid.Row="0" Grid.Column="2" Content="Verkoop per product"></Label>
                         <ComboBox Grid.Row="1" Grid.Column="2"></ComboBox>
-                        <Button Grid.Row="3" Grid.Column="2" Content="Toon"></Button>
+                        
+                        <Separator Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3"></Separator>
+                        
+                        <StackPanel>
+                            
+                        </StackPanel>
                     </Grid>
                     
                 </TabItem>
