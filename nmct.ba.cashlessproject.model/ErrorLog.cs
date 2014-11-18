@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace nmct.ba.cashlessproject.model
 {
-    class ErrorLog
+    public class ErrorLog
     {
         private long _registerId;
 
