@@ -7,7 +7,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
-namespace nmct.ba.cashlesspayment.api
+namespace nmct.ba.cashlessproject.api
 {
     public class WebApiApplication : System.Web.HttpApplication
     {

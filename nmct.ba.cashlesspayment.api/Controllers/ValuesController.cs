@@ -5,7 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace nmct.ba.cashlesspayment.api.Controllers
+namespace nmct.ba.cashlessproject.api.Controllers
 {
     [Authorize]
     public class ValuesController : ApiController

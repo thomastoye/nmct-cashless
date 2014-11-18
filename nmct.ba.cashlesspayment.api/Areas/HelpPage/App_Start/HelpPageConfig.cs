@@ -16,7 +16,7 @@ using System.Web.Http;
 using System.Web.Http.OData;
 #endif
 
-namespace nmct.ba.cashlesspayment.api.Areas.HelpPage
+namespace nmct.ba.cashlessproject.api.Areas.HelpPage
 {
     /// <summary>
     /// Use this class to customize the Help Page.

@@ -8,10 +8,10 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
-using nmct.ba.cashlesspayment.api.Providers;
-using nmct.ba.cashlesspayment.api.Models;
+using nmct.ba.cashlessproject.api.Providers;
+using nmct.ba.cashlessproject.api.Models;
 
-namespace nmct.ba.cashlesspayment.api
+namespace nmct.ba.cashlessproject.api
 {
     public partial class Startup
     {

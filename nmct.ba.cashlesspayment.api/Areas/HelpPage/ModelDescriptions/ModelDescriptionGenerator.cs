@@ -11,7 +11,7 @@ using System.Web.Http.Description;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
 
-namespace nmct.ba.cashlesspayment.api.Areas.HelpPage.ModelDescriptions
+namespace nmct.ba.cashlessproject.api.Areas.HelpPage.ModelDescriptions
 {
     /// <summary>
     /// Generates model descriptions for given types.

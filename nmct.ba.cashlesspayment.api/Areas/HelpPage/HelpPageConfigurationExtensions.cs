@@ -11,10 +11,10 @@ using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Description;
-using nmct.ba.cashlesspayment.api.Areas.HelpPage.ModelDescriptions;
-using nmct.ba.cashlesspayment.api.Areas.HelpPage.Models;
+using nmct.ba.cashlessproject.api.Areas.HelpPage.ModelDescriptions;
+using nmct.ba.cashlessproject.api.Areas.HelpPage.Models;
 
-namespace nmct.ba.cashlesspayment.api.Areas.HelpPage
+namespace nmct.ba.cashlessproject.api.Areas.HelpPage
 {
     public static class HelpPageConfigurationExtensions
     {

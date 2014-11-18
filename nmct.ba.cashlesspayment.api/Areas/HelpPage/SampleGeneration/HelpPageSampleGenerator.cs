@@ -13,7 +13,7 @@ using System.Web.Http.Description;
 using System.Xml.Linq;
 using Newtonsoft.Json;
 
-namespace nmct.ba.cashlesspayment.api.Areas.HelpPage
+namespace nmct.ba.cashlessproject.api.Areas.HelpPage
 {
     /// <summary>
     /// This class will generate the samples for the help page.

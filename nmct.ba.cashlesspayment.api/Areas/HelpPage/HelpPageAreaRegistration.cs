@@ -1,7 +1,7 @@
 using System.Web.Http;
 using System.Web.Mvc;
 
-namespace nmct.ba.cashlesspayment.api.Areas.HelpPage
+namespace nmct.ba.cashlessproject.api.Areas.HelpPage
 {
     public class HelpPageAreaRegistration : AreaRegistration
     {

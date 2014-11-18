@@ -1,4 +1,4 @@
-namespace nmct.ba.cashlesspayment.api.Areas.HelpPage
+namespace nmct.ba.cashlessproject.api.Areas.HelpPage
 {
     /// <summary>
     /// Indicates whether the sample is used for request or response

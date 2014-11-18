@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace nmct.ba.cashlesspayment.api.Models
+namespace nmct.ba.cashlessproject.api.Models
 {
     // Models returned by AccountController actions.
 

@@ -6,7 +6,7 @@ using System.Data.Common;
 using System.Linq;
 using System.Web;
 
-namespace nmct.ba.cashlesspayment.api.Helpers
+namespace nmct.ba.cashlessproject.api.Helpers
 {
     public class Database
     {

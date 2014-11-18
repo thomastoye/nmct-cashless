@@ -6,7 +6,7 @@ using System.Web.Http;
 using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json.Serialization;
 
-namespace nmct.ba.cashlesspayment.api
+namespace nmct.ba.cashlessproject.api
 {
     public static class WebApiConfig
     {

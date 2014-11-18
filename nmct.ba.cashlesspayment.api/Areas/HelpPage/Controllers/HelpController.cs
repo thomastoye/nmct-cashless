@@ -1,10 +1,10 @@
 using System;
 using System.Web.Http;
 using System.Web.Mvc;
-using nmct.ba.cashlesspayment.api.Areas.HelpPage.ModelDescriptions;
-using nmct.ba.cashlesspayment.api.Areas.HelpPage.Models;
+using nmct.ba.cashlessproject.api.Areas.HelpPage.ModelDescriptions;
+using nmct.ba.cashlessproject.api.Areas.HelpPage.Models;
 
-namespace nmct.ba.cashlesspayment.api.Areas.HelpPage.Controllers
+namespace nmct.ba.cashlessproject.api.Areas.HelpPage.Controllers
 {
     /// <summary>
     /// The controller that will handle requests for the help page.

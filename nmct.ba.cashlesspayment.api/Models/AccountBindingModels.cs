@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 
-namespace nmct.ba.cashlesspayment.api.Models
+namespace nmct.ba.cashlessproject.api.Models
 {
     // Models used as parameters to AccountController actions.
 

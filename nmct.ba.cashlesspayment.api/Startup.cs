@@ -4,9 +4,9 @@ using System.Linq;
 using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartup(typeof(nmct.ba.cashlesspayment.api.Startup))]
+[assembly: OwinStartup(typeof(nmct.ba.cashlessproject.api.Startup))]
 
-namespace nmct.ba.cashlesspayment.api
+namespace nmct.ba.cashlessproject.api
 {
     public partial class Startup
     {

@@ -9,9 +9,9 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
-using nmct.ba.cashlesspayment.api.Models;
+using nmct.ba.cashlessproject.api.Models;
 
-namespace nmct.ba.cashlesspayment.api.Providers
+namespace nmct.ba.cashlessproject.api.Providers
 {
     public class ApplicationOAuthProvider : OAuthAuthorizationServerProvider
     {

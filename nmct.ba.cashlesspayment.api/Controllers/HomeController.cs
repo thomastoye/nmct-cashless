@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace nmct.ba.cashlesspayment.api.Controllers
+namespace nmct.ba.cashlessproject.api.Controllers
 {
     public class HomeController : Controller
     {

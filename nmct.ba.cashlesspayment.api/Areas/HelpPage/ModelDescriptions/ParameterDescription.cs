@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace nmct.ba.cashlesspayment.api.Areas.HelpPage.ModelDescriptions
+namespace nmct.ba.cashlessproject.api.Areas.HelpPage.ModelDescriptions
 {
     public class ParameterDescription
     {

@@ -3,9 +3,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
-using nmct.ba.cashlesspayment.api.Models;
+using nmct.ba.cashlessproject.api.Models;
 
-namespace nmct.ba.cashlesspayment.api
+namespace nmct.ba.cashlessproject.api
 {
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
 

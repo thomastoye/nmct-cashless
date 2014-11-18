@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 
-namespace nmct.ba.cashlesspayment.api.Areas.HelpPage.ModelDescriptions
+namespace nmct.ba.cashlessproject.api.Areas.HelpPage.ModelDescriptions
 {
     internal static class ModelNameHelper
     {

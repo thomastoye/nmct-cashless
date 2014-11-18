@@ -7,7 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
 
-namespace nmct.ba.cashlesspayment.api.Results
+namespace nmct.ba.cashlessproject.api.Results
 {
     public class ChallengeResult : IHttpActionResult
     {

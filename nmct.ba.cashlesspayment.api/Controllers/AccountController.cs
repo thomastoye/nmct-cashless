@@ -13,11 +13,11 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
-using nmct.ba.cashlesspayment.api.Models;
-using nmct.ba.cashlesspayment.api.Providers;
-using nmct.ba.cashlesspayment.api.Results;
+using nmct.ba.cashlessproject.api.Models;
+using nmct.ba.cashlessproject.api.Providers;
+using nmct.ba.cashlessproject.api.Results;
 
-namespace nmct.ba.cashlesspayment.api.Controllers
+namespace nmct.ba.cashlessproject.api.Controllers
 {
     [Authorize]
     [RoutePrefix("api/Account")]
