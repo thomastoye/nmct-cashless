@@ -48,6 +48,6 @@ namespace nmct.ba.cashlessproject.model
             set { _amount = value; }
         }
 
-        public double TotalAmount { get { return Amount * Product.Price } }
+        public double TotalAmount { get { return Amount * Product.Price; } }
     }
 }
