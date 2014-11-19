@@ -17,7 +17,7 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
             List<Customer> list = new List<Customer>();
 
             string sql = "SELECT ID, CustomerName, Address, Picture, Balance FROM Customers";
-            DbDataReader reader = Database.GetData("ConnectionString", sql);
+            DbDataReader reader = Database.GetData("KlantConnection", sql);
 
             while (reader.Read())
             {
@@ -28,14 +28,16 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
         }
 
         
-        public static int InsertCustomer(Customer customer)
+        public static void InsertCustomer(Customer customer)
         {
-            string sql = "INSERT INTO Customers VALUES(@CustomerName,@Address,@Picture,@Balance)";
-            DbParameter par1 = Database.AddParameter("ConnectionString", "@CustomerName", customer.Name);
-            DbParameter par2 = Database.AddParameter("ConnectionString", "@Address", customer.Address);
-            DbParameter par3 = Database.AddParameter("ConnectionString", "@Picture", null);
-            DbParameter par4 = Database.AddParameter("ConnectionString", "@Balance", customer.Balance);
-            return Database.InsertData("ConnectionString", sql, par1, par2, par3);
+            string sql = "INSERT INTO Customers(ID, CustomerName,Address,Balance) VALUES(@ID, @CustomerName,@Address,@Balance)";
+            DbParameter par0 = Database.AddParameter("KlantConnection", "@ID", customer.ID);
+            DbParameter par1 = Database.AddParameter("KlantConnection", "@CustomerName", customer.Name);
+            DbParameter par2 = Database.AddParameter("KlantConnection", "@Address", customer.Address);
+            //DbParameter par3 = Database.AddParameter("KlantConnection", "@Picture", null);
+            DbParameter par4 = Database.AddParameter("KlantConnection", "@Balance", customer.Balance);
+
+            Database.InsertData("KlantConnection", sql, par0, par1, par2, /*par3,*/ par4);
         }
 
         private static Customer Create(IDataRecord record)

@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nmct.ba.cashlessproject.api
 		{6646A8BB-3F3F-4C22-B9B2-C4B5C2F016ED} = {6646A8BB-3F3F-4C22-B9B2-C4B5C2F016ED}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseTest", "DatabaseTest\DatabaseTest.csproj", "{5DBDD4E5-527C-4927-8329-E0DA97E7403F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,6 +32,10 @@ Global
 		{34D30EDA-EBC9-45B8-A893-2D854EB18E35}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34D30EDA-EBC9-45B8-A893-2D854EB18E35}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34D30EDA-EBC9-45B8-A893-2D854EB18E35}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DBDD4E5-527C-4927-8329-E0DA97E7403F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DBDD4E5-527C-4927-8329-E0DA97E7403F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DBDD4E5-527C-4927-8329-E0DA97E7403F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DBDD4E5-527C-4927-8329-E0DA97E7403F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
