@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.Common;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
@@ -10,6 +11,18 @@ namespace nmct.ba.cashlessproject.api.Helpers
 {
     public class Database
     {
+
+        public static int NumConnectionStrings()
+        {
+            List<ConnectionStringSettings> constrings = new List<ConnectionStringSettings>();
+
+            foreach (ConnectionStringSettings item in ConfigurationManager.ConnectionStrings)
+            {
+                constrings.Add(item);
+            }
+
+            return constrings.Count;
+        }
 
         private static DbConnection GetConnection(string ConnectionString)
         {
