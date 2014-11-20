@@ -55,7 +55,7 @@ namespace nmct.ba.cashlessproject.model
             Customer c = obj as Customer;
             if ((System.Object)c == null) return false;
 
-            return c.ID.Equals(ID) && c.Address.Equals(Address) && c.Balance.Equals(Balance) && c.Name.Equals(Name);
+            return /*c.ID.Equals(ID) &&*/ c.Address.Equals(Address) && c.Balance.Equals(Balance) && c.Name.Equals(Name);
         }
         
     }
