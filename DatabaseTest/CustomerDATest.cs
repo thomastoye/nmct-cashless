@@ -26,16 +26,11 @@ namespace CashlessTests
         [TestMethod]
         public void AddCustomer()
         {
-            Customer cust = new Customer { Address = "Straatlaan 55", Balance = 50, Name = "Thomas", ID = 5 };
-
-            List<Customer> lijst = Customers.GetCustomers();
-
-            bool alreadyInDB = Array.Exists<Customer>(Customers.GetCustomers().ToArray(), c => { return c.Equals(cust); });
-            Assert.IsFalse(alreadyInDB);
+            Customer cust = new Customer { Address = "Straatlaan 55", Balance = 50, Name = "Thomas" };
 
             Customers.InsertCustomer(cust);
 
-            lijst = Customers.GetCustomers();
+            List<Customer> lijst = Customers.GetCustomers();
 
             bool inDB = Array.Exists<Customer>(Customers.GetCustomers().ToArray(), c => { return c.Equals(cust); });
             Assert.IsTrue(inDB);

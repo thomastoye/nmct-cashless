@@ -12,7 +12,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nmct.ba.cashlessproject.api
 		{6646A8BB-3F3F-4C22-B9B2-C4B5C2F016ED} = {6646A8BB-3F3F-4C22-B9B2-C4B5C2F016ED}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseTest", "DatabaseTest\DatabaseTest.csproj", "{5DBDD4E5-527C-4927-8329-E0DA97E7403F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashlessTests", "DatabaseTest\CashlessTests.csproj", "{5DBDD4E5-527C-4927-8329-E0DA97E7403F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
