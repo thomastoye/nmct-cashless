@@ -4,28 +4,6 @@
         Title="Vereniging (management)" Height="300" Width="600">
     <Grid>
         <DockPanel LastChildFill="True">
-            <!-- <Menu IsMainMenu="True" DockPanel.Dock="Top">
-                <MenuItem Header="Account">
-                    <MenuItem Header="Aanmelden"></MenuItem>
-                    <MenuItem Header="Afmelden"></MenuItem>
-                    <MenuItem Header="Wachtwoord wijzigen"></MenuItem>
-                </MenuItem>
-                <MenuItem Header="Producten">
-                    <MenuItem Header="Toevoegen"></MenuItem>
-                    <MenuItem Header="Lijst"></MenuItem>
-                </MenuItem>
-                <MenuItem Header="Medewerkers">
-                    <MenuItem Header="Toevoegen"></MenuItem>
-                    <MenuItem Header="Lijst"></MenuItem>
-                </MenuItem>
-                <MenuItem Header="Kassa's">
-                    <MenuItem Header="Lijst"></MenuItem>
-                </MenuItem>
-                <MenuItem Header="Klanten">
-                    <MenuItem Header="Lijst"></MenuItem>
-                </MenuItem>
-                <MenuItem Header="Statistieken"></MenuItem>
-            </Menu> -->
             <TabControl>
                 <TabItem Header="Account">
                     <StackPanel>
