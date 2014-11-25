@@ -94,35 +94,24 @@
                 </TabItem>
                 <TabItem Header="Klanten">
                     <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="30"></RowDefinition>
-                            <RowDefinition Height="auto"></RowDefinition>
-                            <RowDefinition Height="auto"></RowDefinition>
-                            <RowDefinition Height="auto"></RowDefinition>
-                            <RowDefinition Height="auto"></RowDefinition>
-                        </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="250"/>
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Content="Klanten"></Label>
-
-                        <Label Grid.Column="0" Grid.Row="2" Content="Naam"></Label>
-                        <Label Grid.Column="1" Grid.Row="2" Content="Adres"></Label>
-                        <Label Grid.Column="2" Grid.Row="2" Content="Balans"></Label>
-                        <Label Grid.Column="3" Grid.Row="2" Content="Aanpassen"></Label>
-
-                        <Label Grid.Column="0" Grid.Row="3" Content="Thomas"></Label>
-                        <Label Grid.Column="1" Grid.Row="3" Content="Teststraat 12"></Label>
-                        <Label Grid.Column="2" Grid.Row="3" Content="€90.00"></Label>
-                        <Button Grid.Column="3" Grid.Row="3" Content="Aanpassen"></Button>
-
-                        <Label Grid.Column="0" Grid.Row="4" Content="Mister X"></Label>
-                        <Label Grid.Column="1" Grid.Row="4" Content="Straattest 21"></Label>
-                        <Label Grid.Column="2" Grid.Row="4" Content="€0.00"></Label>
-                        <Button Grid.Column="3" Grid.Row="4" Content="Aanpassen"></Button>
+                        <ListBox Margin="8" DisplayMemberPath="Name"/>
+                        <StackPanel Margin="8" Grid.Column="1">
+                            <Label Content="Naam:"/>
+                            <TextBox Text=""/>
+                            <Label Content="Adres:"/>
+                            <TextBox Text=""/>
+                            <Label Content="Balans:"/>
+                            <TextBox Text=""/>
+                            <StackPanel Orientation="Horizontal" Margin="0,16,0,0">
+                                <Button Content="Klant toevoegen"/>
+                                <Button Content="Klant verwijderen" Margin="8,0,0,0"/>
+                                <Button Content="Wijzigingen opslaan" Margin="8,0,0,0"/>
+                            </StackPanel>
+                        </StackPanel>
 
                     </Grid>
                 </TabItem>
