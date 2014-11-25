@@ -19,10 +19,6 @@ namespace nmct.ba.cashlessproject.tempui
     /// </summary>
     public partial class VereningManagement : Window
     {
-        public VereningManagement()
-        {
-            InitializeComponent();
-            medewerkersLijstDataGrid.ItemsSource = MedewerkerMock.getSampleList();
-        }
+
     }
 }
