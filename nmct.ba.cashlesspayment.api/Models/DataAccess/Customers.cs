@@ -33,7 +33,7 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
             string sql = "INSERT INTO Customers(CustomerName,Address,Balance) VALUES(@CustomerName,@Address,@Balance)";
             DbParameter par1 = Database.AddParameter("KlantConnection", "@CustomerName", customer.Name);
             DbParameter par2 = Database.AddParameter("KlantConnection", "@Address", customer.Address);
-            //DbParameter par3 = Database.AddParameter("KlantConnection", "@Picture", null);
+            DbParameter par3 = Database.AddParameter("KlantConnection", "@Picture", null);
             DbParameter par4 = Database.AddParameter("KlantConnection", "@Balance", customer.Balance);
 
             Database.InsertData("KlantConnection", sql, par1, par2, /*par3,*/ par4);
