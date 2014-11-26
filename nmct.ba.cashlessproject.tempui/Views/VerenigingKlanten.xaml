@@ -1,0 +1,26 @@
+﻿<Window x:Class="nmct.ba.cashlessproject.tempui.Views.VerenigingKlanten"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="VerenigingKlanten" Height="300" Width="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <ListBox Margin="8" DisplayMemberPath="Name"/>
+        <StackPanel Margin="8" Grid.Column="1">
+            <Label Content="Naam:"/>
+            <TextBox Text=""/>
+            <Label Content="Adres:"/>
+            <TextBox Text=""/>
+            <Label Content="Balans:"/>
+            <TextBox Text=""/>
+            <StackPanel Orientation="Horizontal" Margin="0,16,0,0">
+                <Button Content="Klant toevoegen"/>
+                <Button Content="Klant verwijderen" Margin="8,0,0,0"/>
+                <Button Content="Wijzigingen opslaan" Margin="8,0,0,0"/>
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
+</Window>

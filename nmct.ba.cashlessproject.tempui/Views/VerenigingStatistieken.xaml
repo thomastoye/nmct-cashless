@@ -1,0 +1,47 @@
+﻿<Window x:Class="nmct.ba.cashlessproject.tempui.Views.VerenigingStatistieken"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="VerenigingStatistieken" Height="300" Width="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0" Content="Verkoop in periode"></Label>
+        <UniformGrid Grid.Row="1" Grid.Column="0">
+            <Label Content="Van"></Label>
+            <DatePicker></DatePicker>
+        </UniformGrid>
+        <UniformGrid Grid.Row="2" Grid.Column="0">
+            <Label Content="Tot"></Label>
+            <DatePicker></DatePicker>
+        </UniformGrid>
+        <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Content="Toon"></Button>
+
+
+        <Label Grid.Row="0" Grid.Column="1" Content="Verkoop per kassa"></Label>
+        <ComboBox Grid.Row="1" Grid.Column="1"></ComboBox>
+
+
+        <Label Grid.Row="0" Grid.Column="2" Content="Verkoop per product"></Label>
+        <ComboBox Grid.Row="1" Grid.Column="2"></ComboBox>
+
+        <Separator Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3"></Separator>
+
+        <StackPanel>
+
+        </StackPanel>
+    </Grid>
+</Window>
