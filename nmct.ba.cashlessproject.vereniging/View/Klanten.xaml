@@ -10,14 +10,14 @@
             <ColumnDefinition Width="250"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <ListBox Margin="8" DisplayMemberPath="Name"/>
+        <ListBox Margin="8" DisplayMemberPath="Name" ItemsSource="{Binding Customers}" SelectedItem="{Binding SelectedCustomer}"/>
         <StackPanel Margin="8" Grid.Column="1">
             <Label Content="Naam:"/>
-            <TextBox Text=""/>
+            <TextBox Text="{Binding SelectedCustomer.Name}"/>
             <Label Content="Adres:"/>
-            <TextBox Text=""/>
+            <TextBox Text="{Binding SelectedCustomer.Address}"/>
             <Label Content="Balans:"/>
-            <TextBox Text=""/>
+            <TextBox Text="{Binding SelectedCustomer.Balance}"/>
             <StackPanel Orientation="Horizontal" Margin="0,16,0,0">
                 <Button Content="Klant toevoegen"/>
                 <Button Content="Klant verwijderen" Margin="8,0,0,0"/>
