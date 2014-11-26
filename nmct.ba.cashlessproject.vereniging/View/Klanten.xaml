@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="nmct.ba.cashlessproject.vereniging.View.Klanten"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <ListBox Margin="8" DisplayMemberPath="Name"/>
+        <StackPanel Margin="8" Grid.Column="1">
+            <Label Content="Naam:"/>
+            <TextBox Text=""/>
+            <Label Content="Adres:"/>
+            <TextBox Text=""/>
+            <Label Content="Balans:"/>
+            <TextBox Text=""/>
+            <StackPanel Orientation="Horizontal" Margin="0,16,0,0">
+                <Button Content="Klant toevoegen"/>
+                <Button Content="Klant verwijderen" Margin="8,0,0,0"/>
+                <Button Content="Wijzigingen opslaan" Margin="8,0,0,0"/>
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
+</UserControl>
