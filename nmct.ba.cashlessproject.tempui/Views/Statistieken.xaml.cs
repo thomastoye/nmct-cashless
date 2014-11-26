@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace nmct.ba.cashlessproject.tempui.Views
 {
     /// <summary>
-    /// Interaction logic for VerenigingKlanten.xaml
+    /// Interaction logic for Statistieken.xaml
     /// </summary>
-    public partial class VerenigingKlanten : Window
+    public partial class Statistieken : UserControl
     {
-        public VerenigingKlanten()
+        public Statistieken()
         {
             InitializeComponent();
         }

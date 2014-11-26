@@ -6,158 +6,21 @@
         <DockPanel LastChildFill="True">
             <TabControl>
                 <TabItem Header="Account">
-                    <StackPanel>
-                        <Button Content="Inloggen">
-                        </Button>
-                        <Button Content="Uitloggen"></Button>
-                        <Button Content="Paswoord wijzigen"></Button>
-                    </StackPanel>
+                    
                 </TabItem>
                 <TabItem Header="Producten">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="30"></RowDefinition>
-                            <RowDefinition Height="auto"></RowDefinition>
-                            <RowDefinition Height="auto"></RowDefinition>
-                            <RowDefinition Height="auto"></RowDefinition>
-                            <RowDefinition Height="auto"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Content="Prijslijst"></Label>
-                        <Button Grid.Row="0" Grid.Column="3" Content="Toevoegen"></Button>
-                        
-                        <Label Grid.Column="0" Grid.Row="2" Content="Naam"></Label>
-                        <Label Grid.Column="1" Grid.Row="2" Content="Prijs"></Label>
-                        <Label Grid.Column="2" Grid.Row="2" Content="Verwijderen"></Label>
-                        <Label Grid.Column="3" Grid.Row="2" Content="Aanpassen"></Label>
 
-                        <Label Grid.Column="0" Grid.Row="3" Content="Pils"></Label>
-                        <Label Grid.Column="1" Grid.Row="3" Content="€2.00"></Label>
-                        <Button Grid.Column="2" Grid.Row="3" Content="Verwijderen"></Button>
-                        <Button Grid.Column="3" Grid.Row="3" Content="Aanpassen"></Button>
-
-                        <Label Grid.Column="0" Grid.Row="4" Content="Cola"></Label>
-                        <Label Grid.Column="1" Grid.Row="4" Content="€1.50"></Label>
-                        <Button Grid.Column="2" Grid.Row="4" Content="Verwijderen"></Button>
-                        <Button Grid.Column="3" Grid.Row="4" Content="Aanpassen"></Button>
-
-                    </Grid>
                 </TabItem>
                 <TabItem Header="Medewerkers">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="30"></RowDefinition>
-                            <RowDefinition Height="auto"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Alle medewerkers"></Label>
-                        <Button Grid.Row="0" Grid.Column="2" Content="Toevoegen"></Button>
-                        
-                        <DataGrid x:Name="medewerkersLijstDataGrid" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
-                        </DataGrid>
-                    </Grid>
+                    
                 </TabItem>
                 <TabItem Header="Kassa's">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="30"></RowDefinition>
-                            <RowDefinition Height="auto"></RowDefinition>
-                            <RowDefinition Height="auto"></RowDefinition>
-                            <RowDefinition Height="auto"></RowDefinition>
-                            <RowDefinition Height="auto"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Row="0" Grid.Column="0" Content="Kassa's"></Label>
-
-                        <Label Grid.Column="0" Grid.Row="2" Content="Naam"></Label>
-                        <Label Grid.Column="1" Grid.Row="2" Content="Gebruik"></Label>
-
-                        <Label Grid.Column="0" Grid.Row="3" Content="Kassa #123"></Label>
-                        <Button Grid.Column="1" Grid.Row="3" Content="Gebruik"></Button>
-
-                        <Label Grid.Column="0" Grid.Row="4" Content="Kassa #321"></Label>
-                        <Button Grid.Column="1" Grid.Row="4" Content="Gebruik"></Button>
-
-                    </Grid>
+                    
                 </TabItem>
                 <TabItem Header="Klanten">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="250"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <ListBox Margin="8" DisplayMemberPath="Name"/>
-                        <StackPanel Margin="8" Grid.Column="1">
-                            <Label Content="Naam:"/>
-                            <TextBox Text=""/>
-                            <Label Content="Adres:"/>
-                            <TextBox Text=""/>
-                            <Label Content="Balans:"/>
-                            <TextBox Text=""/>
-                            <StackPanel Orientation="Horizontal" Margin="0,16,0,0">
-                                <Button Content="Klant toevoegen"/>
-                                <Button Content="Klant verwijderen" Margin="8,0,0,0"/>
-                                <Button Content="Wijzigingen opslaan" Margin="8,0,0,0"/>
-                            </StackPanel>
-                        </StackPanel>
-
-                    </Grid>
+                    
                 </TabItem>
                 <TabItem Header="Statistieken">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto"></RowDefinition>
-                            <RowDefinition Height="auto"></RowDefinition>
-                            <RowDefinition Height="auto"></RowDefinition>
-                            <RowDefinition Height="auto"></RowDefinition>
-                            <RowDefinition Height="auto"></RowDefinition>
-                            <RowDefinition Height="auto"></RowDefinition>
-                            <RowDefinition Height="auto"></RowDefinition>
-                            <RowDefinition Height="auto"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        
-                        <Label Grid.Row="0" Grid.Column="0" Content="Verkoop in periode"></Label>
-                        <UniformGrid Grid.Row="1" Grid.Column="0">
-                            <Label Content="Van"></Label>
-                            <DatePicker></DatePicker>
-                        </UniformGrid>
-                        <UniformGrid Grid.Row="2" Grid.Column="0">
-                            <Label Content="Tot"></Label>
-                            <DatePicker></DatePicker>
-                        </UniformGrid>
-                        <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Content="Toon"></Button>
-
-                   
-                        <Label Grid.Row="0" Grid.Column="1" Content="Verkoop per kassa"></Label>
-                        <ComboBox Grid.Row="1" Grid.Column="1"></ComboBox>
-
-
-                        <Label Grid.Row="0" Grid.Column="2" Content="Verkoop per product"></Label>
-                        <ComboBox Grid.Row="1" Grid.Column="2"></ComboBox>
-                        
-                        <Separator Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3"></Separator>
-                        
-                        <StackPanel>
-                            
-                        </StackPanel>
-                    </Grid>
                     
                 </TabItem>
             </TabControl>
