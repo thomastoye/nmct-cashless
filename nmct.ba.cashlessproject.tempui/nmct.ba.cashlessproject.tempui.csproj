@@ -66,8 +66,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ObservableObject.cs" />
+    <Compile Include="ViewModel\ApplicationVM.cs" />
     <Compile Include="ViewModel\CustomerVM.cs" />
     <Compile Include="RelayCommand.cs" />
+    <Compile Include="ViewModel\IPage.cs" />
     <Compile Include="Views\Account.xaml.cs">
       <DependentUpon>Account.xaml</DependentUpon>
     </Compile>
