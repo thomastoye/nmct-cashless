@@ -13,7 +13,12 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
         public ApplicationVM()
         {
             Pages.Add(new PageOneVM());
-            // Add other pages
+            Pages.Add(new AccountVM());
+            Pages.Add(new KassasVM());
+            Pages.Add(new KlantenVM());
+            Pages.Add(new MedewerkersVM());
+            Pages.Add(new ProductenVM());
+            Pages.Add(new StatistiekenVM());
 
             CurrentPage = Pages[0];
         }

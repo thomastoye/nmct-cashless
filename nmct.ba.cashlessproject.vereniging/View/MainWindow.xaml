@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="clr-namespace:nmct.ba.cashlessproject.vereniging.ViewModel"
         xmlns:v="clr-namespace:nmct.ba.cashlessproject.vereniging.View"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="482" Width="728.2">
     <Window.DataContext>
         <vm:ApplicationVM/>
     </Window.DataContext>
@@ -14,16 +14,31 @@
         <DataTemplate DataType="{x:Type vm:KassasVM}">
             <v:Kassas/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AccountVM}">
+            <v:Account/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:KlantenVM}">
+            <v:Klanten/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:MedewerkersVM}">
+            <v:Medewerkers/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:ProductenVM}">
+            <v:Producten/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:StatistiekenVM}">
+            <v:Statistieken/>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
-        
+
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
-        
 
-        
+
+
         <ItemsControl ItemsSource="{Binding Pages}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
@@ -31,7 +46,7 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-        
+
         <ContentControl Grid.Row="1" Content="{Binding CurrentPage}"/>
     </Grid>
 </Window>

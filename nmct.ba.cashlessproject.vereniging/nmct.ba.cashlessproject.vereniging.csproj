@@ -80,9 +80,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModel\AccountVM.cs" />
     <Compile Include="ViewModel\ApplicationVM.cs" />
     <Compile Include="ViewModel\KassasVM.cs" />
+    <Compile Include="ViewModel\KlantenVM.cs" />
+    <Compile Include="ViewModel\MedewerkersVM.cs" />
     <Compile Include="ViewModel\PageOneVM.cs" />
+    <Compile Include="ViewModel\ProductenVM.cs" />
+    <Compile Include="ViewModel\StatistiekenVM.cs" />
     <Compile Include="View\Account.xaml.cs">
       <DependentUpon>Account.xaml</DependentUpon>
     </Compile>
