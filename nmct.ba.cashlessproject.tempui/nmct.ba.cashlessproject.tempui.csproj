@@ -68,20 +68,50 @@
     <Compile Include="ObservableObject.cs" />
     <Compile Include="ViewModel\CustomerVM.cs" />
     <Compile Include="RelayCommand.cs" />
+    <Compile Include="Views\Account.xaml.cs">
+      <DependentUpon>Account.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Customer.xaml.cs">
       <DependentUpon>Customer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Kassa.xaml.cs">
       <DependentUpon>Kassa.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Kassas.xaml.cs">
+      <DependentUpon>Kassas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Klanten.xaml.cs">
+      <DependentUpon>Klanten.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Medewerkers.xaml.cs">
+      <DependentUpon>Medewerkers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Producten.xaml.cs">
+      <DependentUpon>Producten.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Statistieken.xaml.cs">
+      <DependentUpon>Statistieken.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\VerenigingManagement.xaml.cs">
       <DependentUpon>VerenigingManagement.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\Account.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Customer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Kassa.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Kassas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Klanten.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -97,6 +127,18 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\Medewerkers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Producten.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Statistieken.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\VerenigingManagement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

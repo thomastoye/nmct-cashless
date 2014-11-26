@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Configuration;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -21,7 +22,7 @@ namespace nmct.ba.cashlessproject.tempui.ViewModel
             using (HttpClient client = new HttpClient())
             {
                 HttpResponseMessage response = await
-                client.GetAsync("http://localhost:15269/api/customer");
+                client.GetAsync(ConfigurationSettings.AppSettings.Get("apiUrl") + "/api/customer");
                 if (response.IsSuccessStatusCode)
                 {
                     string json = await response.Content.ReadAsStringAsync();
@@ -63,7 +64,7 @@ namespace nmct.ba.cashlessproject.tempui.ViewModel
             {
                 string Customer = JsonConvert.SerializeObject(newCustomer);
                 HttpResponseMessage response = await
-                client.PostAsync("http://localhost:15269/api/Customer", new StringContent(Customer,
+                client.PostAsync(ConfigurationSettings.AppSettings.Get("apiUrl") + "api/Customer", new StringContent(Customer,
                 Encoding.UTF8, "application/json"));
                 if (response.IsSuccessStatusCode)
                 {
@@ -76,7 +77,7 @@ namespace nmct.ba.cashlessproject.tempui.ViewModel
             using (HttpClient client = new HttpClient())
             {
                 HttpResponseMessage response = await
-                client.DeleteAsync("http://localhost:15269/api/Customer/1");
+                client.DeleteAsync(ConfigurationSettings.AppSettings.Get("apiUrl") + "api/Customer/1");
                 if (response.IsSuccessStatusCode)
                 {
                     Customers.Remove(SelectedCustomer);
@@ -89,7 +90,7 @@ namespace nmct.ba.cashlessproject.tempui.ViewModel
             {
                 string Customer = JsonConvert.SerializeObject(SelectedCustomer);
                 HttpResponseMessage response = await
-                client.PutAsync("http://localhost:15269/api/Customer", new StringContent(Customer,
+                client.PutAsync(ConfigurationSettings.AppSettings.Get("apiUrl") + "api/Customer", new StringContent(Customer,
                 Encoding.UTF8, "application/json"));
             }
         }
