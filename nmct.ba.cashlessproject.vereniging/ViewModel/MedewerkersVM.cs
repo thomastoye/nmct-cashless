@@ -69,7 +69,7 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
             {
                 string employee = JsonConvert.SerializeObject(newEmployee);
                 HttpResponseMessage response = await
-                client.PostAsync(ConfigurationSettings.AppSettings.Get("apiUrl") + "api/Customer", new StringContent(employee, Encoding.UTF8, "application/json"));
+                client.PostAsync(ConfigurationSettings.AppSettings.Get("apiUrl") + "api/employee", new StringContent(employee, Encoding.UTF8, "application/json"));
                 if (response.IsSuccessStatusCode)
                 {
                     SelectedEmployee = newEmployee;
@@ -81,7 +81,7 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
             using (HttpClient client = new HttpClient())
             {
                 HttpResponseMessage response = await
-                client.DeleteAsync(ConfigurationSettings.AppSettings.Get("apiUrl") + "api/Customer/1");
+                client.DeleteAsync(ConfigurationSettings.AppSettings.Get("apiUrl") + "api/employee/1");
                 if (response.IsSuccessStatusCode)
                 {
                     Employees.Remove(SelectedEmployee);
