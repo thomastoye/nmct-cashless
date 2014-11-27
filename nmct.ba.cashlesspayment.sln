@@ -12,8 +12,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nmct.ba.cashlessproject.api
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashlessTests", "DatabaseTest\CashlessTests.csproj", "{5DBDD4E5-527C-4927-8329-E0DA97E7403F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nmct.ba.cashlessproject.ui", "nmct.ba.cashlessproject.ui\nmct.ba.cashlessproject.ui.csproj", "{2BA36C53-15BD-4237-BF5E-34718924B6F6}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nmct.ba.cashlessproject.vereniging", "nmct.ba.cashlessproject.vereniging\nmct.ba.cashlessproject.vereniging.csproj", "{C381BCFA-89AC-473F-9A45-3EBE58422B67}"
 EndProject
 Global
@@ -34,10 +32,6 @@ Global
 		{5DBDD4E5-527C-4927-8329-E0DA97E7403F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DBDD4E5-527C-4927-8329-E0DA97E7403F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DBDD4E5-527C-4927-8329-E0DA97E7403F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2BA36C53-15BD-4237-BF5E-34718924B6F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2BA36C53-15BD-4237-BF5E-34718924B6F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2BA36C53-15BD-4237-BF5E-34718924B6F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2BA36C53-15BD-4237-BF5E-34718924B6F6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C381BCFA-89AC-473F-9A45-3EBE58422B67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C381BCFA-89AC-473F-9A45-3EBE58422B67}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C381BCFA-89AC-473F-9A45-3EBE58422B67}.Release|Any CPU.ActiveCfg = Release|Any CPU
