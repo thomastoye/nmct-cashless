@@ -6,27 +6,21 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="30"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Label Grid.Row="0" Grid.Column="0" Content="Kassa's"></Label>
-
-        <Label Grid.Column="0" Grid.Row="2" Content="Naam"></Label>
-        <Label Grid.Column="1" Grid.Row="2" Content="Gebruik"></Label>
-
-        <Label Grid.Column="0" Grid.Row="3" Content="Kassa #123"></Label>
-        <Button Grid.Column="1" Grid.Row="3" Content="Gebruik"></Button>
-
-        <Label Grid.Column="0" Grid.Row="4" Content="Kassa #321"></Label>
-        <Button Grid.Column="1" Grid.Row="4" Content="Gebruik"></Button>
-
+        <ListBox Margin="8" DisplayMemberPath="Name" ItemsSource="{Binding Registers}" SelectedItem="{Binding SelectedRegister}"/>
+        <StackPanel Margin="8" Grid.Column="1">
+            <Label Content="Naam:"/>
+            <TextBox Text="{Binding SelectedRegister.Name}"/>
+            <Label Content="Model:"/>
+            <TextBox Text="{Binding SelectedRegister.Device}"/>
+            <StackPanel Orientation="Horizontal" Margin="0,16,0,0">
+                <Button Content="Kassa toevoegen"/>
+                <Button Content="Kassa verwijderen" Margin="8,0,0,0"/>
+                <Button Content="Wijzigingen opslaan" Margin="8,0,0,0"/>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </UserControl>
