@@ -30,7 +30,7 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
             using (HttpClient client = new HttpClient())
             {
                 HttpResponseMessage response = await
-                client.GetAsync(ConfigurationSettings.AppSettings.Get("apiUrl") + "/api/customer");
+                client.GetAsync(ConfigurationManager.AppSettings["apiUrl"] + "/api/customer");
                 if (response.IsSuccessStatusCode)
                 {
                     string json = await response.Content.ReadAsStringAsync();
@@ -70,7 +70,7 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
             {
                 string Customer = JsonConvert.SerializeObject(newCustomer);
                 HttpResponseMessage response = await
-                client.PostAsync(ConfigurationSettings.AppSettings.Get("apiUrl") + "api/Customer", new StringContent(Customer, Encoding.UTF8, "application/json"));
+                client.PostAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/Customer", new StringContent(Customer, Encoding.UTF8, "application/json"));
                 if (response.IsSuccessStatusCode)
                 {
                     SelectedCustomer = newCustomer;
@@ -82,7 +82,7 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
             using (HttpClient client = new HttpClient())
             {
                 HttpResponseMessage response = await
-                client.DeleteAsync(ConfigurationSettings.AppSettings.Get("apiUrl") + "api/Customer/1");
+                client.DeleteAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/Customer/1");
                 if (response.IsSuccessStatusCode)
                 {
                     Customers.Remove(SelectedCustomer);
@@ -95,7 +95,7 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
             {
                 string Customer = JsonConvert.SerializeObject(SelectedCustomer);
                 HttpResponseMessage response = await
-                client.PutAsync(ConfigurationSettings.AppSettings.Get("apiUrl") + "api/Customer", new StringContent(Customer, Encoding.UTF8, "application/json"));
+                client.PutAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/Customer", new StringContent(Customer, Encoding.UTF8, "application/json"));
             }
         }
     }

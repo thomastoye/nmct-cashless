@@ -29,7 +29,7 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
             using (HttpClient client = new HttpClient())
             {
                 HttpResponseMessage response = await
-                client.GetAsync(ConfigurationSettings.AppSettings.Get("apiUrl") + "/api/register");
+                client.GetAsync(ConfigurationManager.AppSettings["apiUrl"] + "/api/register");
                 if (response.IsSuccessStatusCode)
                 {
                     string json = await response.Content.ReadAsStringAsync();
@@ -69,7 +69,7 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
             {
                 string Register = JsonConvert.SerializeObject(newRegister);
                 HttpResponseMessage response = await
-                client.PostAsync(ConfigurationSettings.AppSettings.Get("apiUrl") + "api/register", new StringContent(Register, Encoding.UTF8, "application/json"));
+                client.PostAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/register", new StringContent(Register, Encoding.UTF8, "application/json"));
                 if (response.IsSuccessStatusCode)
                 {
                     SelectedRegister = newRegister;
@@ -81,7 +81,7 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
             using (HttpClient client = new HttpClient())
             {
                 HttpResponseMessage response = await
-                client.DeleteAsync(ConfigurationSettings.AppSettings.Get("apiUrl") + "api/register/1");
+                client.DeleteAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/register/1");
                 if (response.IsSuccessStatusCode)
                 {
                     Registers.Remove(SelectedRegister);
@@ -94,7 +94,7 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
             {
                 string Register = JsonConvert.SerializeObject(SelectedRegister);
                 HttpResponseMessage response = await
-                client.PutAsync(ConfigurationSettings.AppSettings.Get("apiUrl") + "api/register", new StringContent(Register, Encoding.UTF8, "application/json"));
+                client.PutAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/register", new StringContent(Register, Encoding.UTF8, "application/json"));
             }
         }
     }

@@ -29,7 +29,7 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
             using (HttpClient client = new HttpClient())
             {
                 HttpResponseMessage response = await
-                client.GetAsync(ConfigurationSettings.AppSettings.Get("apiUrl") + "/api/employee");
+                client.GetAsync(ConfigurationManager.AppSettings["apiUrl"] + "/api/employee");
                 if (response.IsSuccessStatusCode)
                 {
                     string json = await response.Content.ReadAsStringAsync();
@@ -69,7 +69,7 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
             {
                 string employee = JsonConvert.SerializeObject(newEmployee);
                 HttpResponseMessage response = await
-                client.PostAsync(ConfigurationSettings.AppSettings.Get("apiUrl") + "api/employee", new StringContent(employee, Encoding.UTF8, "application/json"));
+                client.PostAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/employee", new StringContent(employee, Encoding.UTF8, "application/json"));
                 if (response.IsSuccessStatusCode)
                 {
                     SelectedEmployee = newEmployee;
@@ -81,7 +81,7 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
             using (HttpClient client = new HttpClient())
             {
                 HttpResponseMessage response = await
-                client.DeleteAsync(ConfigurationSettings.AppSettings.Get("apiUrl") + "api/employee/1");
+                client.DeleteAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/employee/1");
                 if (response.IsSuccessStatusCode)
                 {
                     Employees.Remove(SelectedEmployee);
@@ -94,7 +94,7 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
             {
                 string Employee = JsonConvert.SerializeObject(SelectedEmployee);
                 HttpResponseMessage response = await
-                client.PutAsync(ConfigurationSettings.AppSettings.Get("apiUrl") + "api/Employee", new StringContent(Employee, Encoding.UTF8, "application/json"));
+                client.PutAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/Employee", new StringContent(Employee, Encoding.UTF8, "application/json"));
             }
         }
     }
