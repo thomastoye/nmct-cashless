@@ -27,13 +27,16 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
         }
 
 
-        public static void InsertRegister(Register Register)
+        public static int InsertRegister(Register register)
         {
             string sql = "INSERT INTO Registers(RegisterName,Device) VALUES(@RegisterName,@Device)";
-            DbParameter par1 = Database.AddParameter("KlantConnection", "@RegisterName", Register.Name);
-            DbParameter par2 = Database.AddParameter("KlantConnection", "@RegisterName", Register.Name);
+            if (register.Name == null) register.Name = "";
+            if (register.Device == null) register.Device = "";
 
-            Database.InsertData("KlantConnection", sql, par1, par2);
+            DbParameter par1 = Database.AddParameter("KlantConnection", "@RegisterName", register.Name);
+            DbParameter par2 = Database.AddParameter("KlantConnection", "@Device", register.Device);
+
+            return Database.InsertData("KlantConnection", sql, par1, par2);
         }
 
         private static Register Create(IDataRecord record)
@@ -44,6 +47,30 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
                 Name = record["RegisterName"].ToString(),
                 Device = record["Device"].ToString()
             };
+        }
+
+        /**
+         * This method updates a register
+         * 
+         */
+        public static void UpdateRegister(long id, Register reg)
+        {
+            string sql = "UPDATE registers SET RegisterName=@RegisterName,Device=@DeviceName WHERE ID=@ID;";
+
+            DbParameter regName = Database.AddParameter("KlantConnection", "@RegisterName", reg.Name);
+            DbParameter regDeviceName = Database.AddParameter("KlantConnection", "@DeviceName", reg.Device);
+            DbParameter regId = Database.AddParameter("KlantConnection", "@ID", id);
+
+            Database.ModifyData("KlantConnection", sql, regName, regDeviceName, regId);
+        }
+
+        internal static void Delete(long id)
+        {
+            string sql = "DELETE FROM registers WHERE ID=@ID";
+
+            DbParameter parId = Database.AddParameter("KlantConnection", "@ID", id);
+
+            Database.ModifyData("KlantConnection", sql, parId);
         }
     }
 }

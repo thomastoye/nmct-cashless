@@ -64,27 +64,37 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
         public async void AddRegister()
         {
             Register newRegister = new Register();
-            Registers.Add(newRegister);
             using (HttpClient client = new HttpClient())
             {
-                string Register = JsonConvert.SerializeObject(newRegister);
-                HttpResponseMessage response = await
-                client.PostAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/register", new StringContent(Register, Encoding.UTF8, "application/json"));
+                string register = JsonConvert.SerializeObject(newRegister);
+                HttpResponseMessage response = await client.PostAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/register", new StringContent(register, Encoding.UTF8, "application/json"));
                 if (response.IsSuccessStatusCode)
                 {
-                    SelectedRegister = newRegister;
+                    string json = await response.Content.ReadAsStringAsync();
+                    Register reg = JsonConvert.DeserializeObject<Register>(json);
+                    if (reg != null)
+                    {
+                        // we get the Register returned by the webservice and not the one we generated client-side
+                        // reason for this is that the server will set an ID etc. for the new register
+                        Registers.Add(reg);
+                        SelectedRegister = reg;
+                    }
+
                 }
             }
         }
         public async void DeleteRegister()
         {
-            using (HttpClient client = new HttpClient())
+            if (SelectedRegister != null)
             {
-                HttpResponseMessage response = await
-                client.DeleteAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/register/1");
-                if (response.IsSuccessStatusCode)
+                using (HttpClient client = new HttpClient())
                 {
-                    Registers.Remove(SelectedRegister);
+                    HttpResponseMessage response = await
+                    client.DeleteAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/register/" + SelectedRegister.ID);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        Registers.Remove(SelectedRegister);
+                    }
                 }
             }
         }
@@ -94,7 +104,7 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
             {
                 string Register = JsonConvert.SerializeObject(SelectedRegister);
                 HttpResponseMessage response = await
-                client.PutAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/register", new StringContent(Register, Encoding.UTF8, "application/json"));
+                client.PutAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/register/" + SelectedRegister.ID, new StringContent(Register, Encoding.UTF8, "application/json"));
             }
         }
     }

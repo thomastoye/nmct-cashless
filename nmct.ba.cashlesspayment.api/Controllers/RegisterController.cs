@@ -18,10 +18,24 @@ namespace nmct.ba.cashlessproject.api.Controllers
             return Registers.GetRegisters();
         }
 
-        public HttpResponseMessage Post(Register r)
+        public Register Post(Register r)
         {
-            Registers.InsertRegister(r);
-            return new HttpResponseMessage(HttpStatusCode.OK);
+            int id = Registers.InsertRegister(r);
+            r.ID = id;
+
+            return r;
+        }
+
+        public HttpStatusCode Put(long id, Register r)
+        {
+            Registers.UpdateRegister(id, r);
+            return HttpStatusCode.OK;
+        }
+
+        public HttpStatusCode Delete(long id)
+        {
+            Registers.Delete(id);
+            return HttpStatusCode.OK;
         }
     }
 }
