@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace nmct.ba.cashlesspayment.klant.ViewModel
+namespace nmct.ba.cashlessproject.klant.ViewModel
 {
     class PageOneVM : ObservableObject, IPage
     {

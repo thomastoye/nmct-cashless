@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace nmct.ba.cashlesspayment.klant
+namespace nmct.ba.cashlessproject.klant
 {
     /// <summary>
     /// Interaction logic for App.xaml

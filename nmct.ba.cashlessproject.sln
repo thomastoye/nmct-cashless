@@ -14,7 +14,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashlessTests", "DatabaseTe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nmct.ba.cashlessproject.vereniging", "nmct.ba.cashlessproject.vereniging\nmct.ba.cashlessproject.vereniging.csproj", "{C381BCFA-89AC-473F-9A45-3EBE58422B67}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nmct.ba.cashlesspayment.klant", "nmct.ba.cashlesspayment.klant\nmct.ba.cashlesspayment.klant.csproj", "{2BA36C53-15BD-4237-BF5E-34718924B6F6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nmct.ba.cashlessproject.klant", "nmct.ba.cashlesspayment.klant\nmct.ba.cashlessproject.klant.csproj", "{2BA36C53-15BD-4237-BF5E-34718924B6F6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

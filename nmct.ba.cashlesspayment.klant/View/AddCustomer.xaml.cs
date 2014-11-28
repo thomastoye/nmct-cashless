@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace nmct.ba.cashlesspayment.klant.View
+namespace nmct.ba.cashlessproject.klant.View
 {
     /// <summary>
     /// Interaction logic for AddCustomer.xaml

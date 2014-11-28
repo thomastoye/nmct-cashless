@@ -7,7 +7,7 @@
     <ProjectGuid>{2BA36C53-15BD-4237-BF5E-34718924B6F6}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>nmct.ba.cashlesspayment.klant</RootNamespace>
+    <RootNamespace>nmct.ba.cashlessproject.klant</RootNamespace>
     <AssemblyName>nmct.ba.cashlesspayment.klant</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

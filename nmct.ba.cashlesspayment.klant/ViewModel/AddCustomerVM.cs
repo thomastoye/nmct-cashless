@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace nmct.ba.cashlesspayment.klant.ViewModel
+namespace nmct.ba.cashlessproject.klant.ViewModel
 {
     class AddCustomerVM : ObservableObject, IPage
     {
