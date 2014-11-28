@@ -51,11 +51,14 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
 
         /**
          * This method updates a register
-         * 
+         * It takes an id and a new register. It will update the record in the database with that id to match the given register
          */
         public static void UpdateRegister(long id, Register reg)
         {
             string sql = "UPDATE registers SET RegisterName=@RegisterName,Device=@DeviceName WHERE ID=@ID;";
+
+            if (reg.Name == null) reg.Name = "";
+            if (reg.Device == null) reg.Device = "";
 
             DbParameter regName = Database.AddParameter("KlantConnection", "@RegisterName", reg.Name);
             DbParameter regDeviceName = Database.AddParameter("KlantConnection", "@DeviceName", reg.Device);
@@ -64,7 +67,7 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
             Database.ModifyData("KlantConnection", sql, regName, regDeviceName, regId);
         }
 
-        internal static void Delete(long id)
+        public static void Delete(long id)
         {
             string sql = "DELETE FROM registers WHERE ID=@ID";
 
