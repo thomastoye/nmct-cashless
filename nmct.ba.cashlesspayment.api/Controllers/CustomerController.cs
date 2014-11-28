@@ -19,10 +19,24 @@ namespace nmct.ba.cashlessproject.api.Controllers
             return Customers.GetCustomers();
         }
 
-        public HttpResponseMessage Post(Customer c)
+        public Customer Post(Customer c)
         {
-            Customers.InsertCustomer(c);
-            return new HttpResponseMessage(HttpStatusCode.OK);
+            int id = Customers.InsertCustomer(c);
+            c.ID = id;
+
+            return c;
+        }
+
+        public HttpStatusCode Put(long id, Customer c)
+        {
+            Customers.UpdateRegister(id, c);
+            return HttpStatusCode.OK;
+        }
+
+        public HttpStatusCode Delete(long id)
+        {
+            Customers.Delete(id);
+            return HttpStatusCode.OK;
         }
     }
 }

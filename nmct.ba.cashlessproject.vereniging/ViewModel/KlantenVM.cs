@@ -62,18 +62,26 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
         {
             get { return new RelayCommand(SaveCustomer); }
         }
+        public ICommand RefreshCustomersCommand
+        {
+            get { return new RelayCommand(RefreshCustomers); }
+        }
         public async void AddCustomer()
         {
             Customer newCustomer = new Customer();
-            Customers.Add(newCustomer);
             using (HttpClient client = new HttpClient())
             {
-                string Customer = JsonConvert.SerializeObject(newCustomer);
-                HttpResponseMessage response = await
-                client.PostAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/Customer", new StringContent(Customer, Encoding.UTF8, "application/json"));
+                string customer = JsonConvert.SerializeObject(newCustomer);
+                HttpResponseMessage response = await client.PostAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/customer", new StringContent(customer, Encoding.UTF8, "application/json"));
                 if (response.IsSuccessStatusCode)
                 {
-                    SelectedCustomer = newCustomer;
+                    string json = await response.Content.ReadAsStringAsync();
+                    Customer cust = JsonConvert.DeserializeObject<Customer>(json);
+                    if (cust != null)
+                    {
+                        Customers.Add(cust);
+                        SelectedCustomer = cust;
+                    }
                 }
             }
         }
@@ -82,7 +90,7 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
             using (HttpClient client = new HttpClient())
             {
                 HttpResponseMessage response = await
-                client.DeleteAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/Customer/1");
+                client.DeleteAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/customer/" + SelectedCustomer.ID);
                 if (response.IsSuccessStatusCode)
                 {
                     Customers.Remove(SelectedCustomer);
@@ -94,9 +102,12 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
             using (HttpClient client = new HttpClient())
             {
                 string Customer = JsonConvert.SerializeObject(SelectedCustomer);
-                HttpResponseMessage response = await
-                client.PutAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/Customer", new StringContent(Customer, Encoding.UTF8, "application/json"));
+                HttpResponseMessage response = await client.PutAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/customer/" + SelectedCustomer.ID, new StringContent(Customer, Encoding.UTF8, "application/json"));
             }
+        }
+        public async void RefreshCustomers()
+        {
+            GetCustomers();
         }
     }
 }

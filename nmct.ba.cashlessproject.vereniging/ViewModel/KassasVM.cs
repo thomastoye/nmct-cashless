@@ -113,8 +113,7 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
             using (HttpClient client = new HttpClient())
             {
                 string Register = JsonConvert.SerializeObject(SelectedRegister);
-                HttpResponseMessage response = await
-                client.PutAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/register/" + SelectedRegister.ID, new StringContent(Register, Encoding.UTF8, "application/json"));
+                HttpResponseMessage response = await client.PutAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/register/" + SelectedRegister.ID, new StringContent(Register, Encoding.UTF8, "application/json"));
             }
         }
     }
