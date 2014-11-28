@@ -12,7 +12,6 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
     {
         public ApplicationVM()
         {
-            Pages.Add(new PageOneVM());
             Pages.Add(new AccountVM());
             Pages.Add(new KassasVM());
             Pages.Add(new KlantenVM());

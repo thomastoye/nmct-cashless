@@ -17,9 +17,9 @@
             <Label Content="Model:"/>
             <TextBox Text="{Binding SelectedRegister.Device}"/>
             <StackPanel Orientation="Horizontal" Margin="0,16,0,0">
-                <Button Content="Kassa toevoegen"/>
-                <Button Content="Kassa verwijderen" Margin="8,0,0,0"/>
-                <Button Content="Wijzigingen opslaan" Margin="8,0,0,0"/>
+                <Button Content="Kassa toevoegen" Command="{Binding AddRegisterCommand}"/>
+                <Button Content="Kassa verwijderen" Margin="8,0,0,0" Command="{Binding DeleteRegisterCommand}"/>
+                <Button Content="Wijzigingen opslaan" Margin="8,0,0,0" Command="{Binding SaveRegisterCommand}"/>
             </StackPanel>
         </StackPanel>
     </Grid>
