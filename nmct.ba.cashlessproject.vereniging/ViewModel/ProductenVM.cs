@@ -63,7 +63,7 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
         }
         public ICommand RefreshProductsCommand
         {
-            get { return new RelayCommand(RefreshProducts); }
+            get { return new RelayCommand(GetProducts); }
         }
         public async void AddProduct()
         {
@@ -104,10 +104,6 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
                 HttpResponseMessage response = await
                 client.PutAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/product/" + SelectedProduct.ID, new StringContent(Product, Encoding.UTF8, "application/json"));
             }
-        }
-        public async void RefreshProducts()
-        {
-            GetProducts();
         }
     }
 }

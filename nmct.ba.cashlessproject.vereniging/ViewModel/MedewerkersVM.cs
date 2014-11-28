@@ -63,7 +63,7 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
         }
         public ICommand RefreshEmployeesCommand
         {
-            get { return new RelayCommand(RefreshEmployees); }
+            get { return new RelayCommand(GetEmployees); }
         }
         public async void AddEmployee()
         {
@@ -103,10 +103,6 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
                 string Employee = JsonConvert.SerializeObject(SelectedEmployee);
                 HttpResponseMessage response = await client.PutAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/employee/" + SelectedEmployee.ID, new StringContent(Employee, Encoding.UTF8, "application/json"));
             }
-        }
-        public async void RefreshEmployees()
-        {
-            GetEmployees();
         }
     }
 }

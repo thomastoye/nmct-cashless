@@ -64,7 +64,7 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
         }
         public ICommand RefreshCustomersCommand
         {
-            get { return new RelayCommand(RefreshCustomers); }
+            get { return new RelayCommand(GetCustomers); }
         }
         public async void AddCustomer()
         {
@@ -104,10 +104,6 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
                 string Customer = JsonConvert.SerializeObject(SelectedCustomer);
                 HttpResponseMessage response = await client.PutAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/customer/" + SelectedCustomer.ID, new StringContent(Customer, Encoding.UTF8, "application/json"));
             }
-        }
-        public async void RefreshCustomers()
-        {
-            GetCustomers();
         }
     }
 }
