@@ -61,6 +61,16 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
         {
             get { return new RelayCommand(SaveRegister); }
         }
+        public ICommand UpdateRegistersCommand
+        {
+            get { return new RelayCommand(UpdateRegisters); }
+        }
+
+        private async void UpdateRegisters()
+        {
+            GetRegisters();
+        }
+
         public async void AddRegister()
         {
             Register newRegister = new Register();

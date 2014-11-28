@@ -20,6 +20,7 @@
                 <Button Content="Kassa toevoegen" Command="{Binding AddRegisterCommand}"/>
                 <Button Content="Kassa verwijderen" Margin="8,0,0,0" Command="{Binding DeleteRegisterCommand}"/>
                 <Button Content="Wijzigingen opslaan" Margin="8,0,0,0" Command="{Binding SaveRegisterCommand}"/>
+                <Button Content="Herladen" Margin="8,0,0,0" Command="{Binding UpdateRegistersCommand}"/>
             </StackPanel>
         </StackPanel>
     </Grid>
