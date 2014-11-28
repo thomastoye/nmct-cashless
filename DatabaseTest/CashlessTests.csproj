@@ -52,7 +52,6 @@
   <ItemGroup>
     <Compile Include="CustomerDATest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="CustomerTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\nmct.ba.cashlesspayment.api\nmct.ba.cashlessproject.api.csproj">

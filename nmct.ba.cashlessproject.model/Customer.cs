@@ -47,16 +47,6 @@ namespace nmct.ba.cashlessproject.model
             get { return _balance; }
             set { _balance = value; }
         }
-
-        public override bool Equals(object obj)
-        {
-            if (obj == null) return false;
-
-            Customer c = obj as Customer;
-            if ((System.Object)c == null) return false;
-
-            return /*c.ID.Equals(ID) &&*/ c.Address.Equals(Address) && c.Balance.Equals(Balance) && c.Name.Equals(Name);
-        }
         
     }
 }

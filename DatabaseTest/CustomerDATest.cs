@@ -28,11 +28,11 @@ namespace CashlessTests
         {
             Customer cust = new Customer { Address = "Straatlaan 55", Balance = 50, Name = "Thomas" };
 
-            Customers.InsertCustomer(cust);
+            cust.ID = Customers.InsertCustomer(cust);
 
-            List<Customer> lijst = Customers.GetCustomers();
-
-            bool inDB = Array.Exists<Customer>(Customers.GetCustomers().ToArray(), c => { return c.Equals(cust); });
+            bool inDB = Array.Exists<Customer>(Customers.GetCustomers().ToArray(), c => { 
+                return cust.ID.Equals(c.ID) && cust.Address.Equals(c.Address) && cust.Name.Equals(c.Name) && cust.Balance.Equals(c.Balance); 
+            });
             Assert.IsTrue(inDB);
         }
     }
