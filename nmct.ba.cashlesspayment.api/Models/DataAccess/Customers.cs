@@ -54,7 +54,7 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
             };
         }
 
-        public static void UpdateRegister(long id, Customer customer)
+        public static void UpdateCustomer(long id, Customer customer)
         {
             string sql = "UPDATE customers SET CustomerName=@CustomerName,Address=@Address WHERE ID=@ID;";
 
@@ -65,7 +65,7 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
             Database.ModifyData("KlantConnection", sql, custName, custAddress, custId);
         }
 
-        public static void Delete(long id)
+        public static void DeleteCustomer(long id)
         {
             string sql = "DELETE FROM customers WHERE ID=@ID";
 

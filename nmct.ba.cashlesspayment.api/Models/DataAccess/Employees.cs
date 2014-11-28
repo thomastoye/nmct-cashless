@@ -27,15 +27,21 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
         }
 
 
-        public static void InsertEmployee(Employee employee)
+        public static int InsertEmployee(Employee employee)
         {
             string sql = "INSERT INTO Employee(EmployeeName,Address,Email,Phone) VALUES(@EmployeeName,@Address,@Email,@Phone)";
-            DbParameter par1 = Database.AddParameter("KlantConnection", "@EmployeeName", employee.Name);
-            DbParameter par2 = Database.AddParameter("KlantConnection", "@Address", employee.Address);
-            DbParameter par3 = Database.AddParameter("KlantConnection", "@Email", employee.Email);
-            DbParameter par4 = Database.AddParameter("KlantConnection", "@Phone", employee.Phone);
 
-            Database.InsertData("KlantConnection", sql, par1, par2, par3, par4);
+            if (employee.Address == null) employee.Address = "";
+            if (employee.Email == null) employee.Email = "";
+            if (employee.Name == null) employee.Name = "";
+            if (employee.Phone == null) employee.Phone = "";
+
+            DbParameter parName = Database.AddParameter("KlantConnection", "@EmployeeName", employee.Name);
+            DbParameter parAddress = Database.AddParameter("KlantConnection", "@Address", employee.Address);
+            DbParameter parMail = Database.AddParameter("KlantConnection", "@Email", employee.Email);
+            DbParameter parPhone = Database.AddParameter("KlantConnection", "@Phone", employee.Phone);
+
+            return Database.InsertData("KlantConnection", sql, parName, parAddress, parMail, parPhone);
         }
 
         private static Employee Create(IDataRecord record)
@@ -48,6 +54,29 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
                 Name = record["EmployeeName"].ToString(),
                 Phone = record["Phone"].ToString()
             };
+        }
+
+        public static void UpdateEmployee(long id, Employee employee)
+        {
+            string sql = "UPDATE employee SET EmployeeName=@EmployeeName,Address=@Address,Email=@Email,Phone=@Phone WHERE ID=@ID;";
+
+            DbParameter parName = Database.AddParameter("KlantConnection", "@EmployeeName", employee.Name);
+            DbParameter parAddress = Database.AddParameter("KlantConnection", "@Address", employee.Address);
+            DbParameter parMail = Database.AddParameter("KlantConnection", "@Email", employee.Email);
+            DbParameter parPhone = Database.AddParameter("KlantConnection", "@Phone", employee.Phone);
+
+            DbParameter parId = Database.AddParameter("KlantConnection", "@ID", employee.ID);
+
+            Database.ModifyData("KlantConnection", sql, parName, parAddress, parMail, parPhone, parId);
+        }
+
+        public static void DeleteEmployee(long id)
+        {
+            string sql = "DELETE FROM employee WHERE ID=@ID";
+
+            DbParameter parId = Database.AddParameter("KlantConnection", "@ID", id);
+
+            Database.ModifyData("KlantConnection", sql, parId);
         }
     }
 }

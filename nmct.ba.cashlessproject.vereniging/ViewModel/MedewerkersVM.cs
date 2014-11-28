@@ -61,18 +61,27 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
         {
             get { return new RelayCommand(SaveEmployee); }
         }
+        public ICommand RefreshEmployeesCommand
+        {
+            get { return new RelayCommand(RefreshEmployees); }
+        }
         public async void AddEmployee()
         {
             Employee newEmployee = new Employee();
-            Employees.Add(newEmployee);
             using (HttpClient client = new HttpClient())
             {
                 string employee = JsonConvert.SerializeObject(newEmployee);
-                HttpResponseMessage response = await
-                client.PostAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/employee", new StringContent(employee, Encoding.UTF8, "application/json"));
+                HttpResponseMessage response = await client.PostAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/employee", new StringContent(employee, Encoding.UTF8, "application/json"));
                 if (response.IsSuccessStatusCode)
                 {
-                    SelectedEmployee = newEmployee;
+                    string json = await response.Content.ReadAsStringAsync();
+                    Employee emp = JsonConvert.DeserializeObject<Employee>(json);
+                    if (emp != null)
+                    {
+                        Employees.Add(emp);
+                        SelectedEmployee = emp;
+                    }
+
                 }
             }
         }
@@ -80,8 +89,7 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
         {
             using (HttpClient client = new HttpClient())
             {
-                HttpResponseMessage response = await
-                client.DeleteAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/employee/1");
+                HttpResponseMessage response = await client.DeleteAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/employee/" + SelectedEmployee.ID);
                 if (response.IsSuccessStatusCode)
                 {
                     Employees.Remove(SelectedEmployee);
@@ -93,9 +101,12 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
             using (HttpClient client = new HttpClient())
             {
                 string Employee = JsonConvert.SerializeObject(SelectedEmployee);
-                HttpResponseMessage response = await
-                client.PutAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/Employee", new StringContent(Employee, Encoding.UTF8, "application/json"));
+                HttpResponseMessage response = await client.PutAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/employee/" + SelectedEmployee.ID, new StringContent(Employee, Encoding.UTF8, "application/json"));
             }
+        }
+        public async void RefreshEmployees()
+        {
+            GetEmployees();
         }
     }
 }

@@ -29,13 +29,13 @@ namespace nmct.ba.cashlessproject.api.Controllers
 
         public HttpStatusCode Put(long id, Customer c)
         {
-            Customers.UpdateRegister(id, c);
+            Customers.UpdateCustomer(id, c);
             return HttpStatusCode.OK;
         }
 
         public HttpStatusCode Delete(long id)
         {
-            Customers.Delete(id);
+            Customers.DeleteCustomer(id);
             return HttpStatusCode.OK;
         }
     }

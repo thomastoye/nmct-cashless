@@ -21,9 +21,10 @@
             <Label Content="Telefoon:"/>
             <TextBox Text="{Binding SelectedEmployee.Phone}"/>
             <StackPanel Orientation="Horizontal" Margin="0,16,0,0">
-                <Button Content="Klant toevoegen"/>
-                <Button Content="Klant verwijderen" Margin="8,0,0,0"/>
-                <Button Content="Wijzigingen opslaan" Margin="8,0,0,0"/>
+                <Button Content="Medewerker toevoegen" Command="{Binding AddEmployeeCommand}"/>
+                <Button Content="Medewerker verwijderen" Command="{Binding DeleteEmployeeCommand}" Margin="8,0,0,0"/>
+                <Button Content="Wijzigingen opslaan" Command="{Binding SaveEmployeeCommand}" Margin="8,0,0,0"/>
+                <Button Content="Herladen" Command="{Binding RefreshEmployeesCommand}" Margin="8,0,0,0"/>
             </StackPanel>
         </StackPanel>
 
