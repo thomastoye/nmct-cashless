@@ -28,36 +28,11 @@
         <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">Ben je al klant? Dan hoef je gewoon in te loggen.</Label>
 
         <Label Grid.Column="0" Grid.Row="2" Style="{StaticResource LabelMargin}">Naam</Label>
-        <TextBox Grid.Column="1" Grid.Row="2" Name="Name" Margin="10"/>
-
-        <Label Grid.Column="0" Grid.Row="3" Style="{StaticResource LabelMargin}">Email</Label>
-        <TextBox Grid.Column="1" Grid.Row="3" Name="Email" Margin="10"/>
+        <TextBox Grid.Column="1" Grid.Row="2" Name="Name" Text="{Binding NewCustomer.Name}"  Margin="10"/>
         
-        <Label Grid.Column="0" Grid.Row="4" Style="{StaticResource LabelMargin}">Adres</Label>
-        <TextBox Grid.Column="1" Grid.Row="4" Name="Address" Margin="10"/>
+        <Label Grid.Column="0" Grid.Row="3" Style="{StaticResource LabelMargin}">Adres</Label>
+        <TextBox Grid.Column="1" Grid.Row="3" Name="Address" Text="{Binding NewCustomer.Address}" Margin="10"/>
         
-        <Button Grid.Column="1" Grid.Row="5" Margin="10">Aanmaken!</Button>
-
-        <!--
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="120"></RowDefinition>
-            <RowDefinition Height="120"></RowDefinition>
-        </Grid.RowDefinitions>
-        <DockPanel Grid.Column="0" Grid.Row="0">
-            <Image DockPanel.Dock="Left" Height="100" Width="100" HorizontalAlignment="Left"></Image>
-            <StackPanel>
-                <Label Content="Naam Achternaam"></Label>
-                <Button Content="Afmelden"></Button>
-            </StackPanel>
-        </DockPanel>
-        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0">
-            <Label Content="Saldo:"></Label>
-            <Label Content="€65.50"></Label>
-        </StackPanel>
-        <Button Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" Content="Opladen"></Button>-->
+        <Button Grid.Column="1" Grid.Row="4" Margin="10" Command="{Binding CreateCustomerCommand}">Aanmaken!</Button>
     </Grid>
 </UserControl>
