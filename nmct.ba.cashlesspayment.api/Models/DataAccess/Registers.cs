@@ -67,7 +67,7 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
             Database.ModifyData("KlantConnection", sql, regName, regDeviceName, regId);
         }
 
-        public static void Delete(long id)
+        public static void DeleteRegister(long id)
         {
             string sql = "DELETE FROM registers WHERE ID=@ID";
 

@@ -34,7 +34,7 @@ namespace nmct.ba.cashlessproject.api.Controllers
 
         public HttpStatusCode Delete(long id)
         {
-            Registers.Delete(id);
+            Registers.DeleteRegister(id);
             return HttpStatusCode.OK;
         }
     }

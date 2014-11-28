@@ -28,13 +28,13 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
         }
 
 
-        public static void InsertProduct(Product Product)
+        public static int InsertProduct(Product Product)
         {
             string sql = "INSERT INTO Product(ProductName,Price) VALUES(@ProductName,@Price)";
             DbParameter par1 = Database.AddParameter("KlantConnection", "@ProductName", Product.Name);
             DbParameter par2 = Database.AddParameter("KlantConnection", "@Price", Product.Price);
 
-            Database.InsertData("KlantConnection", sql, par1, par2);
+            return Database.InsertData("KlantConnection", sql, par1, par2);
         }
 
         private static Product Create(IDataRecord record)
@@ -45,6 +45,28 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
                 Price = Double.Parse(record["Price"].ToString()),
                 Name = record["ProductName"].ToString()
             };
+        }
+
+        public static void UpdateProduct(long id, Product prod)
+        {
+            string sql = "UPDATE products SET ProductName=@ProductName,Price=@Price WHERE ID=@ID;";
+
+            if (prod.Name == null) prod.Name = "";
+
+            DbParameter parName = Database.AddParameter("KlantConnection", "@ProductName", prod.Name);
+            DbParameter parPrice = Database.AddParameter("KlantConnection", "@Price", prod.Price);
+            DbParameter parId = Database.AddParameter("KlantConnection", "@ID", id);
+
+            Database.ModifyData("KlantConnection", sql, parName, parPrice, parId);
+        }
+
+        public static void DeleteProduct(long id)
+        {
+            string sql = "DELETE FROM products WHERE ID=@ID";
+
+            DbParameter parId = Database.AddParameter("KlantConnection", "@ID", id);
+
+            Database.ModifyData("KlantConnection", sql, parId);
         }
     }
 }

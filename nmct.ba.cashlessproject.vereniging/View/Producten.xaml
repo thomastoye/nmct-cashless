@@ -18,9 +18,10 @@
             <Label Content="Prijs:"/>
             <TextBox Text="{Binding SelectedProduct.Price}"/>
             <StackPanel Orientation="Horizontal" Margin="0,16,0,0">
-                <Button Content="Product toevoegen"/>
-                <Button Content="Product verwijderen" Margin="8,0,0,0"/>
-                <Button Content="Wijzigingen opslaan" Margin="8,0,0,0"/>
+                <Button Content="Product toevoegen" Command="{Binding AddProductCommand}"/>
+                <Button Content="Product verwijderen" Command="{Binding DeleteProductCommand}" Margin="8,0,0,0"/>
+                <Button Content="Wijzigingen opslaan" Command="{Binding SaveProductCommand}" Margin="8,0,0,0"/>
+                <Button Content="Herladen" Margin="8,0,0,0" Command="{Binding RefreshProductsCommand}"/>
             </StackPanel>
         </StackPanel>
     </Grid>

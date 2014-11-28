@@ -61,18 +61,26 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
         {
             get { return new RelayCommand(SaveProduct); }
         }
+        public ICommand RefreshProductsCommand
+        {
+            get { return new RelayCommand(RefreshProducts); }
+        }
         public async void AddProduct()
         {
             Product newProduct = new Product();
-            Products.Add(newProduct);
             using (HttpClient client = new HttpClient())
             {
                 string Product = JsonConvert.SerializeObject(newProduct);
-                HttpResponseMessage response = await
-                client.PostAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/product", new StringContent(Product, Encoding.UTF8, "application/json"));
+                HttpResponseMessage response = await client.PostAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/product", new StringContent(Product, Encoding.UTF8, "application/json"));
                 if (response.IsSuccessStatusCode)
                 {
-                    SelectedProduct = newProduct;
+                    string json = await response.Content.ReadAsStringAsync();
+                    Product emp = JsonConvert.DeserializeObject<Product>(json);
+                    if (emp != null)
+                    {
+                        Products.Add(emp);
+                        SelectedProduct = emp;
+                    }
                 }
             }
         }
@@ -81,7 +89,7 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
             using (HttpClient client = new HttpClient())
             {
                 HttpResponseMessage response = await
-                client.DeleteAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/product/1");
+                client.DeleteAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/product/" + SelectedProduct.ID);
                 if (response.IsSuccessStatusCode)
                 {
                     Products.Remove(SelectedProduct);
@@ -94,8 +102,12 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
             {
                 string Product = JsonConvert.SerializeObject(SelectedProduct);
                 HttpResponseMessage response = await
-                client.PutAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/product", new StringContent(Product, Encoding.UTF8, "application/json"));
+                client.PutAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/product/" + SelectedProduct.ID, new StringContent(Product, Encoding.UTF8, "application/json"));
             }
+        }
+        public async void RefreshProducts()
+        {
+            GetProducts();
         }
     }
 }
