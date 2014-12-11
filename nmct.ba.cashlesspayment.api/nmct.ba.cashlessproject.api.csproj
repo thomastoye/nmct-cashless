@@ -211,6 +211,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DataAccess\Customers.cs" />
     <Compile Include="Models\DataAccess\Employees.cs" />
+    <Compile Include="Models\DataAccess\Organisations.cs" />
     <Compile Include="Models\DataAccess\Products.cs" />
     <Compile Include="Models\DataAccess\Registers.cs" />
     <Compile Include="Models\IdentityModels.cs" />
