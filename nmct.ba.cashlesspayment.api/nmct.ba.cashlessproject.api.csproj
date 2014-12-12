@@ -204,10 +204,16 @@
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\VerenigingApiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Database.cs" />
+    <Compile Include="Migrations\201412121617222_Initial database layout.cs" />
+    <Compile Include="Migrations\201412121617222_Initial database layout.Designer.cs">
+      <DependentUpon>201412121617222_Initial database layout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DataAccess\Customers.cs" />
@@ -218,6 +224,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
+    <Compile Include="Providers\SimpleAuthorizationServerProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -285,6 +292,7 @@
     <Folder Include="Views\Employee\" />
     <Folder Include="Views\Product\" />
     <Folder Include="Views\Register\" />
+    <Folder Include="Views\VerenigingApi\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -298,6 +306,11 @@
       <Project>{6646a8bb-3f3f-4c22-b9b2-c4b5c2f016ed}</Project>
       <Name>nmct.ba.cashlessproject.model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201412121617222_Initial database layout.resx">
+      <DependentUpon>201412121617222_Initial database layout.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

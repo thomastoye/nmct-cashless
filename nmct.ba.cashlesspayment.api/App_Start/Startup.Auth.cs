@@ -22,6 +22,17 @@ namespace nmct.ba.cashlessproject.api
         // For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)
         {
+            app.UseOAuthAuthorizationServer(new OAuthAuthorizationServerOptions()
+                {
+                    AllowInsecureHttp = true,
+                    TokenEndpointPath = new PathString("/token"),
+                    AccessTokenExpireTimeSpan = TimeSpan.FromHours(8),
+                    Provider = new SimpleAuthorizationServerProvider()
+                }
+            );
+
+            app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
+
             // Configure the db context and user manager to use a single instance per request
             app.CreatePerOwinContext(ApplicationDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
@@ -45,24 +56,6 @@ namespace nmct.ba.cashlessproject.api
             // Enable the application to use bearer tokens to authenticate users
             app.UseOAuthBearerTokens(OAuthOptions);
 
-            // Uncomment the following lines to enable logging in with third party login providers
-            //app.UseMicrosoftAccountAuthentication(
-            //    clientId: "",
-            //    clientSecret: "");
-
-            //app.UseTwitterAuthentication(
-            //    consumerKey: "",
-            //    consumerSecret: "");
-
-            //app.UseFacebookAuthentication(
-            //    appId: "",
-            //    appSecret: "");
-
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
         }
     }
 }
