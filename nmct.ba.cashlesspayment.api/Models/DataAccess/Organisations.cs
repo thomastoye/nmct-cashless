@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.Common;
 using System.Linq;
 using System.Web;
+using nmct.ba.cashlessproject.model;
 
 namespace nmct.ba.cashlessproject.api.Models.DataAccess
 {
