@@ -1,5 +1,8 @@
 namespace nmct.ba.cashlessproject.api.Migrations
 {
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using nmct.ba.cashlessproject.api.Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -14,18 +17,27 @@ namespace nmct.ba.cashlessproject.api.Migrations
 
         protected override void Seed(nmct.ba.cashlessproject.api.Models.ApplicationDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            string roleAdmin = "Administrator";
+            string roleNormalUser = "User";
+            IdentityResult roleResult;
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            var RoleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+
+            if (!RoleManager.RoleExists(roleNormalUser))
+                roleResult = RoleManager.Create(new IdentityRole(roleNormalUser));
+
+            if (!RoleManager.RoleExists(roleAdmin))
+                roleResult = RoleManager.Create(new IdentityRole(roleAdmin));
+
+            if (!context.Users.Any(u => u.Email.Equals("root@dev.null")))
+            {
+                var store = new UserStore<ApplicationUser>(context);
+                var manager = new UserManager<ApplicationUser>(store);
+                var user = new ApplicationUser() { Email = "root@dev.null", UserName = "root@dev.null" };
+
+                manager.Create(user, "Password");
+                manager.AddToRole(user.Id, roleAdmin);
+            }
         }
     }
 }
