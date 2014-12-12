@@ -54,8 +54,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\nmct.ba.cashlesspayment.api\nmct.ba.cashlessproject.api.csproj">
-      <Project>{34d30eda-ebc9-45b8-a893-2d854eb18e35}</Project>
+    <ProjectReference Include="..\nmct.ba.cashlessproject.api\nmct.ba.cashlessproject.api.csproj">
+      <Project>{88258ea2-a236-4434-8a07-255c66f1a774}</Project>
       <Name>nmct.ba.cashlessproject.api</Name>
     </ProjectReference>
     <ProjectReference Include="..\nmct.ba.cashlessproject.model\nmct.ba.cashlessproject.model.csproj">
