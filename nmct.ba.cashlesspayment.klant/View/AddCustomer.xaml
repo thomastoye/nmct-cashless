@@ -28,10 +28,10 @@
         <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">Ben je al klant? Dan hoef je gewoon in te loggen.</Label>
 
         <Label Grid.Column="0" Grid.Row="2" Style="{StaticResource LabelMargin}">Naam</Label>
-        <TextBox Grid.Column="1" Grid.Row="2" Name="Name" Text="{Binding NewCustomer.Name}"  Margin="10"/>
+        <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding NewCustomer.Name}"  Margin="10"/>
         
         <Label Grid.Column="0" Grid.Row="3" Style="{StaticResource LabelMargin}">Adres</Label>
-        <TextBox Grid.Column="1" Grid.Row="3" Name="Address" Text="{Binding NewCustomer.Address}" Margin="10"/>
+        <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding NewCustomer.Address}" Margin="10"/>
         
         <Button Grid.Column="1" Grid.Row="4" Margin="10" Command="{Binding CreateCustomerCommand}">Aanmaken!</Button>
     </Grid>

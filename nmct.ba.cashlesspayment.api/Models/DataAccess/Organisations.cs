@@ -23,11 +23,12 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
                 OrganisationName = record["OrganisationName"].ToString(),
                 Address = record["Address"].ToString(),
                 Email = record["Email"].ToString(),
-                Phone = record["Phone"].ToString()
+                Phone = record["Phone"].ToString(),
+                DbLogin = record["DbLogin"].ToString()
             };
         }
 
-        public List<Organisation> Get()
+        public static List<Organisation> Get()
         {
             string sql = "SELECT * FROM Organisations";
             DbDataReader reader = Database.GetData("ITBedrijf", sql);
@@ -42,7 +43,7 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
 
         public static int Insert(Organisation org)
         {
-            string sql = "INSERT INTO Organisations VALUES(@ID, @Login, @Password, @DbName, @DbPassword, @OrganisationName, @Address, @Email, @Phone)";
+            string sql = "INSERT INTO Organisations VALUES(@Login, @Password, @DbName, @DbLogin, @DbPassword, @OrganisationName, @Address, @Email, @Phone)";
 
             DbParameter par0 = Database.AddParameter("ITBedrijf", "@Login", org.Login);
             DbParameter par1 = Database.AddParameter("ITBedrijf", "@Password", org.Password);
@@ -53,8 +54,9 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
             DbParameter par6 = Database.AddParameter("ITBedrijf", "@Email", org.Email);
             DbParameter par7 = Database.AddParameter("ITBedrijf", "@Phone", org.Phone);
             DbParameter par8 = Database.AddParameter("ITBedrijf", "@ID", org.ID);
+            DbParameter par9 = Database.AddParameter("ITBedrijf", "@DbLogin", org.DbLogin);
 
-            return Database.InsertData("ITBedrijf", sql, par0, par1, par2, par3, par4, par5, par6, par7, par8);
+            return Database.InsertData("ITBedrijf", sql, par0, par1, par2, par3, par4, par5, par6, par7, par8, par9);
         }
 
         public static void Delete(int id)
@@ -66,9 +68,9 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
             Database.ModifyData("ITBedrijf", sql, parId);
         }
 
-        public static void update(Organisation org)
+        public static void Update(Organisation org)
         {
-            string sql = "UPDATE Organisations SET ID=@ID, Login=@Login, Password=@Password, DbName=@DbName, DbPassword=@DbPassword, OrganisationName=@OrganisationName, Address=@Address, Email=@Email, Phone=@Phone WHERE ID=@ID";
+            string sql = "UPDATE Organisations SET ID=@ID, Login=@Login, Password=@Password, DbName=@DbName, DbLogin=@DbLogin, DbPassword=@DbPassword, OrganisationName=@OrganisationName, Address=@Address, Email=@Email, Phone=@Phone WHERE ID=@ID";
 
             DbParameter par0 = Database.AddParameter("ITBedrijf", "@Login", org.Login);
             DbParameter par1 = Database.AddParameter("ITBedrijf", "@Password", org.Password);
@@ -79,8 +81,9 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
             DbParameter par6 = Database.AddParameter("ITBedrijf", "@Email", org.Email);
             DbParameter par7 = Database.AddParameter("ITBedrijf", "@Phone", org.Phone);
             DbParameter par8 = Database.AddParameter("ITBedrijf", "@ID", org.ID);
+            DbParameter par9 = Database.AddParameter("ITBedrijf", "@DbLogin", org.DbLogin);
 
-            Database.ModifyData("ITBedrijf", sql, par0, par1, par2, par3, par4, par5, par6, par7, par8);
+            Database.ModifyData("ITBedrijf", sql, par0, par1, par2, par3, par4, par5, par6, par7, par8, par9);
         }
     }
 }

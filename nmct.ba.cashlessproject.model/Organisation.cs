@@ -11,6 +11,7 @@ namespace nmct.ba.cashlessproject.model
         public string Login { get; set; }
         public string Password { get; set; }
         public string DbName { get; set; }
+        public string DbLogin { get; set; }
         public string DbPassword { get; set; }
         public string OrganisationName { get; set; }
         public string Address { get; set; }
