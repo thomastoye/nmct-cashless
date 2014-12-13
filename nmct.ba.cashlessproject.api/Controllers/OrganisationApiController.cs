@@ -7,7 +7,7 @@ using System.Web.Http;
 
 namespace nmct.ba.cashlessproject.api.Controllers
 {
-    public class VerenigingApiController : ApiController
+    public class OrganisationApiController : ApiController
     {
         [Authorize(Roles = "OrganisationManager")]
         [HttpGet]

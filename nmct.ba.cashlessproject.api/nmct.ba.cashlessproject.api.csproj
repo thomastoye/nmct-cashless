@@ -179,7 +179,7 @@
     <Compile Include="Controllers\OrganisationController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
-    <Compile Include="Controllers\VerenigingApiController.cs" />
+    <Compile Include="Controllers\OrganisationApiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

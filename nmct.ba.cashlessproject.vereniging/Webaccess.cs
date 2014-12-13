@@ -26,7 +26,7 @@ namespace nmct.ba.cashlessproject.vereniging
             using (HttpClient client = new HttpClient())
             {
                 client.SetBearerToken(token);
-                HttpResponseMessage response = await client.GetAsync(URL + "api/VerenigingApi/ConnectionString");
+                HttpResponseMessage response = await client.GetAsync(URL + "api/OrganisationApi/ConnectionString");
                 if (response.IsSuccessStatusCode)
                 {
                     string json = await response.Content.ReadAsStringAsync();
