@@ -30,7 +30,8 @@ namespace nmct.ba.cashlessproject.api.Providers
 
             var id = new ClaimsIdentity(context.Options.AuthenticationType);
             id.AddClaim(new Claim("username", context.UserName));
-            id.AddClaim(new Claim("role", "organisationManager"));
+            id.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
+            id.AddClaim(new Claim(ClaimTypes.Role, "OrganisationManager"));
 
             context.Validated(id);
             return Task.FromResult(0);

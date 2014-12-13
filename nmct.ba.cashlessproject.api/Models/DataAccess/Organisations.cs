@@ -105,5 +105,25 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
             reader.Close();
             return res;
         }
+
+        public static Organisation GetByUser(string name)
+        {
+            string sql = "SELECT * FROM Organisations WHERE Login=@Login";
+
+            DbParameter parLogin = Database.AddParameter("ITBedrijf", "@Login", name);
+
+            DbDataReader reader = Database.GetData("ITBedrijf", sql, parLogin);
+
+            Organisation res;
+
+            if (!reader.Read())
+                res = null;
+            else
+                res = Create(reader);
+
+            reader.Close();
+            return res;
+
+        }
     }
 }

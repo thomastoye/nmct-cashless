@@ -17,5 +17,15 @@ namespace nmct.ba.cashlessproject.model
         public string Address { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
+
+        public string DatabaseName
+        {
+            get { return "org_" + OrganisationName; }
+        }
+        public string DatabaseConnectionString {
+            get{
+                return "Data Source=THOMAS-ZBOOK\\SQLEXPRESS;Initial Catalog=" + DatabaseName + ";Integrated Security=True;";
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using nmct.ba.cashlessproject.api.Models.DataAccess;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,11 +9,14 @@ namespace nmct.ba.cashlessproject.api.Controllers
 {
     public class VerenigingApiController : ApiController
     {
-        [Authorize(Roles="organisationManager")]
+        [Authorize(Roles = "OrganisationManager")]
         [HttpGet]
         public string ConnectionString()
         {
-            return "aoesunaosnehtu";
+            var name = User.Identity.Name;
+            var isin = User.IsInRole("OrganisationManager");
+            
+            return Organisations.GetByUser(name).DatabaseConnectionString;
         }
     }
 }

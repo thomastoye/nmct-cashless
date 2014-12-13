@@ -184,6 +184,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Database.cs" />
+    <Compile Include="Migrations\201412131325297_Initial migration.cs" />
+    <Compile Include="Migrations\201412131325297_Initial migration.Designer.cs">
+      <DependentUpon>201412131325297_Initial migration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DataAccess\Customers.cs" />
     <Compile Include="Models\DataAccess\Employees.cs" />
@@ -276,6 +281,11 @@
       <Project>{6646a8bb-3f3f-4c22-b9b2-c4b5c2f016ed}</Project>
       <Name>nmct.ba.cashlessproject.model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201412131325297_Initial migration.resx">
+      <DependentUpon>201412131325297_Initial migration.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

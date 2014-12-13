@@ -72,6 +72,9 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="Thinktecture.IdentityModel.Client">
+      <HintPath>..\packages\Thinktecture.IdentityModel.Client.3.1.0\lib\portable-net45+wp80+win8+wpa81\Thinktecture.IdentityModel.Client.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -81,6 +84,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converter\InvertBooleanConverter.cs" />
     <Compile Include="ViewModel\AccountVM.cs" />
     <Compile Include="ViewModel\ApplicationVM.cs" />
     <Compile Include="ViewModel\KassasVM.cs" />
@@ -110,6 +114,7 @@
     <Compile Include="View\Statistieken.xaml.cs">
       <DependentUpon>Statistieken.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Webaccess.cs" />
     <Page Include="View\Account.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
