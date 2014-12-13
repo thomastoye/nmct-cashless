@@ -29,7 +29,7 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
             using (HttpClient client = new HttpClient())
             {
                 HttpResponseMessage response = await
-                client.GetAsync(ConfigurationManager.AppSettings["apiUrl"] + "/api/employee");
+                client.GetAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/employee");
                 if (response.IsSuccessStatusCode)
                 {
                     string json = await response.Content.ReadAsStringAsync();
