@@ -125,5 +125,15 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
             return res;
 
         }
+
+        public static void ChangePassword(int id, string newPassword)
+        {
+            string sql = "UPDATE Organisations SET Password=@Password WHERE ID=@ID";
+
+            DbParameter parPass = Database.AddParameter("ITBedrijf", "@Password", newPassword);
+            DbParameter parId = Database.AddParameter("ITBedrijf", "@ID", id);
+
+            Database.ModifyData("ITBedrijf", sql, parPass, parId);
+        }
     }
 }

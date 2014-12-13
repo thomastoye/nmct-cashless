@@ -8,13 +8,48 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <src:InvertBoolConverter x:Key="invertBoolConverter"/>
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="2"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="2"/>
+        </Style>
     </UserControl.Resources>
-    <StackPanel>
-        <TextBox Text="{Binding UserName}"/>
-        <TextBox Text="{Binding Password}"/>
-        <Button Content="Inloggen" IsEnabled="{Binding TokenOk, Converter={StaticResource invertBoolConverter}}" Command="{Binding LoginCommand}"/>
-        <Button Content="Uitloggen" IsEnabled="{Binding TokenOk}" Command="{Binding LogoutCommand}"></Button>
-        <Button Content="Paswoord wijzigen"></Button>
-        <TextBox Text="{Binding ConString}"/>
-    </StackPanel>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Column="0" Grid.Row="1">Gebruikersnaam</Label>
+        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding UserName}"/>
+        <Label Grid.Column="0" Grid.Row="2">Paswoord</Label>
+        <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Password}"/>
+        
+        <Button Grid.Column="1" Grid.Row="3" Content="Inloggen" IsEnabled="{Binding TokenOk, Converter={StaticResource invertBoolConverter}}" Command="{Binding LoginCommand}"/>
+        <Button Grid.Column="1" Grid.Row="0" Content="Uitloggen" IsEnabled="{Binding TokenOk}" Command="{Binding LogoutCommand}"></Button>
+
+        <Label Grid.ColumnSpan="2" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center" IsEnabled="{Binding TokenOk}">Paswoord wijzigen</Label>
+        <Label Grid.Column="0" Grid.Row="6" IsEnabled="{Binding TokenOk}">Oud paswoord</Label>
+        <Label Grid.Column="0" Grid.Row="7" IsEnabled="{Binding TokenOk}">Nieuw paswoord</Label>
+        <Label Grid.Column="0" Grid.Row="3" Content="{Binding LoginMessage}"/>
+        <TextBox Grid.Column="1" Grid.Row="6"  IsEnabled="{Binding TokenOk}" Text="{Binding OldPassword}"/>
+        <TextBox Grid.Column="1" Grid.Row="7"  IsEnabled="{Binding TokenOk}" Text="{Binding NewPassword}"/>
+        
+        <Button Grid.Column="1" Grid.Row="8" IsEnabled="{Binding TokenOk}" Command="{Binding ChangePasswordCommand}">Paswoord wijzigen</Button>
+
+        <Label Content="{Binding PasswordChangeMessage}" Grid.Column="0" Grid.Row="8"/>
+    </Grid>
 </UserControl>

@@ -18,14 +18,6 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
 
         public TokenResponse Token { get; set; }
 
-        private string _constring;
-
-        public string ConString
-        {
-            get { return _constring; }
-            set { _constring = value; OnPropertyChanged("ConString"); }
-        }
-        
         private Boolean _tokenok = false;
 
         public Boolean TokenOk
@@ -50,6 +42,38 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
             set { _password = value; OnPropertyChanged("Password"); }
         }
 
+        private string _oldpass;
+
+        public string OldPassword
+        {
+            get { return _oldpass; }
+            set { _oldpass = value; OnPropertyChanged("OldPassword"); }
+        }
+        private string _newpass;
+
+        public string NewPassword
+        {
+            get { return _newpass; }
+            set { _newpass = value; OnPropertyChanged("NewPassword"); }
+        }
+
+        private string _passChangeMsg = "";
+
+        public string PasswordChangeMessage
+        {
+            get { return _passChangeMsg; }
+            set { _passChangeMsg = value; OnPropertyChanged("PasswordChangeMessage"); }
+        }
+
+        private string _loginMsg;
+
+        public string LoginMessage
+        {
+            get { return _loginMsg; }
+            set { _loginMsg = value; OnPropertyChanged("LoginMessage"); }
+        }
+        
+
         public ICommand LoginCommand {
             get { return new RelayCommand(Login); }
         }
@@ -58,9 +82,17 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
         {
             Token = Webaccess.GetToken(UserName, Password);
             if (Token.IsError)
+            {
                 TokenOk = false;
+                LoginMessage = "Verkeerde combinatie!";
+            }
             else
+            {
                 TokenOk = true;
+                LoginMessage = "Ingelogd!";
+            }
+
+            Password = "";
         }
 
         public ICommand LogoutCommand
@@ -70,7 +102,30 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
 
         private async void Logout()
         {
-            ConString = await Webaccess.GetConnectionString(Token.AccessToken);
+            Token = null;
+            TokenOk = false;
+            LoginMessage = "";
+            PasswordChangeMessage = "";
+        }
+
+        public ICommand ChangePasswordCommand
+        {
+            get { return new RelayCommand(ChangePassword); }
+        }
+
+        private async void ChangePassword()
+        {
+            var succeeded = await Webaccess.ChangePassword(Token.AccessToken, OldPassword, NewPassword);
+
+            if (succeeded)
+            {
+                PasswordChangeMessage = "Paswoord is gewijzigd!";
+            } else {
+                PasswordChangeMessage = "Verkeerd wachtwoord!";
+            }
+
+            OldPassword = "";
+            NewPassword = "";
         }
     }
 }
