@@ -34,8 +34,14 @@ namespace nmct.ba.cashlessproject.api.Controllers
         [HttpPost]
         public ActionResult Create(Organisation org)
         {
-            Organisations.Insert(org);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid) { 
+                Organisations.Insert(org);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(org);
+            }
         }
 
         [HttpGet]
