@@ -24,7 +24,7 @@ namespace nmct.ba.cashlessproject.api
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/theme.bootstrap.css",
                       "~/Content/site.css"));
         }
     }
