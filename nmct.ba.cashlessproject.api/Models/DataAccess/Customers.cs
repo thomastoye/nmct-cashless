@@ -6,6 +6,7 @@ using nmct.ba.cashlessproject.model;
 using System.Data.Common;
 using nmct.ba.cashlessproject.api.Helpers;
 using System.Data;
+using System.Configuration;
 
 namespace nmct.ba.cashlessproject.api.Models.DataAccess
 {
@@ -17,7 +18,7 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
             List<Customer> list = new List<Customer>();
 
             string sql = "SELECT ID, CustomerName, Address, Picture, Balance FROM Customers";
-            DbDataReader reader = Database.GetData("KlantConnection", sql);
+            DbDataReader reader = Database.GetData(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], sql);
 
             while (reader.Read())
             {
@@ -35,12 +36,12 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
             if (customer.Name == null) customer.Name = "";
             if (customer.Address == null) customer.Address = "";
 
-            DbParameter par1 = Database.AddParameter("KlantConnection", "@CustomerName", customer.Name);
-            DbParameter par2 = Database.AddParameter("KlantConnection", "@Address", customer.Address);
-            DbParameter par3 = Database.AddParameter("KlantConnection", "@Picture", null);
-            DbParameter par4 = Database.AddParameter("KlantConnection", "@Balance", customer.Balance);
+            DbParameter par1 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@CustomerName", customer.Name);
+            DbParameter par2 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@Address", customer.Address);
+            DbParameter par3 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@Picture", null);
+            DbParameter par4 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@Balance", customer.Balance);
 
-            return Database.InsertData("KlantConnection", sql, par1, par2, /*par3,*/ par4);
+            return Database.InsertData(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], sql, par1, par2, /*par3,*/ par4);
         }
 
         private static Customer Create(IDataRecord record)
@@ -58,20 +59,20 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
         {
             string sql = "UPDATE customers SET CustomerName=@CustomerName,Address=@Address WHERE ID=@ID;";
 
-            DbParameter custName = Database.AddParameter("KlantConnection", "@CustomerName", customer.Name);
-            DbParameter custAddress = Database.AddParameter("KlantConnection", "@Address", customer.Address);
-            DbParameter custId = Database.AddParameter("KlantConnection", "@ID", id);
+            DbParameter custName = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@CustomerName", customer.Name);
+            DbParameter custAddress = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@Address", customer.Address);
+            DbParameter custId = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@ID", id);
 
-            Database.ModifyData("KlantConnection", sql, custName, custAddress, custId);
+            Database.ModifyData(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], sql, custName, custAddress, custId);
         }
 
         public static void DeleteCustomer(long id)
         {
             string sql = "DELETE FROM customers WHERE ID=@ID";
 
-            DbParameter parId = Database.AddParameter("KlantConnection", "@ID", id);
+            DbParameter parId = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@ID", id);
 
-            Database.ModifyData("KlantConnection", sql, parId);
+            Database.ModifyData(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], sql, parId);
         }
     }
 }

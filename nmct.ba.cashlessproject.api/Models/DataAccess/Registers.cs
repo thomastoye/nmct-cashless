@@ -2,6 +2,7 @@
 using nmct.ba.cashlessproject.model;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.Common;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
             List<Register> list = new List<Register>();
 
             string sql = "SELECT ID, RegisterName, Device FROM Registers";
-            DbDataReader reader = Database.GetData("KlantConnection", sql);
+            DbDataReader reader = Database.GetData(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], sql);
 
             while (reader.Read())
             {
@@ -33,10 +34,10 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
             if (register.Name == null) register.Name = "";
             if (register.Device == null) register.Device = "";
 
-            DbParameter par1 = Database.AddParameter("KlantConnection", "@RegisterName", register.Name);
-            DbParameter par2 = Database.AddParameter("KlantConnection", "@Device", register.Device);
+            DbParameter par1 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@RegisterName", register.Name);
+            DbParameter par2 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@Device", register.Device);
 
-            return Database.InsertData("KlantConnection", sql, par1, par2);
+            return Database.InsertData(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], sql, par1, par2);
         }
 
         private static Register Create(IDataRecord record)
@@ -60,20 +61,20 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
             if (reg.Name == null) reg.Name = "";
             if (reg.Device == null) reg.Device = "";
 
-            DbParameter regName = Database.AddParameter("KlantConnection", "@RegisterName", reg.Name);
-            DbParameter regDeviceName = Database.AddParameter("KlantConnection", "@DeviceName", reg.Device);
-            DbParameter regId = Database.AddParameter("KlantConnection", "@ID", id);
+            DbParameter regName = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@RegisterName", reg.Name);
+            DbParameter regDeviceName = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@DeviceName", reg.Device);
+            DbParameter regId = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@ID", id);
 
-            Database.ModifyData("KlantConnection", sql, regName, regDeviceName, regId);
+            Database.ModifyData(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], sql, regName, regDeviceName, regId);
         }
 
         public static void DeleteRegister(long id)
         {
             string sql = "DELETE FROM registers WHERE ID=@ID";
 
-            DbParameter parId = Database.AddParameter("KlantConnection", "@ID", id);
+            DbParameter parId = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@ID", id);
 
-            Database.ModifyData("KlantConnection", sql, parId);
+            Database.ModifyData(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], sql, parId);
         }
     }
 }

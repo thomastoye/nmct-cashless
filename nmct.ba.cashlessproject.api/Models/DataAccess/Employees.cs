@@ -2,6 +2,7 @@
 using nmct.ba.cashlessproject.model;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.Common;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
             List<Employee> list = new List<Employee>();
 
             string sql = "SELECT ID, EmployeeName, Address, Email, Phone FROM Employee";
-            DbDataReader reader = Database.GetData("KlantConnection", sql);
+            DbDataReader reader = Database.GetData(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], sql);
 
             while (reader.Read())
             {
@@ -36,12 +37,12 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
             if (employee.Name == null) employee.Name = "";
             if (employee.Phone == null) employee.Phone = "";
 
-            DbParameter parName = Database.AddParameter("KlantConnection", "@EmployeeName", employee.Name);
-            DbParameter parAddress = Database.AddParameter("KlantConnection", "@Address", employee.Address);
-            DbParameter parMail = Database.AddParameter("KlantConnection", "@Email", employee.Email);
-            DbParameter parPhone = Database.AddParameter("KlantConnection", "@Phone", employee.Phone);
+            DbParameter parName = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@EmployeeName", employee.Name);
+            DbParameter parAddress = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@Address", employee.Address);
+            DbParameter parMail = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@Email", employee.Email);
+            DbParameter parPhone = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@Phone", employee.Phone);
 
-            return Database.InsertData("KlantConnection", sql, parName, parAddress, parMail, parPhone);
+            return Database.InsertData(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], sql, parName, parAddress, parMail, parPhone);
         }
 
         private static Employee Create(IDataRecord record)
@@ -60,23 +61,23 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
         {
             string sql = "UPDATE employee SET EmployeeName=@EmployeeName,Address=@Address,Email=@Email,Phone=@Phone WHERE ID=@ID;";
 
-            DbParameter parName = Database.AddParameter("KlantConnection", "@EmployeeName", employee.Name);
-            DbParameter parAddress = Database.AddParameter("KlantConnection", "@Address", employee.Address);
-            DbParameter parMail = Database.AddParameter("KlantConnection", "@Email", employee.Email);
-            DbParameter parPhone = Database.AddParameter("KlantConnection", "@Phone", employee.Phone);
+            DbParameter parName = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@EmployeeName", employee.Name);
+            DbParameter parAddress = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@Address", employee.Address);
+            DbParameter parMail = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@Email", employee.Email);
+            DbParameter parPhone = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@Phone", employee.Phone);
 
-            DbParameter parId = Database.AddParameter("KlantConnection", "@ID", employee.ID);
+            DbParameter parId = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@ID", employee.ID);
 
-            Database.ModifyData("KlantConnection", sql, parName, parAddress, parMail, parPhone, parId);
+            Database.ModifyData(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], sql, parName, parAddress, parMail, parPhone, parId);
         }
 
         public static void DeleteEmployee(long id)
         {
             string sql = "DELETE FROM employee WHERE ID=@ID";
 
-            DbParameter parId = Database.AddParameter("KlantConnection", "@ID", id);
+            DbParameter parId = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@ID", id);
 
-            Database.ModifyData("KlantConnection", sql, parId);
+            Database.ModifyData(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], sql, parId);
         }
     }
 }
