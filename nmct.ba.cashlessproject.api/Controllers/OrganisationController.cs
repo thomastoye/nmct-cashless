@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace nmct.ba.cashlessproject.api.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class OrganisationController : Controller
     {
         
@@ -17,6 +18,7 @@ namespace nmct.ba.cashlessproject.api.Controllers
             return RedirectToAction("List");
         }
 
+        [HttpGet]
         public ActionResult List()
         {
             ViewBag.Orgs = Organisations.Get();
@@ -36,6 +38,7 @@ namespace nmct.ba.cashlessproject.api.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
         public ActionResult Delete(int id)
         {
             Organisations.Delete(id);
