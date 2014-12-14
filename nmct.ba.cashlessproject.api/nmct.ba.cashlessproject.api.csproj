@@ -279,6 +279,10 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\nmct.ba.cashlessproject.common\nmct.ba.cashlessproject.common.csproj">
+      <Project>{dc2bae16-14cd-40c0-bd5f-b90af8cb7406}</Project>
+      <Name>nmct.ba.cashlessproject.common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\nmct.ba.cashlessproject.model\nmct.ba.cashlessproject.model.csproj">
       <Project>{6646a8bb-3f3f-4c22-b9b2-c4b5c2f016ed}</Project>
       <Name>nmct.ba.cashlessproject.model</Name>

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using nmct.ba.cashlessproject.model;
 using System.Configuration;
+using nmct.ba.cashlessproject.common;
 
 namespace nmct.ba.cashlessproject.api.Models.DataAccess
 {
@@ -18,9 +19,9 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
             {
                 ID = Int32.Parse(record["ID"].ToString()),
                 Login = record["Login"].ToString(),
-                Password = record["Password"].ToString(),
+                Password = Cryptography.Decrypt(record["Password"].ToString()),
                 DbName = record["DbName"].ToString(),
-                DbPassword = record["DbPassword"].ToString(),
+                DbPassword = Cryptography.Decrypt(record["DbPassword"].ToString()),
                 OrganisationName = record["OrganisationName"].ToString(),
                 Address = record["Address"].ToString(),
                 Email = record["Email"].ToString(),
@@ -47,9 +48,9 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
             string sql = "INSERT INTO Organisations VALUES(@Login, @Password, @DbName, @DbLogin, @DbPassword, @OrganisationName, @Address, @Email, @Phone)";
 
             DbParameter par0 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@Login", org.Login);
-            DbParameter par1 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@Password", org.Password);
+            DbParameter par1 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@Password", Cryptography.Encrypt(org.Password));
             DbParameter par2 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@DbName", org.DbName);
-            DbParameter par3 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@DbPassword", org.DbPassword);
+            DbParameter par3 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@DbPassword", Cryptography.Encrypt(org.DbPassword));
             DbParameter par4 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@OrganisationName", org.OrganisationName);
             DbParameter par5 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@Address", org.Address);
             DbParameter par6 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@Email", org.Email);
@@ -74,9 +75,9 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
             string sql = "UPDATE Organisations SET ID=@ID, Login=@Login, Password=@Password, DbName=@DbName, DbLogin=@DbLogin, DbPassword=@DbPassword, OrganisationName=@OrganisationName, Address=@Address, Email=@Email, Phone=@Phone WHERE ID=@ID";
 
             DbParameter par0 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@Login", org.Login);
-            DbParameter par1 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@Password", org.Password);
+            DbParameter par1 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@Password", Cryptography.Decrypt(org.Password));
             DbParameter par2 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@DbName", org.DbName);
-            DbParameter par3 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@DbPassword", org.DbPassword);
+            DbParameter par3 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@DbPassword", Cryptography.Encrypt(org.DbPassword));
             DbParameter par4 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@OrganisationName", org.OrganisationName);
             DbParameter par5 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@Address", org.Address);
             DbParameter par6 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@Email", org.Email);
@@ -92,7 +93,7 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
             string sql = "SELECT * FROM Organisations WHERE Login=@Login AND Password=@Password";
 
             DbParameter parUser = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@Login", username);
-            DbParameter parPass = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@Password", password);
+            DbParameter parPass = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@Password", Cryptography.Encrypt(password));
 
             DbDataReader reader = Database.GetData(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], sql, parUser, parPass);
 
@@ -131,7 +132,7 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
         {
             string sql = "UPDATE Organisations SET Password=@Password WHERE ID=@ID";
 
-            DbParameter parPass = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@Password", newPassword);
+            DbParameter parPass = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@Password", Cryptography.Encrypt(newPassword));
             DbParameter parId = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@ID", id);
 
             Database.ModifyData(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], sql, parPass, parId);
