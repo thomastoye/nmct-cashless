@@ -5,6 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary Source="ResourceDictionary.xaml"/>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="250"/>
@@ -13,9 +16,9 @@
         <ListBox Margin="8" DisplayMemberPath="Name" ItemsSource="{Binding Registers}" SelectedItem="{Binding SelectedRegister}"/>
         <StackPanel Margin="8" Grid.Column="1">
             <Label Content="Naam:"/>
-            <TextBox Text="{Binding SelectedRegister.Name}"/>
+            <TextBox Text="{Binding SelectedRegister.Name, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ErrorTemplate}" Style="{StaticResource TextboxError}"/>
             <Label Content="Model:"/>
-            <TextBox Text="{Binding SelectedRegister.Device}"/>
+            <TextBox Text="{Binding SelectedRegister.Device, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ErrorTemplate}" Style="{StaticResource TextboxError}"/>
             <StackPanel Orientation="Horizontal" Margin="0,16,0,0">
                 <Button Content="Kassa toevoegen" Command="{Binding AddRegisterCommand}"/>
                 <Button Content="Kassa verwijderen" Margin="8,0,0,0" Command="{Binding DeleteRegisterCommand}"/>

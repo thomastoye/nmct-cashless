@@ -143,7 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\nmct.ba.cashlessproject.model\nmct.ba.cashlessproject.model.csproj">
-      <Project>{6646a8bb-3f3f-4c22-b9b2-c4b5c2f016ed}</Project>
+      <Project>{4fb89fe4-564a-46e4-9121-e21112a7bc38}</Project>
       <Name>nmct.ba.cashlessproject.model</Name>
     </ProjectReference>
   </ItemGroup>

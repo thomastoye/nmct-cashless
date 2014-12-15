@@ -5,6 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary Source="ResourceDictionary.xaml"/>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="250"/>
@@ -13,13 +16,13 @@
         <ListBox Margin="8" DisplayMemberPath="Name" ItemsSource="{Binding Employees}" SelectedItem="{Binding SelectedEmployee}"/>
         <StackPanel Margin="8" Grid.Column="1">
             <Label Content="Naam:"/>
-            <TextBox Text="{Binding SelectedEmployee.Name}"/>
+            <TextBox Text="{Binding SelectedEmployee.Name, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ErrorTemplate}" Style="{StaticResource TextboxError}"/>
             <Label Content="Adres:"/>
-            <TextBox Text="{Binding SelectedEmployee.Address}"/>
+            <TextBox Text="{Binding SelectedEmployee.Address, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ErrorTemplate}" Style="{StaticResource TextboxError}"/>
             <Label Content="Email:"/>
-            <TextBox Text="{Binding SelectedEmployee.Email}"/>
+            <TextBox Text="{Binding SelectedEmployee.Email, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ErrorTemplate}" Style="{StaticResource TextboxError}"/>
             <Label Content="Telefoon:"/>
-            <TextBox Text="{Binding SelectedEmployee.Phone}"/>
+            <TextBox Text="{Binding SelectedEmployee.Phone, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ErrorTemplate}" Style="{StaticResource TextboxError}"/>
             <StackPanel Orientation="Horizontal" Margin="0,16,0,0">
                 <Button Content="Medewerker toevoegen" Command="{Binding AddEmployeeCommand}"/>
                 <Button Content="Medewerker verwijderen" Command="{Binding DeleteEmployeeCommand}" Margin="8,0,0,0"/>
