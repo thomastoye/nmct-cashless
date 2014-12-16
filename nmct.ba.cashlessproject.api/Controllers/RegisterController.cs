@@ -13,28 +13,28 @@ namespace nmct.ba.cashlessproject.api.Controllers
 {
     public class RegisterController : ApiController
     {
-        public List<Register> Get()
+        public List<RegisterOrganisation> Get()
         {
-            return Registers.GetRegisters();
+            return RegistersOrganisation.GetRegisters();
         }
 
-        public Register Post(Register r)
+        public RegisterOrganisation Post(RegisterOrganisation r)
         {
-            int id = Registers.InsertRegister(r);
+            int id = RegistersOrganisation.InsertRegister(r);
             r.ID = id;
 
             return r;
         }
 
-        public HttpStatusCode Put(long id, Register r)
+        public HttpStatusCode Put(long id, RegisterOrganisation r)
         {
-            Registers.UpdateRegister(id, r);
+            RegistersOrganisation.UpdateRegister(id, r);
             return HttpStatusCode.OK;
         }
 
         public HttpStatusCode Delete(long id)
         {
-            Registers.DeleteRegister(id);
+            RegistersOrganisation.DeleteRegister(id);
             return HttpStatusCode.OK;
         }
     }

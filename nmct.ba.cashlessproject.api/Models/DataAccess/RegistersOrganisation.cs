@@ -10,11 +10,12 @@ using System.Web;
 
 namespace nmct.ba.cashlessproject.api.Models.DataAccess
 {
-    public class Registers
+    public class RegistersOrganisation
     {
-        public static List<Register> GetRegisters()
+        
+        public static List<RegisterOrganisation> GetRegisters()
         {
-            List<Register> list = new List<Register>();
+            List<RegisterOrganisation> list = new List<RegisterOrganisation>();
 
             string sql = "SELECT ID, RegisterName, Device FROM Registers";
             DbDataReader reader = Database.GetData(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], sql);
@@ -28,7 +29,7 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
         }
 
 
-        public static int InsertRegister(Register register)
+        public static int InsertRegister(RegisterOrganisation register)
         {
             string sql = "INSERT INTO Registers(RegisterName,Device) VALUES(@RegisterName,@Device)";
             if (register.Name == null) register.Name = "";
@@ -40,9 +41,9 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
             return Database.InsertData(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], sql, par1, par2);
         }
 
-        private static Register Create(IDataRecord record)
+        private static RegisterOrganisation Create(IDataRecord record)
         {
-            return new Register()
+            return new RegisterOrganisation()
             {
                 ID = Int32.Parse(record["ID"].ToString()),
                 Name = record["RegisterName"].ToString(),
@@ -54,7 +55,7 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
          * This method updates a register
          * It takes an id and a new register. It will update the record in the database with that id to match the given register
          */
-        public static void UpdateRegister(long id, Register reg)
+        public static void UpdateRegister(long id, RegisterOrganisation reg)
         {
             string sql = "UPDATE registers SET RegisterName=@RegisterName,Device=@DeviceName WHERE ID=@ID;";
 

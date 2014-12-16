@@ -33,18 +33,18 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
                 if (response.IsSuccessStatusCode)
                 {
                     string json = await response.Content.ReadAsStringAsync();
-                    Registers = JsonConvert.DeserializeObject<ObservableCollection<Register>>(json);
+                    Registers = JsonConvert.DeserializeObject<ObservableCollection<RegisterOrganisation>>(json);
                 }
             }
         }
-        private ObservableCollection<Register> _registers;
-        public ObservableCollection<Register> Registers
+        private ObservableCollection<RegisterOrganisation> _registers;
+        public ObservableCollection<RegisterOrganisation> Registers
         {
             get { return _registers; }
             set { _registers = value; OnPropertyChanged("Registers"); }
         }
-        private Register _selectedRegister;
-        public Register SelectedRegister
+        private RegisterOrganisation _selectedRegister;
+        public RegisterOrganisation SelectedRegister
         {
             get { return _selectedRegister; }
             set { _selectedRegister = value; OnPropertyChanged("SelectedRegister"); }
@@ -68,7 +68,7 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
 
         public async void AddRegister()
         {
-            Register newRegister = new Register();
+            RegisterOrganisation newRegister = new RegisterOrganisation();
             using (HttpClient client = new HttpClient())
             {
                 string register = JsonConvert.SerializeObject(newRegister);
@@ -76,7 +76,7 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
                 if (response.IsSuccessStatusCode)
                 {
                     string json = await response.Content.ReadAsStringAsync();
-                    Register reg = JsonConvert.DeserializeObject<Register>(json);
+                    RegisterOrganisation reg = JsonConvert.DeserializeObject<RegisterOrganisation>(json);
                     if (reg != null)
                     {
                         // we get the Register returned by the webservice and not the one we generated client-side

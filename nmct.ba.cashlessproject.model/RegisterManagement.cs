@@ -1,7 +1,6 @@
 ﻿using nmct.ba.cashlessproject.model.Validation;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -9,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace nmct.ba.cashlessproject.model
 {
-    public class Register : IDataErrorInfo
+    public class RegisterManagement
     {
         private long _id;
 
@@ -44,6 +43,7 @@ namespace nmct.ba.cashlessproject.model
         private DateTime _purchaseDate;
 
         [Required(ErrorMessage = "Aankoopdatum is verplicht")]
+        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime PurchaseDate
         {
             get { return _purchaseDate; }
@@ -53,6 +53,7 @@ namespace nmct.ba.cashlessproject.model
         private DateTime _expiresDate;
 
         [Required(ErrorMessage = "Vervaldatum is verplicht")]
+        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime ExpiresDate
         {
             get { return _expiresDate; }
