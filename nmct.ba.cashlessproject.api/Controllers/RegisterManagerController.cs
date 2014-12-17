@@ -38,5 +38,12 @@ namespace nmct.ba.cashlessproject.api.Controllers
 
             
         }
+
+        [HttpGet]
+        public ActionResult Delete(int id)
+        {
+            RegistersManagement.DeleteRegister(id);
+            return RedirectToAction("Index");
+        }
     }
 }

@@ -36,8 +36,8 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
 
             DbParameter par1 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@RegisterName", register.Name);
             DbParameter par2 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@Device", register.Device);
-            DbParameter par3 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@Purchased", register.Name);
-            DbParameter par4 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@Expires", register.Device);
+            DbParameter par3 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@Purchased", register.PurchaseDate);
+            DbParameter par4 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@Expires", register.ExpiresDate);
 
             return Database.InsertData(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], sql, par1, par2, par3, par4);
         }
@@ -52,17 +52,6 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
                 PurchaseDate = DateTime.Parse(record["PurchaseDate"].ToString()),
                 ExpiresDate = DateTime.Parse(record["ExpiresDate"].ToString())
             };
-        }
-
-        public static void UpdateRegister(long id, RegisterManagement reg)
-        {
-            string sql = "UPDATE registers SET RegisterName=@RegisterName,Device=@DeviceName,PurchaseDate=@Purchased,ExpiresDate=@Expires WHERE ID=@ID;";
-
-            DbParameter regName = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@RegisterName", reg.Name);
-            DbParameter regDeviceName = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@DeviceName", reg.Device);
-            DbParameter regId = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@ID", id);
-
-            Database.ModifyData(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], sql, regName, regDeviceName, regId);
         }
 
         public static void DeleteRegister(long id)
