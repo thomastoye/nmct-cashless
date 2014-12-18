@@ -2,6 +2,8 @@
 using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Windows.Media.Imaging;
+
 
 namespace nmct.ba.cashlessproject.model
 {
@@ -37,13 +39,13 @@ namespace nmct.ba.cashlessproject.model
             set { _address = value; }
         }
 
-        /*private BitmapImage myVar;
+        private BitmapImage _image;
 
-        public BitmapImage MyProperty
+        public BitmapImage Image
         {
-            get { return myVar; }
-            set { myVar = value; }
-        }*/
+            get { return _image; }
+            set { _image = value; }
+        }
 
         private double _balance;
 
