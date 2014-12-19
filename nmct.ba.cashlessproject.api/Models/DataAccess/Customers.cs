@@ -74,5 +74,21 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
 
             Database.ModifyData(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], sql, parId);
         }
+
+        public static bool ExistsWithName(string name)
+        {
+            string sql = "SELECT * FROM customers WHERE CustomerName=@Name";
+
+            DbParameter par = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@Name", name);
+
+            DbDataReader reader = Database.GetData(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], sql, par);
+
+            bool res = true;
+            if (!reader.Read())
+                res = false;
+
+            reader.Close();
+            return res;
+        }
     }
 }

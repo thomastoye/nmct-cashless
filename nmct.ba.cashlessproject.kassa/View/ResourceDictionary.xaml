@@ -17,4 +17,5 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+    <BooleanToVisibilityConverter x:Key="BoolToVis" />
 </ResourceDictionary>

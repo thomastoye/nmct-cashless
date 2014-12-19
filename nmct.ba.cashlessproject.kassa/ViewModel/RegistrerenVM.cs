@@ -12,6 +12,11 @@ using System.Windows.Media.Imaging;
 using System.ComponentModel.DataAnnotations;
 using nmct.ba.cashlessproject.model;
 using System.Windows.Threading;
+using System.Net.Http;
+using Newtonsoft.Json;
+using System.Configuration;
+using System.Collections.ObjectModel;
+using System.Net;
 
 namespace nmct.ba.cashlessproject.kassa.ViewModel
 {
@@ -30,17 +35,12 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
             set { _klant = value; OnPropertyChanged("Klant"); ControleerOfKlantAlGeregistreerd(); }
         }
 
-        private void ControleerOfKlantAlGeregistreerd()
-        {
-            throw new NotImplementedException();
-        }
-
         private bool _isNogNietGeregistreerd = false;
 
         public bool IsNogNietGeregistreerd
         {
             get { return _isNogNietGeregistreerd; }
-            set { _isNogNietGeregistreerd = value; }
+            set { _isNogNietGeregistreerd = value; OnPropertyChanged("IsNogNietGeregistreerd"); }
         }
 
         private bool _kanOpladen = false;
@@ -48,9 +48,11 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
         public bool KanKaartOpladen
         {
             get { return _kanOpladen; }
-            set { _kanOpladen = value; }
+            set { _kanOpladen = value; OnPropertyChanged("KanKaartOpladen"); }
         }
-        
+
+        public string StatusMessage { get; set; }
+
         private string _error;
 
         public string Error
@@ -71,8 +73,33 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
             get { return new RelayCommand(LaadEid); }
         }
 
+        private async void ControleerOfKlantAlGeregistreerd()
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                HttpResponseMessage response = await client.GetAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/customer/exists?name=" + WebUtility.HtmlEncode(Klant.Name));
+                if (response.IsSuccessStatusCode)
+                {
+                    string json = await response.Content.ReadAsStringAsync();
+                    bool bestaatAl = JsonConvert.DeserializeObject<Boolean>(json);
+
+                    if (bestaatAl)
+                    {
+                        KanKaartOpladen = true;
+                    }
+                    else
+                    {
+                        IsNogNietGeregistreerd = true;
+                    }
+                }
+            }
+        }
+
         private async void LaadEid()
         {
+            KanKaartOpladen = false;
+            IsNogNietGeregistreerd = false;
+            StatusMessage = "";
             Error = "";
 
             try
@@ -87,11 +114,15 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
                             BEID_EIDCard card = readerContext.getEIDCard();
                             BEID_Picture picture = card.getPicture();
                             byte[] bytearray = picture.getData().GetBytes();
-                            Klant.Image = StringToImageConverter.BitmapImageFromBytes(bytearray);
-                            Klant.Name = card.getID().getFirstName() + " " + card.getID().getSurname();
-                            Klant.Address = card.getID().getStreet() + card.getID().getZipCode();
 
-                            OnPropertyChanged("Klant");
+                            Customer newCustomer = new Customer() {
+                                Name = card.getID().getFirstName() + " " + card.getID().getSurname(),
+                                Address = card.getID().getStreet() + " " + card.getID().getZipCode(),
+                                Image = StringToImageConverter.BitmapImageFromBytes(bytearray)
+
+                            };
+
+                            Klant = newCustomer;
 
                         }
                         else
