@@ -73,6 +73,25 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
             get { return new RelayCommand(LaadEid); }
         }
 
+        public ICommand RegisterClientCommand
+        {
+            get { return new RelayCommand(RegisterClient); }
+        }
+
+        private async void RegisterClient()
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                string customer = JsonConvert.SerializeObject(Klant);
+                HttpResponseMessage response = await client.PostAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/customer", new StringContent(customer, Encoding.UTF8, "application/json"));
+                if (response.IsSuccessStatusCode)
+                {
+                    IsNogNietGeregistreerd = false;
+                    KanKaartOpladen = true;
+                }
+            }
+        }
+
         private async void ControleerOfKlantAlGeregistreerd()
         {
             using (HttpClient client = new HttpClient())
