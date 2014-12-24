@@ -2,6 +2,7 @@
 using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Drawing;
 using System.Windows.Media.Imaging;
 
 
@@ -39,9 +40,9 @@ namespace nmct.ba.cashlessproject.model
             set { _address = value; }
         }
 
-        private BitmapImage _image;
+        private Image _image;
 
-        public BitmapImage Image
+        public Image Image
         {
             get { return _image; }
             set { _image = value; }

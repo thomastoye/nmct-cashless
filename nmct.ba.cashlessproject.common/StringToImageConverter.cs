@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -27,7 +28,24 @@ namespace nmct.ba.cashlessproject.common.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            return null;
+            throw new NotImplementedException();
+        }
+
+        public static Image ImageFromBytes(byte[] bytes)
+        {
+            BitmapImage image = null;
+            MemoryStream stream = null;
+            try
+            {
+                stream = new MemoryStream(bytes);
+                stream.Seek(0, SeekOrigin.Begin);
+                System.Drawing.Image img = System.Drawing.Image.FromStream(stream);
+                return img;
+            } catch (Exception)
+            {
+                throw;
+            }
+
         }
 
         public static BitmapImage BitmapImageFromBytes(byte[] bytes)

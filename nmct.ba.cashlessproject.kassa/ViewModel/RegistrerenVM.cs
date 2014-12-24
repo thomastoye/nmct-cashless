@@ -17,6 +17,11 @@ using System.Configuration;
 using System.Collections.ObjectModel;
 using System.Net;
 using nmct.ba.cashlessproject.common.Converters;
+using System.Drawing;
+using nmct.ba.cashlessproject.kassa.Converters;
+using System.Windows.Media;
+using System.IO;
+using System.Drawing.Imaging;
 
 namespace nmct.ba.cashlessproject.kassa.ViewModel
 {
@@ -134,14 +139,23 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
                             BEID_Picture picture = card.getPicture();
                             byte[] bytearray = picture.getData().GetBytes();
 
-                            Customer newCustomer = new Customer() {
-                                Name = card.getID().getFirstName() + " " + card.getID().getSurname(),
-                                Address = card.getID().getStreet() + " " + card.getID().getZipCode(),
-                                Image = StringToImageConverter.BitmapImageFromBytes(bytearray)
+                            try
+                            {
+                                Image img = StringToImageConverter.ImageFromBytes(bytearray);
+                                Customer newCustomer = new Customer()
+                                {
+                                    Name = card.getID().getFirstName() + " " + card.getID().getSurname(),
+                                    Address = card.getID().getStreet() + " " + card.getID().getZipCode(),
+                                    Image = img
 
-                            };
+                                };
 
-                            Klant = newCustomer;
+                                Klant = newCustomer;
+                            }
+                            catch (Exception e)
+                            {
+                                Error = "Er was een fout bij het converteren van je foto.";
+                            }
 
                         }
                         else

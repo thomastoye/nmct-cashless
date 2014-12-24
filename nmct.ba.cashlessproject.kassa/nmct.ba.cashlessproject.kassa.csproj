@@ -92,6 +92,7 @@
     <Compile Include="ViewModel\ApplicationVM.cs" />
     <Compile Include="ViewModel\PageOneVM.cs" />
     <Compile Include="ViewModel\RegistrerenVM.cs" />
+    <Compile Include="View\Converters\ImageToImageSourceConverter.cs" />
     <Compile Include="View\PageOne.xaml.cs">
       <DependentUpon>PageOne.xaml</DependentUpon>
     </Compile>
@@ -166,9 +167,7 @@
   <ItemGroup>
     <Content Include="beid35libCS_Wrapper.dll" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="View\Converters\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
