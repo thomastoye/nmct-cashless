@@ -9,22 +9,27 @@
         <ResourceDictionary Source="ResourceDictionary.xaml"/>
     </UserControl.Resources>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="250"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <ListBox Margin="8" DisplayMemberPath="Name" ItemsSource="{Binding Registers}" SelectedItem="{Binding SelectedRegister}"/>
-        <StackPanel Margin="8" Grid.Column="1">
-            <Label Content="Naam:"/>
-            <TextBox Text="{Binding SelectedRegister.Name, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ErrorTemplate}" Style="{StaticResource TextboxError}"/>
-            <Label Content="Model:"/>
-            <TextBox Text="{Binding SelectedRegister.Device, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ErrorTemplate}" Style="{StaticResource TextboxError}"/>
-            <StackPanel Orientation="Horizontal" Margin="0,16,0,0">
-                <Button Content="Kassa toevoegen" Command="{Binding AddRegisterCommand}"/>
-                <Button Content="Kassa verwijderen" Margin="8,0,0,0" Command="{Binding DeleteRegisterCommand}"/>
-                <Button Content="Wijzigingen opslaan" Margin="8,0,0,0" Command="{Binding SaveRegisterCommand}"/>
-                <Button Content="Herladen" Margin="8,0,0,0" Command="{Binding UpdateRegistersCommand}"/>
-            </StackPanel>
+        <ListBox Grid.RowSpan="7" Margin="8" DisplayMemberPath="Name" ItemsSource="{Binding Registers}" SelectedItem="{Binding SelectedRegister}" Grid.Row="0" Grid.Column="0"/>
+        <Label Grid.Row="1" Grid.Column="1" Content="Naam:"/>
+        <Label Grid.Row="1" Grid.Column="2" Content="{Binding SelectedRegister.Name}" />
+        <Label Grid.Row="2" Grid.Column="1" Content="Model:"/>
+        <Label Grid.Row="2" Grid.Column="2" Content="{Binding SelectedRegister.Device}"/>
+        <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal" Margin="0,16,0,0">
+            <Button Content="Herladen" Margin="8,0,0,0" Command="{Binding UpdateRegistersCommand}"/>
         </StackPanel>
     </Grid>
 </UserControl>
