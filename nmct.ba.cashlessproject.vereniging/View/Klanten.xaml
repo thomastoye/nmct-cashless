@@ -22,8 +22,6 @@
             <Label Content="Balans:"/>
             <TextBox Text="{Binding SelectedCustomer.Balance, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ErrorTemplate}" Style="{StaticResource TextboxError}"/>
             <StackPanel Orientation="Horizontal" Margin="0,16,0,0">
-                <Button Content="Klant toevoegen" Command="{Binding AddCustomerCommand}"/>
-                <Button Content="Klant verwijderen" Margin="8,0,0,0" Command="{Binding DeleteCustomerCommand}"/>
                 <Button Content="Wijzigingen opslaan" Margin="8,0,0,0" Command="{Binding SaveCustomerCommand}"/>
                 <Button Content="Herladen" Margin="8,0,0,0" Command="{Binding RefreshCustomersCommand}"/>
             </StackPanel>

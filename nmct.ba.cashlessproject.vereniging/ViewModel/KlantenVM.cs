@@ -50,14 +50,6 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
             get { return _selectedCustomer; }
             set { _selectedCustomer = value; OnPropertyChanged("SelectedCustomer"); }
         }
-        public ICommand AddCustomerCommand
-        {
-            get { return new RelayCommand(AddCustomer); }
-        }
-        public ICommand DeleteCustomerCommand
-        {
-            get { return new RelayCommand(DeleteCustomer); }
-        }
         public ICommand SaveCustomerCommand
         {
             get { return new RelayCommand(SaveCustomer); }
@@ -65,37 +57,6 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
         public ICommand RefreshCustomersCommand
         {
             get { return new RelayCommand(GetCustomers); }
-        }
-        public async void AddCustomer()
-        {
-            Customer newCustomer = new Customer();
-            using (HttpClient client = new HttpClient())
-            {
-                string customer = JsonConvert.SerializeObject(newCustomer);
-                HttpResponseMessage response = await client.PostAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/customer", new StringContent(customer, Encoding.UTF8, "application/json"));
-                if (response.IsSuccessStatusCode)
-                {
-                    string json = await response.Content.ReadAsStringAsync();
-                    Customer cust = JsonConvert.DeserializeObject<Customer>(json);
-                    if (cust != null)
-                    {
-                        Customers.Add(cust);
-                        SelectedCustomer = cust;
-                    }
-                }
-            }
-        }
-        public async void DeleteCustomer()
-        {
-            using (HttpClient client = new HttpClient())
-            {
-                HttpResponseMessage response = await
-                client.DeleteAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/customer/" + SelectedCustomer.ID);
-                if (response.IsSuccessStatusCode)
-                {
-                    Customers.Remove(SelectedCustomer);
-                }
-            }
         }
         public async void SaveCustomer()
         {
