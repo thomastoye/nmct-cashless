@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
 
-namespace nmct.ba.cashlessproject.kassa.View.Converters
+namespace nmct.ba.cashlessproject.common.Converters
 {
     public class StringToImageConverter : IValueConverter
     {

@@ -1,6 +1,5 @@
 ﻿using be.belgium.eid;
 using GalaSoft.MvvmLight.CommandWpf;
-using nmct.ba.cashlessproject.kassa.View.Converters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +16,7 @@ using Newtonsoft.Json;
 using System.Configuration;
 using System.Collections.ObjectModel;
 using System.Net;
+using nmct.ba.cashlessproject.common.Converters;
 
 namespace nmct.ba.cashlessproject.kassa.ViewModel
 {
