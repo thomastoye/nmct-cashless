@@ -12,9 +12,6 @@
         <DataTemplate DataType="{x:Type vm:PageOneVM}">
             <v:PageOne/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type vm:KassaVM}">
-            <v:Kassa/>
-        </DataTemplate>
         <DataTemplate DataType="{x:Type vm:RegistrerenVM}">
             <v:Registreren/>
         </DataTemplate>
