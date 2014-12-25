@@ -45,10 +45,29 @@ namespace nmct.ba.cashlessproject.api.Controllers
         }
 
         [HttpGet]
-        public ActionResult Delete(int id)
+        public ActionResult Edit(int id)
         {
-            Organisations.Delete(id);
-            return RedirectToAction("Index");
+            Organisation org = Organisations.GetById(id);
+            if (org == null) return new HttpNotFoundResult();
+            return View(org);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Organisation org)
+        {
+            Organisation testIfExists = Organisations.GetById(org.ID);
+            if (testIfExists == null) return new HttpNotFoundResult();
+
+            Organisations.Update(org);
+            return RedirectToAction("Details", new { id = org.ID });
+        }
+
+        [HttpGet]
+        public ActionResult Details(int id)
+        {
+            Organisation org = Organisations.GetById(id);
+            if (org == null) return new HttpNotFoundResult();
+            return View(org);
         }
     }
 }

@@ -1,0 +1,188 @@
+USE [@@DatabaseName]
+GO
+/****** Object:  Table [dbo].[Customers]    Script Date: 25/12/2014 17:50:38 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[Customers](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[CustomerName] [varchar](50) NULL,
+	[Address] [varchar](200) NULL,
+	[Picture] [varbinary](max) NULL,
+	[Balance] [float] NULL,
+ CONSTRAINT [PK_Customers] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[Employee]    Script Date: 25/12/2014 17:50:38 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[Employee](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[EmployeeName] [varchar](50) NOT NULL,
+	[Address] [varchar](200) NULL,
+	[Email] [varchar](50) NULL,
+	[Phone] [varchar](50) NULL,
+ CONSTRAINT [PK_Employee] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[Errorlog]    Script Date: 25/12/2014 17:50:38 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Errorlog](
+	[RegisterID] [int] NOT NULL,
+	[Timestamp] [datetime] NOT NULL,
+	[Message] [nvarchar](255) NULL,
+	[StackTrace] [nvarchar](max) NULL,
+ CONSTRAINT [PK_Errorlog] PRIMARY KEY CLUSTERED 
+(
+	[RegisterID] ASC,
+	[Timestamp] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Products]    Script Date: 25/12/2014 17:50:38 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[Products](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[ProductName] [varchar](50) NULL,
+	[Price] [float] NULL,
+ CONSTRAINT [PK_Products] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[Register_Employee]    Script Date: 25/12/2014 17:50:38 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Register_Employee](
+	[RegisterID] [int] NOT NULL,
+	[EmployeeID] [int] NOT NULL,
+	[FromDate] [datetime] NULL,
+	[UntilDate] [datetime] NULL,
+ CONSTRAINT [PK_Register_Employee] PRIMARY KEY CLUSTERED 
+(
+	[RegisterID] ASC,
+	[EmployeeID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Registers]    Script Date: 25/12/2014 17:50:38 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[Registers](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[RegisterName] [varchar](50) NULL,
+	[Device] [varchar](50) NULL,
+ CONSTRAINT [PK_Registers] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[Sales]    Script Date: 25/12/2014 17:50:38 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Sales](
+	[ID] [nchar](10) NOT NULL,
+	[Timestamp] [datetime] NULL,
+	[CustomerID] [int] NOT NULL,
+	[RegisterID] [int] NOT NULL,
+	[ProductID] [int] NOT NULL,
+	[Amount] [float] NULL,
+	[TotalPrice] [float] NULL,
+ CONSTRAINT [PK_Sales] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+ALTER TABLE [dbo].[Errorlog]  WITH CHECK ADD  CONSTRAINT [FK_Errorlog_Registers] FOREIGN KEY([RegisterID])
+REFERENCES [dbo].[Registers] ([ID])
+GO
+ALTER TABLE [dbo].[Errorlog] CHECK CONSTRAINT [FK_Errorlog_Registers]
+GO
+ALTER TABLE [dbo].[Register_Employee]  WITH CHECK ADD  CONSTRAINT [FK_Register_Employee_Employee] FOREIGN KEY([EmployeeID])
+REFERENCES [dbo].[Employee] ([ID])
+GO
+ALTER TABLE [dbo].[Register_Employee] CHECK CONSTRAINT [FK_Register_Employee_Employee]
+GO
+ALTER TABLE [dbo].[Register_Employee]  WITH CHECK ADD  CONSTRAINT [FK_Register_Employee_Registers] FOREIGN KEY([RegisterID])
+REFERENCES [dbo].[Registers] ([ID])
+GO
+ALTER TABLE [dbo].[Register_Employee] CHECK CONSTRAINT [FK_Register_Employee_Registers]
+GO
+ALTER TABLE [dbo].[Sales]  WITH CHECK ADD  CONSTRAINT [FK_Sales_Customers] FOREIGN KEY([CustomerID])
+REFERENCES [dbo].[Customers] ([ID])
+GO
+ALTER TABLE [dbo].[Sales] CHECK CONSTRAINT [FK_Sales_Customers]
+GO
+ALTER TABLE [dbo].[Sales]  WITH CHECK ADD  CONSTRAINT [FK_Sales_Products] FOREIGN KEY([ProductID])
+REFERENCES [dbo].[Products] ([ID])
+GO
+ALTER TABLE [dbo].[Sales] CHECK CONSTRAINT [FK_Sales_Products]
+GO
+ALTER TABLE [dbo].[Sales]  WITH CHECK ADD  CONSTRAINT [FK_Sales_Registers] FOREIGN KEY([RegisterID])
+REFERENCES [dbo].[Registers] ([ID])
+GO
+ALTER TABLE [dbo].[Sales] CHECK CONSTRAINT [FK_Sales_Registers]
+GO
+
+
+USE [master]
+GO
+
+CREATE LOGIN [@@DatabaseLogin] WITH PASSWORD=N'@@DatabasePassword', DEFAULT_DATABASE=[@@DatabaseName], DEFAULT_LANGUAGE=[us_english], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF
+GO
+USE [@@DatabaseName]
+GO
+
+CREATE USER [LoginUser] FOR LOGIN [@@DatabaseLogin] WITH DEFAULT_SCHEMA=[dbo]
+GO
+ALTER ROLE [db_datareader] ADD MEMBER [LoginUser]
+GO
+ALTER ROLE [db_datawriter] ADD MEMBER [LoginUser]
+GO

@@ -12,6 +12,9 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.OrganisationName)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Login)
         </th>
         <th>
@@ -26,23 +29,14 @@
         <th>
             @Html.DisplayNameFor(model => model.DbPassword)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OrganisationName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Phone)
-        </th>
         <th></th>
     </tr>
 
 @foreach (Organisation item in ViewBag.Orgs) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrganisationName)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Login)
         </td>
@@ -59,19 +53,8 @@
             @Html.DisplayFor(modelItem => item.DbPassword)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.OrganisationName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Phone)
-        </td>
-        <td>
-            @Html.ActionLink("Delete", "Delete", new { id = item.ID }) (DEBUG ONLY)
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ID })
         </td>
     </tr>
 }

@@ -1,0 +1,106 @@
+﻿@model nmct.ba.cashlessproject.model.Organisation
+
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>View</h2>
+
+<div>
+    <h4>Organisation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Login)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Login)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DbName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DbName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DbLogin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DbLogin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DbPassword)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DbPassword)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrganisationName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrganisationName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DatabaseName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DatabaseName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DatabaseConnectionString)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DatabaseConnectionString)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
