@@ -16,7 +16,6 @@ using Newtonsoft.Json;
 using System.Configuration;
 using System.Collections.ObjectModel;
 using System.Net;
-using nmct.ba.cashlessproject.common.Converters;
 using System.Drawing;
 using nmct.ba.cashlessproject.kassa.Converters;
 using System.Windows.Media;

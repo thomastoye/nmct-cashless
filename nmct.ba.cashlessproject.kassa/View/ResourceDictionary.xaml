@@ -19,6 +19,5 @@
         </Style.Triggers>
     </Style>
     <BooleanToVisibilityConverter x:Key="BoolToVis" />
-    <conv:ImageToImageSourceConverter x:Key="ImageToImageSource"/>
     <conv:StringToImageConverter x:Key="StringToImage"/>
 </ResourceDictionary>

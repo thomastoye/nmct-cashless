@@ -9,7 +9,6 @@ using System.Data;
 using System.Configuration;
 using nmct.ba.cashlessproject.common;
 using System.Drawing;
-using nmct.ba.cashlessproject.common.Converters;
 
 namespace nmct.ba.cashlessproject.api.Models.DataAccess
 {

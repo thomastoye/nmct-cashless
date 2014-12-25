@@ -44,7 +44,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Converters\ByteToImageConverter.cs" />
     <Compile Include="Cryptography.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

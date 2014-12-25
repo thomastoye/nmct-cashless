@@ -92,7 +92,6 @@
     <Compile Include="ViewModel\ApplicationVM.cs" />
     <Compile Include="ViewModel\PageOneVM.cs" />
     <Compile Include="ViewModel\RegistrerenVM.cs" />
-    <Compile Include="View\Converters\ImageToImageSourceConverter.cs" />
     <Compile Include="View\Converters\StringToImageConverter.cs" />
     <Compile Include="View\PageOne.xaml.cs">
       <DependentUpon>PageOne.xaml</DependentUpon>
