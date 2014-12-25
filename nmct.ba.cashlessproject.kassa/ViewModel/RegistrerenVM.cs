@@ -22,6 +22,7 @@ using nmct.ba.cashlessproject.kassa.Converters;
 using System.Windows.Media;
 using System.IO;
 using System.Drawing.Imaging;
+using nmct.ba.cashlessproject.common;
 
 namespace nmct.ba.cashlessproject.kassa.ViewModel
 {
@@ -89,6 +90,7 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
             {
                 string customer = JsonConvert.SerializeObject(Klant);
                 HttpResponseMessage response = await client.PostAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/customer", new StringContent(customer, Encoding.UTF8, "application/json"));
+
                 if (response.IsSuccessStatusCode)
                 {
                     IsNogNietGeregistreerd = false;
@@ -141,12 +143,12 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
 
                             try
                             {
-                                Image img = StringToImageConverter.ImageFromBytes(bytearray);
+                                //Image img = StringToImageConverter.ImageFromBytes(bytearray);
                                 Customer newCustomer = new Customer()
                                 {
                                     Name = card.getID().getFirstName() + " " + card.getID().getSurname(),
                                     Address = card.getID().getStreet() + " " + card.getID().getZipCode(),
-                                    Image = img
+                                    Image = bytearray
 
                                 };
 

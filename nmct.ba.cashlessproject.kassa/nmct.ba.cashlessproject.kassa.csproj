@@ -93,6 +93,7 @@
     <Compile Include="ViewModel\PageOneVM.cs" />
     <Compile Include="ViewModel\RegistrerenVM.cs" />
     <Compile Include="View\Converters\ImageToImageSourceConverter.cs" />
+    <Compile Include="View\Converters\StringToImageConverter.cs" />
     <Compile Include="View\PageOne.xaml.cs">
       <DependentUpon>PageOne.xaml</DependentUpon>
     </Compile>
@@ -166,6 +167,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="beid35libCS_Wrapper.dll" />
+    <Resource Include="noimage.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -7,6 +7,9 @@ using System.Data.Common;
 using nmct.ba.cashlessproject.api.Helpers;
 using System.Data;
 using System.Configuration;
+using nmct.ba.cashlessproject.common;
+using System.Drawing;
+using nmct.ba.cashlessproject.common.Converters;
 
 namespace nmct.ba.cashlessproject.api.Models.DataAccess
 {
@@ -31,39 +34,48 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
         
         public static int InsertCustomer(Customer customer)
         {
-            string sql = "INSERT INTO Customers(CustomerName,Address,Balance) VALUES(@CustomerName,@Address,@Balance)";
+            string sql = "INSERT INTO Customers(CustomerName,Address,Balance, Picture) VALUES(@CustomerName,@Address,@Balance, @Picture)";
 
             if (customer.Name == null) customer.Name = "";
             if (customer.Address == null) customer.Address = "";
 
             DbParameter par1 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@CustomerName", customer.Name);
             DbParameter par2 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@Address", customer.Address);
-            DbParameter par3 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@Picture", null);
+            DbParameter par3 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@Picture", customer.Image);
             DbParameter par4 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@Balance", customer.Balance);
 
-            return Database.InsertData(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], sql, par1, par2, /*par3,*/ par4);
+            return Database.InsertData(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], sql, par1, par2, par3, par4);
         }
 
         private static Customer Create(IDataRecord record)
         {
+            byte[] bytes = null;
+            if (record["Picture"] != null && record["Picture"] != DBNull.Value && record["Picture"] is byte[])
+            {
+                bytes = (byte[])record["Picture"];
+            }
+
             return new Customer()
             {
                 ID = Int32.Parse(record["ID"].ToString()),
                 Address = record["Address"].ToString(),
                 Balance = Double.Parse(record["Balance"].ToString()),
-                Name = record["CustomerName"].ToString()
+                Name = record["CustomerName"].ToString(),
+                Image = bytes
             };
         }
 
         public static void UpdateCustomer(long id, Customer customer)
         {
-            string sql = "UPDATE customers SET CustomerName=@CustomerName,Address=@Address WHERE ID=@ID;";
+            string sql = "UPDATE customers SET CustomerName=@CustomerName,Address=@Address,Picture=@Picture,Balance=@Balance WHERE ID=@ID;";
 
             DbParameter custName = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@CustomerName", customer.Name);
             DbParameter custAddress = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@Address", customer.Address);
             DbParameter custId = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@ID", id);
+            DbParameter custPic = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@Picture", customer.Image);
+            DbParameter custBalance = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@Balance", customer.Balance);
 
-            Database.ModifyData(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], sql, custName, custAddress, custId);
+            Database.ModifyData(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], sql, custName, custAddress, custId, custPic, custBalance);
         }
 
         public static void DeleteCustomer(long id)

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
 
-namespace nmct.ba.cashlessproject.common.Converters
+namespace nmct.ba.cashlessproject.kassa.Converters
 {
     public class StringToImageConverter : IValueConverter
     {
@@ -18,12 +18,12 @@ namespace nmct.ba.cashlessproject.common.Converters
             {
                 byte[] input = (byte[])value;
                 if (input.Length <= 1)
-                    return new BitmapImage(new Uri(@"pack://application:,,,/nmct.ba.demo.ui;component/View/images/noimage.png"));
+                    return new BitmapImage(new Uri(@"pack://application:,,,/nmct.ba.cashlessproject.kassa;component/noimage.png"));
                 else
                     return BitmapImageFromBytes(input);
             }
             else
-                return new BitmapImage(new Uri(@"pack://application:,,,/nmct.ba.demo.ui;component/View/images/noimage.png"));
+                return new BitmapImage(new Uri(@"pack://application:,,,/nmct.ba.cashlessproject.kassa;component/noimage.png"));
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
