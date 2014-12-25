@@ -37,7 +37,7 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
         public Customer Klant
         {
             get { return _klant; }
-            set { _klant = value; OnPropertyChanged("Klant"); ControleerOfKlantAlGeregistreerd(); }
+            set { _klant = value; OnPropertyChanged("Klant"); }
         }
 
         private bool _isNogNietGeregistreerd = false;
@@ -106,11 +106,12 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
                 if (response.IsSuccessStatusCode)
                 {
                     string json = await response.Content.ReadAsStringAsync();
-                    bool bestaatAl = JsonConvert.DeserializeObject<Boolean>(json);
+                    Customer bestaatAl = JsonConvert.DeserializeObject<Customer>(json);
 
-                    if (bestaatAl)
+                    if (bestaatAl != null)
                     {
                         KanKaartOpladen = true;
+                        Klant = bestaatAl;
                     }
                     else
                     {
@@ -152,6 +153,7 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
                                 };
 
                                 Klant = newCustomer;
+                                ControleerOfKlantAlGeregistreerd();
                             }
                             catch (Exception e)
                             {

@@ -39,7 +39,7 @@ namespace nmct.ba.cashlessproject.api.Controllers
 
 
         [HttpGet]
-        public object Exists(string name)
+        public Customer Exists(string name)
         {
             return Customers.ExistsWithName(name);
         }

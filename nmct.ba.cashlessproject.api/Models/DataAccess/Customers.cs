@@ -86,7 +86,7 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
             Database.ModifyData(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], sql, parId);
         }
 
-        public static bool ExistsWithName(string name)
+        public static Customer ExistsWithName(string name)
         {
             string sql = "SELECT * FROM customers WHERE CustomerName=@Name";
 
@@ -94,9 +94,9 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
 
             DbDataReader reader = Database.GetData(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], sql, par);
 
-            bool res = true;
-            if (!reader.Read())
-                res = false;
+            Customer res = null;
+            if (reader.Read())
+                res = Create(reader);
 
             reader.Close();
             return res;
