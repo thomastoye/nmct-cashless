@@ -13,7 +13,7 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
     public class RegistersOrganisation
     {
         
-        public static List<RegisterOrganisation> GetRegisters()
+        public static List<RegisterOrganisation> Get()
         {
             List<RegisterOrganisation> list = new List<RegisterOrganisation>();
 
@@ -29,7 +29,7 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
         }
 
 
-        public static int InsertRegister(RegisterOrganisation register)
+        public static int Insert(RegisterOrganisation register)
         {
             string sql = "INSERT INTO Registers(RegisterName,Device) VALUES(@RegisterName,@Device)";
             if (register.Name == null) register.Name = "";
@@ -51,11 +51,7 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
             };
         }
 
-        /**
-         * This method updates a register
-         * It takes an id and a new register. It will update the record in the database with that id to match the given register
-         */
-        public static void UpdateRegister(long id, RegisterOrganisation reg)
+        public static void Update(long id, RegisterOrganisation reg)
         {
             string sql = "UPDATE registers SET RegisterName=@RegisterName,Device=@DeviceName WHERE ID=@ID;";
 
@@ -69,7 +65,7 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
             Database.ModifyData(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], sql, regName, regDeviceName, regId);
         }
 
-        public static void DeleteRegister(long id)
+        public static void Delete(long id)
         {
             string sql = "DELETE FROM registers WHERE ID=@ID";
 

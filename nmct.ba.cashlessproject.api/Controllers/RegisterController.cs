@@ -15,12 +15,12 @@ namespace nmct.ba.cashlessproject.api.Controllers
     {
         public List<RegisterOrganisation> Get()
         {
-            return RegistersOrganisation.GetRegisters();
+            return RegistersOrganisation.Get();
         }
 
         public RegisterOrganisation Post(RegisterOrganisation r)
         {
-            int id = RegistersOrganisation.InsertRegister(r);
+            int id = RegistersOrganisation.Insert(r);
             r.ID = id;
 
             return r;
@@ -28,13 +28,13 @@ namespace nmct.ba.cashlessproject.api.Controllers
 
         public HttpStatusCode Put(long id, RegisterOrganisation r)
         {
-            RegistersOrganisation.UpdateRegister(id, r);
+            RegistersOrganisation.Update(id, r);
             return HttpStatusCode.OK;
         }
 
         public HttpStatusCode Delete(long id)
         {
-            RegistersOrganisation.DeleteRegister(id);
+            RegistersOrganisation.Delete(id);
             return HttpStatusCode.OK;
         }
     }
