@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace nmct.ba.cashlessproject.model.Validation
 {
-    class GeenSpecialeTekensWelCijfersAttribute : RegularExpressionAttribute
+    public class GeenSpecialeTekensWelCijfersAttribute : RegularExpressionAttribute
     {
         public GeenSpecialeTekensWelCijfersAttribute() : base(@"^[a-zA-Z0-9''-'\s]*$")
         {

@@ -49,7 +49,6 @@
     <Compile Include="ErrorLog.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegisterManagement.cs" />
     <Compile Include="RegisterOrganisation.cs" />
     <Compile Include="Sale.cs" />
     <Compile Include="Validation\GeenSpecialeTekensAttribute.cs" />

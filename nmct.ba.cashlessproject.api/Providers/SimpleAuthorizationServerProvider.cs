@@ -1,4 +1,5 @@
 ﻿using Microsoft.Owin.Security.OAuth;
+using nmct.ba.cashlessproject.api.Models;
 using nmct.ba.cashlessproject.api.Models.DataAccess;
 using nmct.ba.cashlessproject.model;
 using System;

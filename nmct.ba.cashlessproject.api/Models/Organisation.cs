@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 
-namespace nmct.ba.cashlessproject.model
+namespace nmct.ba.cashlessproject.api.Models
 {
     public class Organisation
     {

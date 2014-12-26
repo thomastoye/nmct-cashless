@@ -1,4 +1,5 @@
-﻿using nmct.ba.cashlessproject.model.Validation;
+﻿using nmct.ba.cashlessproject.model;
+using nmct.ba.cashlessproject.model.Validation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -6,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace nmct.ba.cashlessproject.model
+namespace nmct.ba.cashlessproject.api.Models
 {
     public class RegisterManagement
     {
