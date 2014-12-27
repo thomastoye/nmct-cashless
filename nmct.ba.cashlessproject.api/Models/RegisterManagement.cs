@@ -19,6 +19,15 @@ namespace nmct.ba.cashlessproject.api.Models
             set { _id = value; }
         }
 
+        private Organisation _assignedTo;
+
+        public Organisation AssignedTo
+        {
+            get { return _assignedTo; }
+            set { _assignedTo = value; }
+        }
+        
+
         private string _name;
 
         [Required(ErrorMessage = "Naam is verplicht")]

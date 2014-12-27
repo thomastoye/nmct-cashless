@@ -193,6 +193,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\DataAccess\AssignRegisterDA.cs" />
     <Compile Include="Models\DataAccess\Customers.cs" />
     <Compile Include="Models\DataAccess\Employees.cs" />
     <Compile Include="Models\DataAccess\Organisations.cs" />
@@ -202,6 +203,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Organisation.cs" />
+    <Compile Include="Models\Organisation_RegisterBindModel.cs" />
     <Compile Include="Models\RegisterManagement.cs" />
     <Compile Include="Models\Validation\UniqueLoginNameAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -271,6 +273,7 @@
     <Content Include="Views\RegisterManager\Create.cshtml" />
     <Content Include="Views\Organisation\Details.cshtml" />
     <Content Include="Views\Organisation\Edit.cshtml" />
+    <Content Include="Views\RegisterManager\AssignTo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

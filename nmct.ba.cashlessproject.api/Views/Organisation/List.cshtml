@@ -32,7 +32,8 @@
         <th></th>
     </tr>
 
-@foreach (Organisation item in ViewBag.Orgs) {
+@foreach (nmct.ba.cashlessproject.api.Models.Organisation item in ViewBag.Orgs)
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.OrganisationName)

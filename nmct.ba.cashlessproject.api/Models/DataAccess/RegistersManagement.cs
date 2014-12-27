@@ -16,7 +16,7 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
         {
             List<RegisterManagement> list = new List<RegisterManagement>();
 
-            string sql = "SELECT * FROM Registers";
+            string sql = "SELECT reg.*, joinTable.OrganisationID FROM Registers AS reg LEFT JOIN Organisation_Register AS joinTable ON reg.ID = joinTable.RegisterID WHERE (joinTable.FromDate < GETDATE() AND joinTable.UntilDate > GETDATE()) OR (joinTable.FromDate IS NULL)";
             DbDataReader reader = Database.GetData(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], sql);
 
             while (reader.Read())
@@ -44,13 +44,20 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
 
         private static RegisterManagement Create(IDataRecord record)
         {
+            Organisation org = null;
+            if (DBNull.Value != record["OrganisationID"])
+            {
+                org = Organisations.GetById(int.Parse(record["OrganisationID"].ToString()));
+            }
+
             return new RegisterManagement()
             {
                 ID = Int32.Parse(record["ID"].ToString()),
                 Name = record["RegisterName"].ToString(),
                 Device = record["Device"].ToString(),
                 PurchaseDate = DateTime.Parse(record["PurchaseDate"].ToString()),
-                ExpiresDate = DateTime.Parse(record["ExpiresDate"].ToString())
+                ExpiresDate = DateTime.Parse(record["ExpiresDate"].ToString()),
+                AssignedTo = org
             };
         }
 
@@ -61,6 +68,25 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
             DbParameter parId = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@ID", id);
 
             Database.ModifyData(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], sql, parId);
+        }
+
+        public static RegisterManagement GetById(int id)
+        {
+            string sql = "SELECT reg.*, joinTable.OrganisationID FROM Registers AS reg LEFT JOIN Organisation_Register AS joinTable ON reg.ID = joinTable.RegisterID WHERE ((joinTable.FromDate < GETDATE() AND joinTable.UntilDate > GETDATE()) OR (joinTable.FromDate IS NULL)) AND reg.ID=@ID";
+
+            DbParameter parId = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@ID", id);
+
+            DbDataReader reader = Database.GetData(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], sql, parId);
+
+            RegisterManagement res;
+
+            if (!reader.Read())
+                res = null;
+            else
+                res = Create(reader);
+
+            reader.Close();
+            return res;
         }
     }
 }

@@ -4,11 +4,12 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+<h2>Alle kassa's</h2>
+
 <table class="table">
     <tr>
         <th>#</th>
@@ -23,6 +24,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ExpiresDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AssignedTo)
         </th>
         <th></th>
     </tr>
@@ -42,8 +46,72 @@
         <td>
             @Html.DisplayFor(modelItem => item.ExpiresDate)
         </td>
+        @if (item.AssignedTo != null)
+        {
+            <td>@Html.DisplayFor(modelItem => item.AssignedTo.OrganisationName)</td>
+        }
+        else {
+            <td>Niet toegewezen</td>
+        }
         <td>@Html.ActionLink("Delete", "Delete", new {id = item.ID})</td>
     </tr>
 }
+
+</table>
+
+
+<h2>Niet-toegewezen kassa's</h2>
+
+<table class="table">
+    <tr>
+        <th>#</th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Device)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PurchaseDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpiresDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AssignedTo)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (nmct.ba.cashlessproject.api.Models.RegisterManagement item in ViewBag.UnassignedRegisters)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.ID)</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Device)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PurchaseDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpiresDate)
+            </td>
+            @if (item.AssignedTo != null)
+            {
+                <td>@Html.DisplayFor(modelItem => item.AssignedTo.OrganisationName)</td>
+            }
+            else
+            {
+                <td>Niet toegewezen</td>
+            }
+            <td>
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID }) |
+                @Html.ActionLink("Toewijzen", "AssignTo", new { id = item.ID })
+            </td>
+        </tr>
+    }
 
 </table>

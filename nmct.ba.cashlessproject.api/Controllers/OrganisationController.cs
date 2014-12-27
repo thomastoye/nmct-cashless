@@ -22,7 +22,8 @@ namespace nmct.ba.cashlessproject.api.Controllers
         [HttpGet]
         public ActionResult List()
         {
-            ViewBag.Orgs = Organisations.Get();
+            var orgs = Organisations.Get();
+            ViewBag.Orgs = orgs;
             return View();
         }
 
