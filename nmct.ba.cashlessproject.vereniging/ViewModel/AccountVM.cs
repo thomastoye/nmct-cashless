@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight.CommandWpf;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +17,16 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
             get { return "Account"; }
         }
 
-        public TokenResponse Token { get; set; }
+        private TokenResponse _token;
+
+        public TokenResponse Token
+        {
+            get { return _token;  }
+            set {
+                _token = value;
+                ConfigurationManager.AppSettings["token"] = value.AccessToken;
+            }
+        }
 
         private Boolean _tokenok = false;
 

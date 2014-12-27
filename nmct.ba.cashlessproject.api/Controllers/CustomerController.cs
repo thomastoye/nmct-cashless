@@ -1,4 +1,5 @@
-﻿using nmct.ba.cashlessproject.api.Models.DataAccess;
+﻿using nmct.ba.cashlessproject.api.Helpers;
+using nmct.ba.cashlessproject.api.Models.DataAccess;
 using nmct.ba.cashlessproject.model;
 using System;
 using System.Collections.Generic;
@@ -9,12 +10,13 @@ using System.Web.Http;
 
 namespace nmct.ba.cashlessproject.api.Controllers
 {
+    [System.Web.Http.Authorize(Roles = "OrganisationManager")]
     public class CustomerController : ApiController
     {
 
         public List<Customer> Get()
         {
-            return Customers.GetCustomers();
+            return Customers.GetCustomers(Claims.GetConnectionString(User));
         }
 
         public Customer Post(Customer c)

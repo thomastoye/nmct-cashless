@@ -31,13 +31,13 @@ namespace nmct.ba.cashlessproject.api.Models
         [Required]
         public string Phone { get; set; }
 
-        public string DatabaseName
+        /*public string DatabaseName
         {
             get { return "org_" + OrganisationName; }
-        }
+        }*/
         public string DatabaseConnectionString {
             get{
-                return "Data Source=THOMAS-ZBOOK\\SQLEXPRESS;Initial Catalog=" + DatabaseName + ";Integrated Security=True;";
+                return "Data Source=THOMAS-ZBOOK\\SQLEXPRESS;Initial Catalog=" + DbName + ";Integrated Security=True;User Id=" + DbLogin + ";Password=" + DbPassword;
             }
         }
     }

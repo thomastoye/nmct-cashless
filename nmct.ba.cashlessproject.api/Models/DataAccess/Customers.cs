@@ -15,12 +15,13 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
     public class Customers
     {
 
-        public static List<Customer> GetCustomers()
+        public static List<Customer> GetCustomers(string connectionString)
         {
+            ConnectionStringSettings settings = new ConnectionStringSettings("KlantDynamicConnection", connectionString, "System.Data.SqlClient");
             List<Customer> list = new List<Customer>();
 
             string sql = "SELECT ID, CustomerName, Address, Picture, Balance FROM Customers";
-            DbDataReader reader = Database.GetData(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], sql);
+            DbDataReader reader = Database.GetData(settings, sql);
 
             while (reader.Read())
             {

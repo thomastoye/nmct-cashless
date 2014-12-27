@@ -34,6 +34,15 @@ namespace nmct.ba.cashlessproject.api.Helpers
             return con;
         }
 
+        private static DbConnection GetConnection(ConnectionStringSettings settings)
+        {
+            DbConnection con = DbProviderFactories.GetFactory(settings.ProviderName).CreateConnection();
+            con.ConnectionString = settings.ConnectionString;
+            con.Open();
+
+            return con;
+        }
+
         public static void ReleaseConnection(DbConnection con)
         {
             if (con != null)
@@ -55,6 +64,43 @@ namespace nmct.ba.cashlessproject.api.Helpers
             }
 
             return command;
+        }
+
+        private static DbCommand BuildCommand(ConnectionStringSettings ConnectionString, string sql, params DbParameter[] parameters)
+        {
+            DbCommand command = GetConnection(ConnectionString).CreateCommand();
+            command.CommandType = CommandType.Text;
+            command.CommandText = sql;
+
+            if (parameters != null)
+            {
+                command.Parameters.AddRange(parameters);
+            }
+
+            return command;
+        }
+
+        public static DbDataReader GetData(ConnectionStringSettings ConnectionString, string sql, params DbParameter[] parameters)
+        {
+            DbCommand command = null;
+            DbDataReader reader = null;
+
+            try
+            {
+                command = BuildCommand(ConnectionString, sql, parameters);
+                reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+
+                return reader;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                if (reader != null)
+                    reader.Close();
+                if (command != null)
+                    ReleaseConnection(command.Connection);
+                throw;
+            }
         }
 
         public static DbDataReader GetData(string ConnectionString, string sql, params DbParameter[] parameters)

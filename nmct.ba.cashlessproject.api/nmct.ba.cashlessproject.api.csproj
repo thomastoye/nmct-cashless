@@ -186,6 +186,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Claims.cs" />
     <Compile Include="Helpers\Database.cs" />
     <Compile Include="Migrations\201412131325297_Initial migration.cs" />
     <Compile Include="Migrations\201412131325297_Initial migration.Designer.cs">
