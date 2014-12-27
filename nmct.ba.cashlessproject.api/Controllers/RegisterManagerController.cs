@@ -14,6 +14,18 @@ namespace nmct.ba.cashlessproject.api.Controllers
     public class RegisterManagerController : Controller
     {
         [HttpGet]
+        public ActionResult AssignedToOrganisation(int id)
+        {
+            Organisation org = Organisations.GetById(id);
+            if (org == null) return new HttpNotFoundResult();
+
+            var registers = RegistersManagement.GetByOrganisationId(id);
+
+            ViewBag.Organisation = org;
+            return View(registers);
+        }
+
+        [HttpGet]
         public ActionResult Index()
         {
             ViewBag.UnassignedRegisters = RegistersManagement.GetRegisters().FindAll(reg => reg.AssignedTo == null);

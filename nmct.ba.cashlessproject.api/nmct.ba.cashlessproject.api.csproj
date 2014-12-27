@@ -274,6 +274,7 @@
     <Content Include="Views\Organisation\Details.cshtml" />
     <Content Include="Views\Organisation\Edit.cshtml" />
     <Content Include="Views\RegisterManager\AssignTo.cshtml" />
+    <Content Include="Views\RegisterManager\AssignedToOrganisation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

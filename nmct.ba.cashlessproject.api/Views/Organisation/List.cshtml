@@ -29,6 +29,9 @@
         <th>
             @Html.DisplayNameFor(model => model.DbPassword)
         </th>
+        <th>
+            Toegewezen kassa's
+        </th>
         <th></th>
     </tr>
 
@@ -53,6 +56,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.DbPassword)
         </td>
+        <th>
+            @Html.ActionLink("Toegewezen kassa's", "AssignedToOrganisation", "RegisterManager", new { id = item.ID }, new { })
+        </th>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
             @Html.ActionLink("Details", "Details", new { id = item.ID })

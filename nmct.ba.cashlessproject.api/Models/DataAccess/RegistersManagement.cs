@@ -88,5 +88,23 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
             reader.Close();
             return res;
         }
+
+        public static List<RegisterManagement> GetByOrganisationId(int id)
+        {
+            List<RegisterManagement> list = new List<RegisterManagement>();
+
+            string sql = "SELECT reg.*, joinTable.OrganisationID FROM Registers AS reg LEFT JOIN Organisation_Register AS joinTable ON reg.ID = joinTable.RegisterID WHERE ((joinTable.FromDate < GETDATE() AND joinTable.UntilDate > GETDATE()) OR (joinTable.FromDate IS NULL)) AND OrganisationID=@ID";
+
+            DbParameter parOrgId = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@ID", id);
+            
+            DbDataReader reader = Database.GetData(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], sql, parOrgId);
+
+            while (reader.Read())
+            {
+                list.Add(Create(reader));
+            }
+            reader.Close();
+            return list;
+        }
     }
 }
