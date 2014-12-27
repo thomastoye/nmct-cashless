@@ -28,6 +28,7 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
         {
             using (HttpClient client = new HttpClient())
             {
+                client.SetBearerToken(ConfigurationManager.AppSettings["token"]);
                 HttpResponseMessage response = await
                 client.GetAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/register");
                 if (response.IsSuccessStatusCode)
@@ -37,7 +38,7 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
                 }
             }
         }
-        private ObservableCollection<RegisterOrganisation> _registers;
+        private ObservableCollection<RegisterOrganisation> _registers = new ObservableCollection<RegisterOrganisation>();
         public ObservableCollection<RegisterOrganisation> Registers
         {
             get { return _registers; }

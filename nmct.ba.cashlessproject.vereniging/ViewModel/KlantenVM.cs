@@ -40,7 +40,7 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
                 }
             }
         }
-        private ObservableCollection<Customer> _customers;
+        private ObservableCollection<Customer> _customers = new ObservableCollection<Customer>();
         public ObservableCollection<Customer> Customers
         {
             get { return _customers; }
@@ -64,6 +64,7 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
         {
             using (HttpClient client = new HttpClient())
             {
+                client.SetBearerToken(ConfigurationManager.AppSettings["token"]);
                 string Customer = JsonConvert.SerializeObject(SelectedCustomer);
                 HttpResponseMessage response = await client.PutAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/customer/" + SelectedCustomer.ID, new StringContent(Customer, Encoding.UTF8, "application/json"));
             }

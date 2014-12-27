@@ -28,6 +28,7 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
         {
             using (HttpClient client = new HttpClient())
             {
+                client.SetBearerToken(ConfigurationManager.AppSettings["token"]);
                 HttpResponseMessage response = await
                 client.GetAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/employee");
                 if (response.IsSuccessStatusCode)
@@ -37,7 +38,7 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
                 }
             }
         }
-        private ObservableCollection<Employee> _employees;
+        private ObservableCollection<Employee> _employees = new ObservableCollection<Employee>();
         public ObservableCollection<Employee> Employees
         {
             get { return _employees; }
@@ -70,6 +71,7 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
             Employee newEmployee = new Employee();
             using (HttpClient client = new HttpClient())
             {
+                client.SetBearerToken(ConfigurationManager.AppSettings["token"]);
                 string employee = JsonConvert.SerializeObject(newEmployee);
                 HttpResponseMessage response = await client.PostAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/employee", new StringContent(employee, Encoding.UTF8, "application/json"));
                 if (response.IsSuccessStatusCode)
@@ -89,6 +91,7 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
         {
             using (HttpClient client = new HttpClient())
             {
+                client.SetBearerToken(ConfigurationManager.AppSettings["token"]);
                 HttpResponseMessage response = await client.DeleteAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/employee/" + SelectedEmployee.ID);
                 if (response.IsSuccessStatusCode)
                 {
@@ -100,6 +103,7 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
         {
             using (HttpClient client = new HttpClient())
             {
+                client.SetBearerToken(ConfigurationManager.AppSettings["token"]);
                 string Employee = JsonConvert.SerializeObject(SelectedEmployee);
                 HttpResponseMessage response = await client.PutAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/employee/" + SelectedEmployee.ID, new StringContent(Employee, Encoding.UTF8, "application/json"));
             }

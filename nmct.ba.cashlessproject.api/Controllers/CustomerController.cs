@@ -10,7 +10,7 @@ using System.Web.Http;
 
 namespace nmct.ba.cashlessproject.api.Controllers
 {
-    [System.Web.Http.Authorize(Roles = "OrganisationManager")]
+    [Authorize(Roles = "OrganisationManager")]
     public class CustomerController : ApiController
     {
 
@@ -21,7 +21,7 @@ namespace nmct.ba.cashlessproject.api.Controllers
 
         public Customer Post(Customer c)
         {
-            int id = Customers.InsertCustomer(c);
+            int id = Customers.InsertCustomer(Claims.GetConnectionString(User), c);
             c.ID = id;
 
             return c;
@@ -29,13 +29,13 @@ namespace nmct.ba.cashlessproject.api.Controllers
 
         public HttpStatusCode Put(long id, Customer c)
         {
-            Customers.UpdateCustomer(id, c);
+            Customers.UpdateCustomer(Claims.GetConnectionString(User), id, c);
             return HttpStatusCode.OK;
         }
 
         public HttpStatusCode Delete(long id)
         {
-            Customers.DeleteCustomer(id);
+            Customers.DeleteCustomer(Claims.GetConnectionString(User), id);
             return HttpStatusCode.OK;
         }
 
@@ -43,7 +43,7 @@ namespace nmct.ba.cashlessproject.api.Controllers
         [HttpGet]
         public Customer Exists(string name)
         {
-            return Customers.ExistsWithName(name);
+            return Customers.ExistsWithName(Claims.GetConnectionString(User), name);
         }
     }
 }

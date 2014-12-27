@@ -15,13 +15,12 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
     public class Customers
     {
 
-        public static List<Customer> GetCustomers(string connectionString)
+        public static List<Customer> GetCustomers(ConnectionStringSettings connectionString)
         {
-            ConnectionStringSettings settings = new ConnectionStringSettings("KlantDynamicConnection", connectionString, "System.Data.SqlClient");
             List<Customer> list = new List<Customer>();
 
             string sql = "SELECT ID, CustomerName, Address, Picture, Balance FROM Customers";
-            DbDataReader reader = Database.GetData(settings, sql);
+            DbDataReader reader = Database.GetData(connectionString, sql);
 
             while (reader.Read())
             {
@@ -32,19 +31,19 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
         }
 
         
-        public static int InsertCustomer(Customer customer)
+        public static int InsertCustomer(ConnectionStringSettings connectionString, Customer customer)
         {
             string sql = "INSERT INTO Customers(CustomerName,Address,Balance, Picture) VALUES(@CustomerName,@Address,@Balance, @Picture)";
 
             if (customer.Name == null) customer.Name = "";
             if (customer.Address == null) customer.Address = "";
 
-            DbParameter par1 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@CustomerName", customer.Name);
-            DbParameter par2 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@Address", customer.Address);
-            DbParameter par3 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@Picture", customer.Image);
-            DbParameter par4 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@Balance", customer.Balance);
+            DbParameter par1 = Database.AddParameter(connectionString, "@CustomerName", customer.Name);
+            DbParameter par2 = Database.AddParameter(connectionString, "@Address", customer.Address);
+            DbParameter par3 = Database.AddParameter(connectionString, "@Picture", customer.Image);
+            DbParameter par4 = Database.AddParameter(connectionString, "@Balance", customer.Balance);
 
-            return Database.InsertData(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], sql, par1, par2, par3, par4);
+            return Database.InsertData(connectionString, sql, par1, par2, par3, par4);
         }
 
         private static Customer Create(IDataRecord record)
@@ -65,35 +64,35 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
             };
         }
 
-        public static void UpdateCustomer(long id, Customer customer)
+        public static void UpdateCustomer(ConnectionStringSettings connectionString, long id, Customer customer)
         {
             string sql = "UPDATE customers SET CustomerName=@CustomerName,Address=@Address,Picture=@Picture,Balance=@Balance WHERE ID=@ID;";
 
-            DbParameter custName = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@CustomerName", customer.Name);
-            DbParameter custAddress = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@Address", customer.Address);
-            DbParameter custId = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@ID", id);
-            DbParameter custPic = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@Picture", customer.Image);
-            DbParameter custBalance = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@Balance", customer.Balance);
+            DbParameter custName = Database.AddParameter(connectionString, "@CustomerName", customer.Name);
+            DbParameter custAddress = Database.AddParameter(connectionString, "@Address", customer.Address);
+            DbParameter custId = Database.AddParameter(connectionString, "@ID", id);
+            DbParameter custPic = Database.AddParameter(connectionString, "@Picture", customer.Image);
+            DbParameter custBalance = Database.AddParameter(connectionString, "@Balance", customer.Balance);
 
-            Database.ModifyData(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], sql, custName, custAddress, custId, custPic, custBalance);
+            Database.ModifyData(connectionString, sql, custName, custAddress, custId, custPic, custBalance);
         }
 
-        public static void DeleteCustomer(long id)
+        public static void DeleteCustomer(ConnectionStringSettings connectionString, long id)
         {
             string sql = "DELETE FROM customers WHERE ID=@ID";
 
-            DbParameter parId = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@ID", id);
+            DbParameter parId = Database.AddParameter(connectionString, "@ID", id);
 
-            Database.ModifyData(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], sql, parId);
+            Database.ModifyData(connectionString, sql, parId);
         }
 
-        public static Customer ExistsWithName(string name)
+        public static Customer ExistsWithName(ConnectionStringSettings connectionString, string name)
         {
             string sql = "SELECT * FROM customers WHERE CustomerName=@Name";
 
-            DbParameter par = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@Name", name);
+            DbParameter par = Database.AddParameter(connectionString, "@Name", name);
 
-            DbDataReader reader = Database.GetData(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], sql, par);
+            DbDataReader reader = Database.GetData(connectionString, sql, par);
 
             Customer res = null;
             if (reader.Read())

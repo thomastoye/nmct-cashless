@@ -146,6 +146,26 @@ namespace nmct.ba.cashlessproject.api.Helpers
             }
         }
 
+        public static int ModifyData(ConnectionStringSettings settings, string sql, params DbParameter[] parameters)
+        {
+            DbCommand command = null;
+            try
+            {
+                command = BuildCommand(settings, sql, parameters);
+                int affected = command.ExecuteNonQuery();
+                command.Connection.Close();
+
+                return affected;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                if (command != null)
+                    ReleaseConnection(command.Connection);
+                return 0;
+            }
+        }
+
         public static int InsertData(string ConnectionString, string sql, params DbParameter[] parameters)
         {
             DbCommand command = null;
@@ -171,10 +191,44 @@ namespace nmct.ba.cashlessproject.api.Helpers
             }
         }
 
+        public static int InsertData(ConnectionStringSettings settings, string sql, params DbParameter[] parameters)
+        {
+            DbCommand command = null;
+            try
+            {
+                command = BuildCommand(settings, sql, parameters);
+                command.ExecuteNonQuery();
+
+                command.Parameters.Clear();
+                command.CommandText = "SELECT @@IDENTITY";
+
+                int identity = Convert.ToInt32(command.ExecuteScalar());
+                command.Connection.Close();
+
+                return identity;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                if (command != null)
+                    ReleaseConnection(command.Connection);
+                return 0;
+            }
+        }
+
 
         public static DbParameter AddParameter(string ConnectionString, string name, object value)
         {
             ConnectionStringSettings settings = ConfigurationManager.ConnectionStrings[ConnectionString];
+            DbParameter par = DbProviderFactories.GetFactory(settings.ProviderName).CreateParameter();
+            par.ParameterName = name;
+            par.Value = value;
+
+            return par;
+        }
+
+        public static DbParameter AddParameter(ConnectionStringSettings settings, string name, object value)
+        {
             DbParameter par = DbProviderFactories.GetFactory(settings.ProviderName).CreateParameter();
             par.ParameterName = name;
             par.Value = value;

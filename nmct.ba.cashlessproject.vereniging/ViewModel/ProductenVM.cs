@@ -28,6 +28,7 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
         {
             using (HttpClient client = new HttpClient())
             {
+                client.SetBearerToken(ConfigurationManager.AppSettings["token"]);
                 HttpResponseMessage response = await
                 client.GetAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/Product");
                 if (response.IsSuccessStatusCode)
@@ -37,11 +38,11 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
                 }
             }
         }
-        private ObservableCollection<Product> _Products;
+        private ObservableCollection<Product> _products = new ObservableCollection<Product>();
         public ObservableCollection<Product> Products
         {
-            get { return _Products; }
-            set { _Products = value; OnPropertyChanged("Products"); }
+            get { return _products; }
+            set { _products = value; OnPropertyChanged("Products"); }
         }
         private Product _selectedProduct;
         public Product SelectedProduct
@@ -67,9 +68,10 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
         }
         public async void AddProduct()
         {
-            Product newProduct = new Product();
+            Product newProduct = new Product() { Name = "Nieuw product", Price = 1.5 };
             using (HttpClient client = new HttpClient())
             {
+                client.SetBearerToken(ConfigurationManager.AppSettings["token"]);
                 string Product = JsonConvert.SerializeObject(newProduct);
                 HttpResponseMessage response = await client.PostAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/product", new StringContent(Product, Encoding.UTF8, "application/json"));
                 if (response.IsSuccessStatusCode)
@@ -88,6 +90,7 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
         {
             using (HttpClient client = new HttpClient())
             {
+                client.SetBearerToken(ConfigurationManager.AppSettings["token"]);
                 HttpResponseMessage response = await
                 client.DeleteAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/product/" + SelectedProduct.ID);
                 if (response.IsSuccessStatusCode)
@@ -100,6 +103,7 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
         {
             using (HttpClient client = new HttpClient())
             {
+                client.SetBearerToken(ConfigurationManager.AppSettings["token"]);
                 string Product = JsonConvert.SerializeObject(SelectedProduct);
                 HttpResponseMessage response = await
                 client.PutAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/product/" + SelectedProduct.ID, new StringContent(Product, Encoding.UTF8, "application/json"));

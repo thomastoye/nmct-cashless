@@ -1,4 +1,5 @@
-﻿using nmct.ba.cashlessproject.api.Models.DataAccess;
+﻿using nmct.ba.cashlessproject.api.Helpers;
+using nmct.ba.cashlessproject.api.Models.DataAccess;
 using nmct.ba.cashlessproject.model;
 using System;
 using System.Collections.Generic;
@@ -11,29 +12,30 @@ using System.Web.Mvc;
 
 namespace nmct.ba.cashlessproject.api.Controllers
 {
+    [System.Web.Http.Authorize(Roles = "OrganisationManager")]
     public class EmployeeController : ApiController
     {
         public List<Employee> Get()
         {
-            return Employees.GetEmployees();
+            return Employees.GetEmployees(Claims.GetConnectionString(User));
         }
 
         public Employee Post(Employee emp)
         {
-            int id = Employees.InsertEmployee(emp);
+            int id = Employees.InsertEmployee(Claims.GetConnectionString(User), emp);
             emp.ID = id;
             return emp;
         }
 
         public HttpStatusCode Put(long id, Employee emp)
         {
-            Employees.UpdateEmployee(id, emp);
+            Employees.UpdateEmployee(Claims.GetConnectionString(User), id, emp);
             return HttpStatusCode.OK;
         }
 
         public HttpStatusCode Delete(long id)
         {
-            Employees.DeleteEmployee(id);
+            Employees.DeleteEmployee(Claims.GetConnectionString(User), id);
             return HttpStatusCode.OK;
         }
     }

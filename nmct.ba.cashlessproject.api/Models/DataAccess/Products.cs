@@ -13,12 +13,12 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
     public class Products
     {
 
-        public static List<Product> GetProducts()
+        public static List<Product> GetProducts(ConnectionStringSettings connectionString)
         {
             List<Product> list = new List<Product>();
 
             string sql = "SELECT ID, ProductName, Price FROM Products";
-            DbDataReader reader = Database.GetData(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], sql);
+            DbDataReader reader = Database.GetData(connectionString, sql);
 
             while (reader.Read())
             {
@@ -29,13 +29,13 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
         }
 
 
-        public static int InsertProduct(Product Product)
+        public static int InsertProduct(ConnectionStringSettings connectionString, Product Product)
         {
-            string sql = "INSERT INTO Product(ProductName,Price) VALUES(@ProductName,@Price)";
-            DbParameter par1 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@ProductName", Product.Name);
-            DbParameter par2 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@Price", Product.Price);
+            string sql = "INSERT INTO Products(ProductName,Price) VALUES(@ProductName,@Price)";
+            DbParameter par1 = Database.AddParameter(connectionString, "@ProductName", Product.Name);
+            DbParameter par2 = Database.AddParameter(connectionString, "@Price", Product.Price);
 
-            return Database.InsertData(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], sql, par1, par2);
+            return Database.InsertData(connectionString, sql, par1, par2);
         }
 
         private static Product Create(IDataRecord record)
@@ -48,26 +48,26 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
             };
         }
 
-        public static void UpdateProduct(long id, Product prod)
+        public static void UpdateProduct(ConnectionStringSettings connectionString, long id, Product prod)
         {
             string sql = "UPDATE products SET ProductName=@ProductName,Price=@Price WHERE ID=@ID;";
 
             if (prod.Name == null) prod.Name = "";
 
-            DbParameter parName = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@ProductName", prod.Name);
-            DbParameter parPrice = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@Price", prod.Price);
-            DbParameter parId = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@ID", id);
+            DbParameter parName = Database.AddParameter(connectionString, "@ProductName", prod.Name);
+            DbParameter parPrice = Database.AddParameter(connectionString, "@Price", prod.Price);
+            DbParameter parId = Database.AddParameter(connectionString, "@ID", id);
 
-            Database.ModifyData(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], sql, parName, parPrice, parId);
+            Database.ModifyData(connectionString, sql, parName, parPrice, parId);
         }
 
-        public static void DeleteProduct(long id)
+        public static void DeleteProduct(ConnectionStringSettings connectionString, long id)
         {
             string sql = "DELETE FROM products WHERE ID=@ID";
 
-            DbParameter parId = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@ID", id);
+            DbParameter parId = Database.AddParameter(connectionString, "@ID", id);
 
-            Database.ModifyData(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], sql, parId);
+            Database.ModifyData(connectionString, sql, parId);
         }
     }
 }

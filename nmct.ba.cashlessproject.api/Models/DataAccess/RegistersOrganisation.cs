@@ -12,13 +12,13 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
 {
     public class RegistersOrganisation
     {
-        
-        public static List<RegisterOrganisation> Get()
+
+        public static List<RegisterOrganisation> Get(ConnectionStringSettings connectionString)
         {
             List<RegisterOrganisation> list = new List<RegisterOrganisation>();
 
             string sql = "SELECT ID, RegisterName, Device FROM Registers";
-            DbDataReader reader = Database.GetData(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], sql);
+            DbDataReader reader = Database.GetData(connectionString, sql);
 
             while (reader.Read())
             {
@@ -29,16 +29,16 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
         }
 
 
-        public static int Insert(RegisterOrganisation register)
+        public static int Insert(ConnectionStringSettings connectionString, RegisterOrganisation register)
         {
             string sql = "INSERT INTO Registers(RegisterName,Device) VALUES(@RegisterName,@Device)";
             if (register.Name == null) register.Name = "";
             if (register.Device == null) register.Device = "";
 
-            DbParameter par1 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@RegisterName", register.Name);
-            DbParameter par2 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@Device", register.Device);
+            DbParameter par1 = Database.AddParameter(connectionString, "@RegisterName", register.Name);
+            DbParameter par2 = Database.AddParameter(connectionString, "@Device", register.Device);
 
-            return Database.InsertData(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], sql, par1, par2);
+            return Database.InsertData(connectionString, sql, par1, par2);
         }
 
         private static RegisterOrganisation Create(IDataRecord record)
@@ -51,27 +51,27 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
             };
         }
 
-        public static void Update(long id, RegisterOrganisation reg)
+        public static void Update(ConnectionStringSettings connectionString, long id, RegisterOrganisation reg)
         {
             string sql = "UPDATE registers SET RegisterName=@RegisterName,Device=@DeviceName WHERE ID=@ID;";
 
             if (reg.Name == null) reg.Name = "";
             if (reg.Device == null) reg.Device = "";
 
-            DbParameter regName = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@RegisterName", reg.Name);
-            DbParameter regDeviceName = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@DeviceName", reg.Device);
-            DbParameter regId = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@ID", id);
+            DbParameter regName = Database.AddParameter(connectionString, "@RegisterName", reg.Name);
+            DbParameter regDeviceName = Database.AddParameter(connectionString, "@DeviceName", reg.Device);
+            DbParameter regId = Database.AddParameter(connectionString, "@ID", id);
 
-            Database.ModifyData(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], sql, regName, regDeviceName, regId);
+            Database.ModifyData(connectionString, sql, regName, regDeviceName, regId);
         }
 
-        public static void Delete(long id)
+        public static void Delete(ConnectionStringSettings connectionString, long id)
         {
             string sql = "DELETE FROM registers WHERE ID=@ID";
 
-            DbParameter parId = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], "@ID", id);
+            DbParameter parId = Database.AddParameter(connectionString, "@ID", id);
 
-            Database.ModifyData(ConfigurationManager.AppSettings["ConnectionStringOrganisation"], sql, parId);
+            Database.ModifyData(connectionString, sql, parId);
         }
     }
 }
