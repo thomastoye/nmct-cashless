@@ -1,4 +1,4 @@
-# What's this
+# What's this?
 
 This is my final project for my Business Applications class. It's a complete system for cashless payment. It consists of:
 
@@ -15,7 +15,7 @@ This project uses eID cards for registering clients. To try it out:
 1. Install the [middleware SDK, version 3.5.x](http://eid.belgium.be/en/developing_eid_applications/eid_software_development_kit/)
 1. Copy the file `beid35libCS_Wrapper.dll` (found in `Belgium Identity Card SDK\beidlib\dotNet\bin`) to the `Bin\Debug` folders of the WPF projects
 
-# My thought
+# My thoughts
 
 ## Database schema
 
@@ -25,9 +25,9 @@ This lead to smelly code, like having to generate a connection string for each o
 
 Other code smell includes dynamically generating new databases and users and needing a Windows service to keep the databases in sync.
 
-Sure, I get that this containered approach makes for easier back-ups and marginally better security (only marginally since all requests have to go through the Web API anyway). But it's just not worth it in my opinion.
+Sure, I get that this containered approach makes for easier back-ups and marginally better security (only marginally, since all requests have to go through the Web API anyway). But it's just not worth it in my opinion.
 
-My solution would have been to have one big databases, for all organisations and the company. In the case of the registers mentioned above, there could be a table storing all registers, then a join table joining registers with organisations. The products table could be a big table with a FK pointing to which organisation they belong to.
+My solution would have been to have one big database, for all organisations and the company. In the case of the registers mentioned above, there could be a table storing all registers, then a join table joining registers with organisations. The products table could be a big table with a FK pointing to which organisation they belong to.
 
 ## Not using Entity Framework
 
