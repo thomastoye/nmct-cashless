@@ -177,6 +177,7 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LogViewController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrganisationController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -197,6 +198,7 @@
     <Compile Include="Models\DataAccess\AssignRegisterDA.cs" />
     <Compile Include="Models\DataAccess\Customers.cs" />
     <Compile Include="Models\DataAccess\Employees.cs" />
+    <Compile Include="Models\DataAccess\LogDA.cs" />
     <Compile Include="Models\DataAccess\Organisations.cs" />
     <Compile Include="Models\DataAccess\Products.cs" />
     <Compile Include="Models\DataAccess\RegistersManagement.cs" />
@@ -276,6 +278,7 @@
     <Content Include="Views\Organisation\Edit.cshtml" />
     <Content Include="Views\RegisterManager\AssignTo.cshtml" />
     <Content Include="Views\RegisterManager\AssignedToOrganisation.cshtml" />
+    <Content Include="Views\LogView\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
