@@ -165,8 +165,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="beid35libCS_Wrapper.dll" />
-    <Resource Include="noimage.png" />
+    <Content Include="beid35libCS_Wrapper.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="noimage.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

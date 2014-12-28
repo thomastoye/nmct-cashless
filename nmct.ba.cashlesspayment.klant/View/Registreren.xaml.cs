@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace nmct.ba.cashlessproject.klant.View
 {
     /// <summary>
-    /// Interaction logic for PageOne.xaml
+    /// Interaction logic for Registreren.xaml
     /// </summary>
-    public partial class PageOne : UserControl
+    public partial class Registreren : UserControl
     {
-        public PageOne()
+        public Registreren()
         {
             InitializeComponent();
         }

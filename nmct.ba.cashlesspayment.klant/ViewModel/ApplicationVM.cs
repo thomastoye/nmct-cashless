@@ -12,7 +12,7 @@ namespace nmct.ba.cashlessproject.klant.ViewModel
     {
         public ApplicationVM()
         {
-            Pages.Add(new AddCustomerVM());
+            Pages.Add(new RegistrerenVM());
 
             CurrentPage = Pages[0];
         }

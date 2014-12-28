@@ -8,11 +8,12 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
 
-namespace nmct.ba.cashlessproject.kassa.Converters
+namespace nmct.ba.cashlessproject.klant.Converters
 {
     public class StringToImageConverter : IValueConverter
     {
-        private Uri noimage = new Uri(@"pack://application:,,,/nmct.ba.cashlessproject.kassa;component/noimage.png");
+        //private Uri noimage = new Uri(@"pack://application:,,,/nmct.ba.cashlessproject.klant;component/noimage.png");
+        private Uri noimage = new Uri(AppDomain.CurrentDomain.BaseDirectory + "noimage.png");
 
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
