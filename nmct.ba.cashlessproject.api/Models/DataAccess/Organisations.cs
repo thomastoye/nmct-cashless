@@ -21,7 +21,6 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
                 ID = Int32.Parse(record["ID"].ToString()),
                 Login = record["Login"].ToString(),
                 Password = Cryptography.Decrypt(record["Password"].ToString()),
-                DbName = record["DbName"].ToString(),
                 DbPassword = Cryptography.Decrypt(record["DbPassword"].ToString()),
                 OrganisationName = record["OrganisationName"].ToString(),
                 Address = record["Address"].ToString(),
@@ -46,11 +45,10 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
 
         public static int Insert(Organisation org)
         {
-            string sql = "INSERT INTO Organisations VALUES(@Login, @Password, @DbName, @DbLogin, @DbPassword, @OrganisationName, @Address, @Email, @Phone)";
+            string sql = "INSERT INTO Organisations VALUES(@Login, @Password, @DbLogin, @DbPassword, @OrganisationName, @Address, @Email, @Phone)";
 
             DbParameter par0 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@Login", org.Login);
             DbParameter par1 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@Password", Cryptography.Encrypt(org.Password));
-            DbParameter par2 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@DbName", org.DbName);
             DbParameter par3 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@DbPassword", Cryptography.Encrypt(org.DbPassword));
             DbParameter par4 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@OrganisationName", org.OrganisationName);
             DbParameter par5 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@Address", org.Address);
@@ -61,7 +59,7 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
 
             CreateDatabase(org);
 
-            return Database.InsertData(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], sql, par0, par1, par2, par3, par4, par5, par6, par7, par8, par9);
+            return Database.InsertData(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], sql, par0, par1, /*par2,*/ par3, par4, par5, par6, par7, par8, par9);
         }
 
         public static void Delete(int id)
@@ -75,11 +73,10 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
 
         public static void Update(Organisation org)
         {
-            string sql = "UPDATE Organisations SET Login=@Login, Password=@Password, DbName=@DbName, DbLogin=@DbLogin, DbPassword=@DbPassword, OrganisationName=@OrganisationName, Address=@Address, Email=@Email, Phone=@Phone WHERE ID=@ID";
+            string sql = "UPDATE Organisations SET Login=@Login, Password=@Password, DbLogin=@DbLogin, DbPassword=@DbPassword, OrganisationName=@OrganisationName, Address=@Address, Email=@Email, Phone=@Phone WHERE ID=@ID";
 
             DbParameter par0 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@Login", org.Login);
             DbParameter par1 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@Password", Cryptography.Encrypt(org.Password));
-            DbParameter par2 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@DbName", org.DbName);
             DbParameter par3 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@DbPassword", Cryptography.Encrypt(org.DbPassword));
             DbParameter par4 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@OrganisationName", org.OrganisationName);
             DbParameter par5 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@Address", org.Address);
@@ -88,7 +85,7 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
             DbParameter par8 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@ID", org.ID);
             DbParameter par9 = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@DbLogin", org.DbLogin);
 
-            Database.ModifyData(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], sql, par0, par1, par2, par3, par4, par5, par6, par7, par8, par9);
+            Database.ModifyData(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], sql, par0, par1, /*par2,*/ par3, par4, par5, par6, par7, par8, par9);
         }
 
         public static Organisation TryLogin(string username, string password)
