@@ -25,11 +25,11 @@ using nmct.ba.cashlessproject.common;
 
 namespace nmct.ba.cashlessproject.kassa.ViewModel
 {
-    class RegistrerenVM : ObservableObject, IPage
+    class KassaVM : ObservableObject, IPage
     {
         public string Name
         {
-            get { return "Registreren"; }
+            get { return "Kassa"; }
         }
 
         private Customer _klant = new Customer();
@@ -48,29 +48,23 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
             set { _isNogNietGeregistreerd = value; OnPropertyChanged("IsNogNietGeregistreerd"); }
         }
 
-        private bool _kanOpladen = false;
+        private ObservableCollection<ProductOrder> _besteldeProducten = new ObservableCollection<ProductOrder>();
 
-        public bool KanKaartOpladen
+        public ObservableCollection<ProductOrder> BesteldeProducten
         {
-            get { return _kanOpladen; }
-            set { _kanOpladen = value; OnPropertyChanged("KanKaartOpladen"); }
+            get { return _besteldeProducten; }
+            set { _besteldeProducten = value; }
         }
+        
 
-        public string StatusMessage { get; set; }
+        public string Error { get; set; }
 
-        private string _error;
-
-        public string Error
-        {
-            get { return _error; }
-            set { _error = value; OnPropertyChanged("Error"); }
-        }
-
-
-        public RegistrerenVM()
+        public KassaVM()
         {
             // set up SDK
             BEID_ReaderSet.initSDK();
+
+            BesteldeProducten.Add(new ProductOrder() { Product = new Product() { Name = "Bier" }, Quantity = 2 });
         }
 
         public ICommand LaadEidCommand
@@ -78,23 +72,16 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
             get { return new RelayCommand(LaadEid); }
         }
 
-        public ICommand RegisterClientCommand
+        public ICommand ConfirmOrderCommand
         {
-            get { return new RelayCommand(RegisterClient); }
+            get { return new RelayCommand(ConfirmOrder) ;}
         }
 
-        private async void RegisterClient()
+        private async void ConfirmOrder()
         {
-            using (HttpClient client = new HttpClient())
+            if (!IsNogNietGeregistreerd)
             {
-                string customer = JsonConvert.SerializeObject(Klant);
-                HttpResponseMessage response = await client.PostAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/customer", new StringContent(customer, Encoding.UTF8, "application/json"));
-
-                if (response.IsSuccessStatusCode)
-                {
-                    IsNogNietGeregistreerd = false;
-                    KanKaartOpladen = true;
-                }
+                
             }
         }
 
@@ -110,7 +97,6 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
 
                     if (bestaatAl != null)
                     {
-                        KanKaartOpladen = true;
                         Klant = bestaatAl;
                     }
                     else
@@ -123,9 +109,7 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
 
         private async void LaadEid()
         {
-            KanKaartOpladen = false;
             IsNogNietGeregistreerd = false;
-            StatusMessage = "";
             Error = "";
 
             try
@@ -143,7 +127,6 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
 
                             try
                             {
-                                //Image img = StringToImageConverter.ImageFromBytes(bytearray);
                                 Customer newCustomer = new Customer()
                                 {
                                     Name = card.getID().getFirstName() + " " + card.getID().getSurname(),
@@ -175,13 +158,11 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
                 {
                     Error = "Kon geen kaart vinden. Probeer opnieuw.";
                 }
-                //BEID_ReaderSet.releaseSDK();
             }
             catch
             {
                 Error = "Kon geen kaart vinden. Probeer opnieuw.";
             }
-
 
         }
         

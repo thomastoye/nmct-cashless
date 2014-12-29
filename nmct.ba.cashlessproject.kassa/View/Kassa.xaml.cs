@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace nmct.ba.cashlessproject.kassa.View
 {
     /// <summary>
-    /// Interaction logic for Registreren.xaml
+    /// Interaction logic for Kassa.xaml
     /// </summary>
-    public partial class Registreren : UserControl
+    public partial class Kassa : UserControl
     {
-        public Registreren()
+        public Kassa()
         {
             InitializeComponent();
         }

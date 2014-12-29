@@ -4,16 +4,13 @@
         xmlns:vm="clr-namespace:nmct.ba.cashlessproject.kassa.ViewModel"
         xmlns:v="clr-namespace:nmct.ba.cashlessproject.kassa.View"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        Title="MainWindow" Height="450" Width="700">
+        Title="MainWindow" Height="600" Width="900">
     <Window.DataContext>
         <vm:ApplicationVM/>
     </Window.DataContext>
     <Window.Resources>
-        <DataTemplate DataType="{x:Type vm:PageOneVM}">
-            <v:PageOne/>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type vm:RegistrerenVM}">
-            <v:Registreren/>
+        <DataTemplate DataType="{x:Type vm:KassaVM}">
+            <v:Kassa/>
         </DataTemplate>
     </Window.Resources>
     <Grid>

@@ -90,14 +90,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ViewModel\ApplicationVM.cs" />
-    <Compile Include="ViewModel\PageOneVM.cs" />
-    <Compile Include="ViewModel\RegistrerenVM.cs" />
+    <Compile Include="ViewModel\KassaVM.cs" />
     <Compile Include="View\Converters\StringToImageConverter.cs" />
-    <Compile Include="View\PageOne.xaml.cs">
-      <DependentUpon>PageOne.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Registreren.xaml.cs">
-      <DependentUpon>Registreren.xaml</DependentUpon>
+    <Compile Include="View\Kassa.xaml.cs">
+      <DependentUpon>Kassa.xaml</DependentUpon>
     </Compile>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -113,11 +109,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\PageOne.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Registreren.xaml">
+    <Page Include="View\Kassa.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
