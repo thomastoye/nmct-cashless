@@ -62,15 +62,6 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
             return Database.InsertData(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], sql, par0, par1, /*par2,*/ par3, par4, par5, par6, par7, par8, par9);
         }
 
-        public static void Delete(int id)
-        {
-            string sql = "DELETE FROM Organisations WHERE ID=@ID";
-
-            DbParameter parId = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@ID", id);
-
-            Database.ModifyData(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], sql, parId);
-        }
-
         public static void Update(Organisation org)
         {
             string sql = "UPDATE Organisations SET Login=@Login, Password=@Password, DbLogin=@DbLogin, DbPassword=@DbPassword, OrganisationName=@OrganisationName, Address=@Address, Email=@Email, Phone=@Phone WHERE ID=@ID";

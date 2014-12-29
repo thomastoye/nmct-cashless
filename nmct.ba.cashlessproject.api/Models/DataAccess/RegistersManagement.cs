@@ -61,8 +61,10 @@ namespace nmct.ba.cashlessproject.api.Models.DataAccess
             };
         }
 
-        public static void DeleteRegister(long id)
+        public static void DeleteRegister(int id)
         {
+            AssignRegisterDA.DeleteRegister(id); // remove all assignments to organisations
+
             string sql = "DELETE FROM registers WHERE ID=@ID";
 
             DbParameter parId = Database.AddParameter(ConfigurationManager.AppSettings["ConnectionStringItBedrijf"], "@ID", id);

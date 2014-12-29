@@ -53,7 +53,11 @@
         else {
             <td>Niet toegewezen</td>
         }
-        <td>@Html.ActionLink("Delete", "Delete", new {id = item.ID})</td>
+        <td>
+            @if (item.AssignedTo != null) {
+                @Html.ActionLink("Verwijder van organisatie", "Unassign", new { id = item.ID })
+            }
+        </td>
     </tr>
 }
 

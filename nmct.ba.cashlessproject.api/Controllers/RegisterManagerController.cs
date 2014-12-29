@@ -73,6 +73,17 @@ namespace nmct.ba.cashlessproject.api.Controllers
             });
         }
 
+        [HttpGet]
+        public ActionResult Unassign(int id)
+        {
+            // validate register ID
+            RegisterManagement reg = RegistersManagement.GetById(id);
+            if (reg == null) return new HttpNotFoundResult();
+
+            AssignRegisterDA.DeleteRegister(id);
+            return RedirectToAction("Index");
+        }
+
         [HttpPost]
         public ActionResult AssignTo(Organisation_RegisterBindModel model)
         {
