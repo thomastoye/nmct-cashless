@@ -24,7 +24,14 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
             get { return _token;  }
             set {
                 _token = value;
-                ConfigurationManager.AppSettings["token"] = value.AccessToken;
+                if (value != null)
+                {
+                    ConfigurationManager.AppSettings["token"] = value.AccessToken;
+                }
+                else
+                {
+                    ConfigurationManager.AppSettings["token"] = "";
+                }
             }
         }
 
