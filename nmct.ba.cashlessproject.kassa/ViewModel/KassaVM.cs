@@ -55,16 +55,22 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
             get { return _besteldeProducten; }
             set { _besteldeProducten = value; }
         }
-        
 
-        public string Error { get; set; }
+
+        private string _error;
+
+        public string Error
+        {
+            get { return _error; }
+            set { _error = value; OnPropertyChanged("Error"); }
+        }
+        
 
         public KassaVM()
         {
             // set up SDK
             BEID_ReaderSet.initSDK();
 
-            BesteldeProducten.Add(new ProductOrder() { Product = new Product() { Name = "Bier" }, Quantity = 2 });
         }
 
         public ICommand LaadEidCommand
@@ -74,14 +80,35 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
 
         public ICommand ConfirmOrderCommand
         {
-            get { return new RelayCommand(ConfirmOrder) ;}
+            get { return new RelayCommand(ConfirmOrder); }
+        }
+        public ICommand ReloadCommand
+        {
+            get { return new RelayCommand(Reload); }
+        }
+
+        private async void Reload()
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                client.SetBearerToken(ConfigurationManager.AppSettings["token"]);
+                HttpResponseMessage response = await
+                client.GetAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/product");
+                if (response.IsSuccessStatusCode)
+                {
+                    string json = await response.Content.ReadAsStringAsync();
+                    var products = JsonConvert.DeserializeObject<ObservableCollection<Product>>(json);
+
+                    BesteldeProducten = ProductOrder.ConstructsFromProducts(products);
+                }
+            }
         }
 
         private async void ConfirmOrder()
         {
             if (!IsNogNietGeregistreerd)
             {
-                
+                // ...
             }
         }
 
@@ -89,6 +116,7 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
         {
             using (HttpClient client = new HttpClient())
             {
+                client.SetBearerToken(ConfigurationManager.AppSettings["token"]);
                 HttpResponseMessage response = await client.GetAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/customer/exists?name=" + WebUtility.HtmlEncode(Klant.Name));
                 if (response.IsSuccessStatusCode)
                 {
@@ -102,6 +130,7 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
                     else
                     {
                         IsNogNietGeregistreerd = true;
+                        Error = "Klant nog niet geregistreerd!";
                     }
                 }
             }

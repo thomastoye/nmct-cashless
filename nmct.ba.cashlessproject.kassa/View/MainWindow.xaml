@@ -12,10 +12,13 @@
         <DataTemplate DataType="{x:Type vm:KassaVM}">
             <v:Kassa/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:LoginVM}">
+            <v:Login/>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="25"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
 

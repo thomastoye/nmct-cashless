@@ -20,6 +20,7 @@ namespace nmct.ba.cashlessproject.api.Migrations
             string roleAdmin = "Administrator";
             string roleNormalUser = "User";
             string roleOrgManager = "OrganisationManager";
+            string roleRegister = "Register";
 
             IdentityResult roleResult;
             var RoleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
@@ -30,6 +31,8 @@ namespace nmct.ba.cashlessproject.api.Migrations
                 roleResult = RoleManager.Create(new IdentityRole(roleAdmin));
             if (!RoleManager.RoleExists(roleOrgManager))
                 roleResult = RoleManager.Create(new IdentityRole(roleOrgManager));
+            if (!RoleManager.RoleExists(roleRegister))
+                roleResult = RoleManager.Create(new IdentityRole(roleRegister));
 
             if (!context.Users.Any(u => u.Email.Equals("root@dev.null")))
             {

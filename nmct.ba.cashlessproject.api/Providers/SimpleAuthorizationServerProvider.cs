@@ -21,21 +21,37 @@ namespace nmct.ba.cashlessproject.api.Providers
         public override Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
             Organisation org = Organisations.TryLogin(context.UserName, context.Password);
-
-            // try to log in
-            if (org == null)
+            RegisterManagement reg = null;
+            int tryId;
+            
+            if(Int32.TryParse(context.UserName, out tryId)
+                && RegistersManagement.GetRegisters().Exists(r => r.ID == Int32.Parse(context.UserName) && r.AssignedTo != null))
             {
-                context.Rejected();
-                return Task.FromResult(0);
+                reg = RegistersManagement.GetRegisters().FirstOrDefault(r => r.ID == Int32.Parse(context.UserName));
             }
 
-            var id = new ClaimsIdentity(context.Options.AuthenticationType);
-            id.AddClaim(new Claim("username", context.UserName));
-            id.AddClaim(new Claim("connectionString", org.DatabaseConnectionString));
-            id.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
-            id.AddClaim(new Claim(ClaimTypes.Role, "OrganisationManager"));
+            // try to log in
+            if (org != null)
+            {
+                var id = new ClaimsIdentity(context.Options.AuthenticationType);
+                id.AddClaim(new Claim("username", context.UserName));
+                id.AddClaim(new Claim("connectionString", org.DatabaseConnectionString));
+                id.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
+                id.AddClaim(new Claim(ClaimTypes.Role, "OrganisationManager"));
 
-            context.Validated(id);
+                context.Validated(id);
+            } else if(reg != null) {
+                var id = new ClaimsIdentity(context.Options.AuthenticationType);
+                id.AddClaim(new Claim("username", context.UserName));
+                id.AddClaim(new Claim("connectionString", reg.AssignedTo.DatabaseConnectionString));
+                id.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
+                id.AddClaim(new Claim(ClaimTypes.Role, "Register"));
+
+                context.Validated(id);
+            } else {
+                context.Rejected();
+            }
+
             return Task.FromResult(0);
         }
     }

@@ -12,14 +12,15 @@ using System.Web.Mvc;
 
 namespace nmct.ba.cashlessproject.api.Controllers
 {
-    [System.Web.Http.Authorize(Roles = "OrganisationManager")]
     public class ProductController : ApiController
     {
+        [System.Web.Http.Authorize(Roles = "OrganisationManager,Register")]
         public List<Product> Get()
         {
             return Products.GetProducts(Claims.GetConnectionString(User));
         }
 
+        [System.Web.Http.Authorize(Roles = "OrganisationManager")]
         public Product Post(Product p)
         {
             int id = Products.InsertProduct(Claims.GetConnectionString(User), p);
@@ -27,12 +28,14 @@ namespace nmct.ba.cashlessproject.api.Controllers
             return p;
         }
 
+        [System.Web.Http.Authorize(Roles = "OrganisationManager")]
         public HttpStatusCode Put(long id, Product prod)
         {
             Products.UpdateProduct(Claims.GetConnectionString(User), id, prod);
             return HttpStatusCode.OK;
         }
 
+        [System.Web.Http.Authorize(Roles = "OrganisationManager")]
         public HttpStatusCode Delete(long id)
         {
             Products.DeleteProduct(Claims.GetConnectionString(User), id);

@@ -11,7 +11,7 @@ namespace nmct.ba.cashlessproject.api.Helpers
     {
         public static ConnectionStringSettings GetConnectionString(System.Security.Principal.IPrincipal user)
         {
-            if (user.Identity is ClaimsIdentity && user.IsInRole("OrganisationManager"))
+            if (user.Identity is ClaimsIdentity && (user.IsInRole("OrganisationManager") || user.IsInRole("Register")))
             {
                 var identity = (ClaimsIdentity)user.Identity;
                 IEnumerable<Claim> claims = identity.Claims;

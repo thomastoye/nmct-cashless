@@ -12,6 +12,7 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
     {
         public ApplicationVM()
         {
+            Pages.Add(new LoginVM());
             Pages.Add(new KassaVM());
 
             CurrentPage = Pages[0];
