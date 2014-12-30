@@ -53,7 +53,7 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
         public ObservableCollection<ProductOrder> BesteldeProducten
         {
             get { return _besteldeProducten; }
-            set { _besteldeProducten = value; }
+            set { _besteldeProducten = value; OnPropertyChanged("BesteldeProducten"); }
         }
 
 
