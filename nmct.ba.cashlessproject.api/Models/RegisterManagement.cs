@@ -3,6 +3,7 @@ using nmct.ba.cashlessproject.model;
 using nmct.ba.cashlessproject.model.Validation;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,7 @@ namespace nmct.ba.cashlessproject.api.Models
 
         private Organisation _assignedTo;
 
+        [DisplayName("Toegewezen aan")]
         public Organisation AssignedTo
         {
             get { return _assignedTo; }
@@ -31,6 +33,7 @@ namespace nmct.ba.cashlessproject.api.Models
 
         private string _name;
 
+        [DisplayName("Naam")]
         [Required(ErrorMessage = "Naam is verplicht")]
         [StringLength(30, MinimumLength = 5, ErrorMessage = "Naam moet tussen de 5 en 30 karakters lang zijn")]
         [GeenSpecialeTekensWelCijfers]
@@ -42,6 +45,7 @@ namespace nmct.ba.cashlessproject.api.Models
 
         private string _device;
 
+        [DisplayName("Toestel")]
         [Required(ErrorMessage = "Toestel is verplicht")]
         [StringLength(30, MinimumLength = 5, ErrorMessage = "Toestel moet tussen de 5 en 30 karakters lang zijn")]
         [GeenSpecialeTekensWelCijfers]
@@ -53,6 +57,7 @@ namespace nmct.ba.cashlessproject.api.Models
 
         private DateTime _purchaseDate;
 
+        [DisplayName("Aankoopdatum")]
         [Required(ErrorMessage = "Aankoopdatum is verplicht")]
         [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime PurchaseDate
@@ -63,6 +68,7 @@ namespace nmct.ba.cashlessproject.api.Models
 
         private DateTime _expiresDate;
 
+        [DisplayName("Vervaldatum")]
         [Required(ErrorMessage = "Vervaldatum is verplicht")]
         [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime ExpiresDate
@@ -79,6 +85,7 @@ namespace nmct.ba.cashlessproject.api.Models
             set { _errors = value; }
         }
 
+        [DisplayName("Kassawachtwoord")]
         public string RemotePassword
         {
             get{

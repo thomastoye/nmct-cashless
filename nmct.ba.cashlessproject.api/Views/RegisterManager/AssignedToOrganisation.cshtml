@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<nmct.ba.cashlessproject.api.Models.RegisterManagement>
 
 @{
-    ViewBag.Title = "AssignedToOrganisation";
+    ViewBag.Title = "Toegewezen kassa's";
 }
 
 <h2>Alle kassa's toegewezen aan @ViewBag.Organisation.OrganisationName</h2>
@@ -11,6 +11,9 @@
 </p>
 <table class="table">
     <tr>
+        <th>
+            #
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
@@ -27,6 +30,9 @@
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
