@@ -4,10 +4,10 @@
     ViewBag.Title = "All organisations";
 }
 
-<h2>List</h2>
+<h2>Organisaties</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Nieuwe organisatie", "Create")
 </p>
 <table class="table">
     <tr>
@@ -22,12 +22,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.DbName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DbLogin)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DbPassword)
         </th>
         <th>
             Toegewezen kassa's
@@ -49,12 +43,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.DbName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DbLogin)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DbPassword)
         </td>
         <th>
             @Html.ActionLink("Toegewezen kassa's", "AssignedToOrganisation", "RegisterManager", new { id = item.ID }, new { })
