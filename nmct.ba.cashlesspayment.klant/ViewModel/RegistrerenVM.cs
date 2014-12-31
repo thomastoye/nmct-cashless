@@ -21,6 +21,7 @@ using System.Windows.Media;
 using System.IO;
 using System.Drawing.Imaging;
 using nmct.ba.cashlessproject.common;
+using Thinktecture.IdentityModel.Client;
 
 namespace nmct.ba.cashlessproject.klant.ViewModel
 {
@@ -65,9 +66,27 @@ namespace nmct.ba.cashlessproject.klant.ViewModel
             set { _error = value; OnPropertyChanged("Error"); }
         }
 
+        public string Token { get; set; }
+
 
         public RegistrerenVM()
         {
+            // get OAuth token
+            string username = ConfigurationManager.AppSettings["username"];
+            string password = ConfigurationManager.AppSettings["password"];
+
+            var client = new OAuth2Client(new Uri(ConfigurationManager.AppSettings["apiUrl"] + "token"));
+            TokenResponse result = client.RequestResourceOwnerPasswordAsync(username, password).Result;
+            if (result.Error == null)
+            {
+                Token = result.AccessToken;
+                StatusMessage = "Succelvol geauthenticeerd over OAuth.";
+            }
+            else
+            {
+                StatusMessage = "Kon niet authenticeren over OAuth!";
+            }
+
             // set up SDK
             BEID_ReaderSet.initSDK();
         }
@@ -86,6 +105,7 @@ namespace nmct.ba.cashlessproject.klant.ViewModel
         {
             using (HttpClient client = new HttpClient())
             {
+                client.SetBearerToken(Token);
                 string customer = JsonConvert.SerializeObject(Klant);
                 HttpResponseMessage response = await client.PostAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/customer", new StringContent(customer, Encoding.UTF8, "application/json"));
 
@@ -101,6 +121,7 @@ namespace nmct.ba.cashlessproject.klant.ViewModel
         {
             using (HttpClient client = new HttpClient())
             {
+                client.SetBearerToken(Token);
                 HttpResponseMessage response = await client.GetAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/customer/exists?name=" + WebUtility.HtmlEncode(Klant.Name));
                 if (response.IsSuccessStatusCode)
                 {

@@ -18,7 +18,7 @@ namespace nmct.ba.cashlessproject.api.Controllers
             return Customers.GetCustomers(Claims.GetConnectionString(User));
         }
 
-        [Authorize(Roles = "OrganisationManager")]
+        [Authorize(Roles = "OrganisationManager,Register")]
         public Customer Post(Customer c)
         {
             int id = Customers.InsertCustomer(Claims.GetConnectionString(User), c);

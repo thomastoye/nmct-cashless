@@ -40,13 +40,15 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
             set { _klant = value; OnPropertyChanged("Klant"); }
         }
 
-        private bool _isNogNietGeregistreerd = false;
+        private bool _isNogNietGeregistreerd = true;
 
         public bool IsNogNietGeregistreerd
         {
             get { return _isNogNietGeregistreerd; }
-            set { _isNogNietGeregistreerd = value; OnPropertyChanged("IsNogNietGeregistreerd"); }
+            set { _isNogNietGeregistreerd = value; OnPropertyChanged("IsNogNietGeregistreerd"); OnPropertyChanged("IsAlGeregistreerd"); }
         }
+
+        public bool IsAlGeregistreerd { get { return !IsNogNietGeregistreerd; } }
 
         private ObservableCollection<ProductOrder> _besteldeProducten = new ObservableCollection<ProductOrder>();
 
@@ -126,6 +128,7 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
                     if (bestaatAl != null)
                     {
                         Klant = bestaatAl;
+                        IsNogNietGeregistreerd = false;
                     }
                     else
                     {
