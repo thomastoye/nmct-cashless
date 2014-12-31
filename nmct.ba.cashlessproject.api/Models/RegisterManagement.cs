@@ -1,4 +1,5 @@
-﻿using nmct.ba.cashlessproject.model;
+﻿using nmct.ba.cashlessproject.common;
+using nmct.ba.cashlessproject.model;
 using nmct.ba.cashlessproject.model.Validation;
 using System;
 using System.Collections.Generic;
@@ -76,6 +77,14 @@ namespace nmct.ba.cashlessproject.api.Models
         {
             get { return _errors; }
             set { _errors = value; }
+        }
+
+        public string RemotePassword
+        {
+            get{
+                if (AssignedTo == null) return null;
+                return Cryptography.Encrypt(ID.ToString() +  AssignedTo.DatabaseConnectionString).Substring(0,25);
+            }
         }
 
         public bool IsValid()

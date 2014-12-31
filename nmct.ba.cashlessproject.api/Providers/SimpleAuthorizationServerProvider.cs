@@ -40,7 +40,7 @@ namespace nmct.ba.cashlessproject.api.Providers
                 id.AddClaim(new Claim(ClaimTypes.Role, "OrganisationManager"));
 
                 context.Validated(id);
-            } else if(reg != null) {
+            } else if(reg != null && reg.RemotePassword == context.Password) {
                 var id = new ClaimsIdentity(context.Options.AuthenticationType);
                 id.AddClaim(new Claim("username", context.UserName));
                 id.AddClaim(new Claim("connectionString", reg.AssignedTo.DatabaseConnectionString));

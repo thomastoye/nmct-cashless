@@ -37,7 +37,7 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
         {
 
             string username = ConfigurationManager.AppSettings["username"];
-            string password = "";
+            string password = ConfigurationManager.AppSettings["password"];
 
             var client = new OAuth2Client(new Uri(ConfigurationManager.AppSettings["apiUrl"] + "token"));
             TokenResponse response = client.RequestResourceOwnerPasswordAsync(username, password).Result;

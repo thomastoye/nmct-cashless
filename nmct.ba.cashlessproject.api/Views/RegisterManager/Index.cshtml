@@ -28,6 +28,9 @@
         <th>
             @Html.DisplayNameFor(model => model.AssignedTo)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RemotePassword)
+        <th>
         <th></th>
     </tr>
 
@@ -53,6 +56,9 @@
         else {
             <td>Niet toegewezen</td>
         }
+        <td>
+            @Html.DisplayFor(modelItem => item.RemotePassword)
+        </td>
         <td>
             @if (item.AssignedTo != null) {
                 @Html.ActionLink("Verwijder van organisatie", "Unassign", new { id = item.ID })
