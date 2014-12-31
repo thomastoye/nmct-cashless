@@ -12,6 +12,7 @@ namespace nmct.ba.cashlessproject.model
     {
         private long _registerId;
 
+        [DisplayName("ID")]
         public long RegisterID
         {
             get { return _registerId; }
@@ -20,6 +21,7 @@ namespace nmct.ba.cashlessproject.model
 
         private DateTime _timestamp;
 
+        [DisplayName("Timestamp")]
         [Required(ErrorMessage  = "Timestamp is werplicht")]
         public DateTime Timestamp
         {
@@ -29,6 +31,7 @@ namespace nmct.ba.cashlessproject.model
 
         private string _message;
 
+        [DisplayName("Bericht")]
         [Required(ErrorMessage = "Message is verplicht")]
         public string Message
         {
@@ -38,6 +41,7 @@ namespace nmct.ba.cashlessproject.model
 
         private string _stacktrace;
 
+        [DisplayName("Stacktrace")]
         [Required( ErrorMessage = "Stacktrace is verplicht")]
         public string StackTrace
         {
