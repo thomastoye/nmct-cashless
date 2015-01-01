@@ -5,21 +5,20 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
-using System.Web;
 using System.Web.Http;
-using System.Web.Mvc;
 
 namespace nmct.ba.cashlessproject.api.Controllers
 {
-    [System.Web.Http.Authorize(Roles = "OrganisationManager")]
     public class EmployeeController : ApiController
     {
+
+        [Authorize(Roles = "OrganisationManager,Register")]
         public List<Employee> Get()
         {
             return Employees.GetEmployees(Claims.GetConnectionString(User));
         }
 
+        [Authorize(Roles = "OrganisationManager")]
         public Employee Post(Employee emp)
         {
             int id = Employees.InsertEmployee(Claims.GetConnectionString(User), emp);
@@ -27,12 +26,14 @@ namespace nmct.ba.cashlessproject.api.Controllers
             return emp;
         }
 
+        [Authorize(Roles = "OrganisationManager")]
         public HttpStatusCode Put(long id, Employee emp)
         {
             Employees.UpdateEmployee(Claims.GetConnectionString(User), id, emp);
             return HttpStatusCode.OK;
         }
 
+        [Authorize(Roles = "OrganisationManager")]
         public HttpStatusCode Delete(long id)
         {
             Employees.DeleteEmployee(Claims.GetConnectionString(User), id);

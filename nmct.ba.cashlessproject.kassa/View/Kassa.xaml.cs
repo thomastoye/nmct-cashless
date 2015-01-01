@@ -24,5 +24,10 @@ namespace nmct.ba.cashlessproject.kassa.View
         {
             InitializeComponent();
         }
+
+        private void ComboBox_Selected(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

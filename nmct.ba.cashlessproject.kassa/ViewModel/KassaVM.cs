@@ -58,6 +58,22 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
             set { _besteldeProducten = value; OnPropertyChanged("BesteldeProducten"); }
         }
 
+        private ObservableCollection<Employee> _employees;
+
+        public ObservableCollection<Employee> Employees
+        {
+            get { return _employees; }
+            set { _employees = value; OnPropertyChanged("Employees"); }
+        }
+
+        private Employee _selectedEmployee;
+
+        public Employee SelectedEmployee
+        {
+            get { return _selectedEmployee; }
+            set { _selectedEmployee = value; OnPropertyChanged("SelectedEmployee"); }
+        }
+        
 
         private string _error;
 
@@ -91,6 +107,7 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
 
         private async void Reload()
         {
+            // reload products
             using (HttpClient client = new HttpClient())
             {
                 client.SetBearerToken(ConfigurationManager.AppSettings["token"]);
@@ -104,6 +121,26 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
 
                     BesteldeProducten = ProductOrder.ConstructsFromProducts(products);
                 } catch(Exception e) {
+                    Helpers.PostLog.Post(e);
+                }
+            }
+
+            //reload employees
+            using (HttpClient client = new HttpClient())
+            {
+                client.SetBearerToken(ConfigurationManager.AppSettings["token"]);
+                HttpResponseMessage response = await
+                client.GetAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/employee");
+                try
+                {
+                    response.EnsureSuccessStatusCode();
+                    string json = await response.Content.ReadAsStringAsync();
+                    Employees = JsonConvert.DeserializeObject<ObservableCollection<Employee>>(json);
+
+                    if(Employees.Count > 0) SelectedEmployee = Employees[0];
+                }
+                catch (Exception e)
+                {
                     Helpers.PostLog.Post(e);
                 }
             }

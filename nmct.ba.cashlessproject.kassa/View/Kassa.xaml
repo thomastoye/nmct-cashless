@@ -34,7 +34,9 @@
         <Button Grid.Column="1" Grid.Row="6" Command="{Binding ConfirmOrderCommand}" Style="{DynamicResource SquareButtonStyle}" Visibility="{Binding IsAlGeregistreerd, Converter={StaticResource BoolToVis}}">Bestelling bevestigen</Button>
         
         <ListBox Grid.Column="0" Grid.Row="0" Grid.RowSpan="5" ItemsSource="{Binding BesteldeProducten}" />
-        
-        <Button Content="Herladen" Command="{Binding ReloadCommand}" Grid.Row="6" Grid.Column="0"/>
+
+        <Button Content="Herladen" Command="{Binding ReloadCommand}" Grid.Row="6" Grid.Column="0" Style="{DynamicResource SquareButtonStyle}" />
+
+        <ComboBox DisplayMemberPath="Name" ItemsSource="{Binding Employees}" SelectedItem="{Binding SelectedEmployee}" Grid.Row="8" Grid.Column="0"/>
     </Grid>
 </UserControl>

@@ -7,10 +7,12 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="25"/>
         </Grid.RowDefinitions>
         <Button Grid.Row="0" Command="{Binding LoginCommand}" Content="Log in"/>
-        <Label Grid.Row="1" Content="{Binding LoginStatus}"/>
+        <Label Grid.Row="3" Content="{Binding LoginStatus}"/>
     </Grid>
 </UserControl>
