@@ -92,6 +92,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Helpers\PostLog.cs" />
     <Compile Include="ViewModel\ApplicationVM.cs" />
     <Compile Include="ViewModel\KassaVM.cs" />
     <Compile Include="ViewModel\LoginVM.cs" />

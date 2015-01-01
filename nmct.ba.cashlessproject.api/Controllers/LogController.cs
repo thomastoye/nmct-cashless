@@ -11,6 +11,7 @@ namespace nmct.ba.cashlessproject.api.Controllers
 {
     public class LogController : ApiController
     {
+        [AllowAnonymous]
         public void Post(ErrorLog log)
         {
             if (ModelState.IsValid)

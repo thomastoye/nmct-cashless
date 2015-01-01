@@ -33,9 +33,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.Message)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StackTrace)
-        </td>
+        <td style="white-space: pre-line;">@Html.DisplayFor(modelItem => item.StackTrace)</td>
     </tr>
 }
 

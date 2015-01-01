@@ -96,12 +96,15 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
                 client.SetBearerToken(ConfigurationManager.AppSettings["token"]);
                 HttpResponseMessage response = await
                 client.GetAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/product");
-                if (response.IsSuccessStatusCode)
+                try
                 {
+                    response.EnsureSuccessStatusCode();
                     string json = await response.Content.ReadAsStringAsync();
                     var products = JsonConvert.DeserializeObject<ObservableCollection<Product>>(json);
 
                     BesteldeProducten = ProductOrder.ConstructsFromProducts(products);
+                } catch(Exception e) {
+                    Helpers.PostLog.Post(e);
                 }
             }
         }
@@ -173,6 +176,7 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
                             catch (Exception e)
                             {
                                 Error = "Er was een fout bij het converteren van je foto.";
+                                Helpers.PostLog.Post(e);
                             }
 
                         }
@@ -184,16 +188,19 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
                     else
                     {
                         Error = "Kon geen kaart vinden. Probeer opnieuw.";
+                        await Helpers.PostLog.Post(new Exception("readerContext was null"));
                     }
                 }
                 else
                 {
-                    Error = "Kon geen kaart vinden. Probeer opnieuw.";
+                    Error = "Kon geen kaartlezer vinden. Probeer opnieuw.";
+                    await Helpers.PostLog.Post(new Exception("BEID_ReaderSet.instance().readerCount() was 0"));
                 }
             }
-            catch
+            catch(Exception e)
             {
                 Error = "Kon geen kaart vinden. Probeer opnieuw.";
+                Helpers.PostLog.Post(e);
             }
 
         }
