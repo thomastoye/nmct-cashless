@@ -19,7 +19,7 @@ namespace nmct.ba.cashlessproject.kassa.Helpers
 
             var log = new ErrorLog() {
                 Timestamp = DateTime.Now,
-                Message = "Kassa " + kassa + ": " + e.Message,
+                Message = e.Message,
                 StackTrace = e.StackTrace,
                 RegisterID = Int32.Parse(kassa)
             };
