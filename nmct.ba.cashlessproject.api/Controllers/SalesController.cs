@@ -15,7 +15,7 @@ namespace nmct.ba.cashlessproject.api.Controllers
     {
         public void Post(ProductOrder order, int customerID, int registerID)
         {
-            ProductOrderDA.Insert(Claims.GetConnectionString(User), order, customerID, registerID);
+            ProductOrderDA.Process(Claims.GetConnectionString(User), order, customerID, registerID);
         }
     }
 }

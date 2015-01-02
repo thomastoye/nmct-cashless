@@ -33,7 +33,7 @@ namespace nmct.ba.cashlessproject.model
         public override string ToString()
         {
             if (Product == null) return "Leeg product";
-            return Product.Name + " " + Quantity;
+            return Product.Name + ": €" + String.Format("{0:0.00}", Product.Price);
         }
     }
 }

@@ -252,6 +252,22 @@ namespace nmct.ba.cashlessproject.api.Helpers
             }
         }
 
+        public static DbTransaction BeginTransaction(ConnectionStringSettings settings)
+        {
+            DbConnection con = null;
+            try
+            {
+                con = GetConnection(settings);
+                return con.BeginTransaction();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                ReleaseConnection(con);
+                throw;
+            }
+        }
+
         private static DbCommand BuildCommand(DbTransaction trans, string sql, params DbParameter[] parameters)
         {
             DbCommand command = trans.Connection.CreateCommand();

@@ -33,10 +33,15 @@
 
         <Button IsEnabled="{Binding KanBestellingPlaatsen}" Grid.Column="1" Grid.Row="6" Command="{Binding ConfirmOrderCommand}" Style="{DynamicResource SquareButtonStyle}" Visibility="{Binding IsAlGeregistreerd, Converter={StaticResource BoolToVis}}">Bestelling bevestigen</Button>
         
-        <ListBox Grid.Column="0" Grid.Row="0" Grid.RowSpan="5" ItemsSource="{Binding BesteldeProducten}" SelectedItem="{Binding SelectedProduct}" />
+        <ListBox Grid.Column="0" Grid.Row="0" Grid.RowSpan="5" ItemsSource="{Binding Producten}" SelectedItem="{Binding SelectedProduct}" />
 
         <Button Content="Herladen" Command="{Binding ReloadCommand}" Grid.Row="6" Grid.Column="0" Style="{DynamicResource SquareButtonStyle}" />
 
         <ComboBox DisplayMemberPath="Name" ItemsSource="{Binding Employees}" SelectedItem="{Binding SelectedEmployee}" Grid.Row="8" Grid.Column="0"/>
+
+        <WrapPanel Grid.Row="9" Grid.Column="0">
+            <Button Content="+" Command="{Binding IncreaseProductQuantityCommand}" Width="20"/>
+            <Button Content="-" Command="{Binding DecreaseProductQuantityCommand}" Width="20"/>
+        </WrapPanel>
     </Grid>
 </UserControl>

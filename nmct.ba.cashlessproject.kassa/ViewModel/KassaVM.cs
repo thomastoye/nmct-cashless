@@ -53,12 +53,12 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
 
         public bool IsAlGeregistreerd { get { return !IsNogNietGeregistreerd; } }
 
-        private ObservableCollection<ProductOrder> _besteldeProducten = new ObservableCollection<ProductOrder>();
+        private ObservableCollection<ProductOrder> _producten = new ObservableCollection<ProductOrder>();
 
-        public ObservableCollection<ProductOrder> BesteldeProducten
+        public ObservableCollection<ProductOrder> Producten
         {
-            get { return _besteldeProducten; }
-            set { _besteldeProducten = value; OnPropertyChanged("BesteldeProducten"); }
+            get { return _producten; }
+            set { _producten = value; OnPropertyChanged("Producten"); }
         }
 
         private ProductOrder _selectedProduct;
@@ -122,6 +122,32 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
             get { return new RelayCommand(Reload); }
         }
 
+        public ICommand IncreaseProductQuantityCommand
+        {
+            get { return new RelayCommand(IncreaseProductQuantity); }
+        }
+
+        public ICommand DecreaseProductQuantityCommand
+        {
+            get { return new RelayCommand(DecreaseProductQuantity); }
+        }
+
+        private async void IncreaseProductQuantity()
+        {
+            OnPropertyChanged("SelectedProduct");
+            OnPropertyChanged("Producten");
+            if(SelectedProduct != null)
+                SelectedProduct.Quantity++;
+        }
+
+        private async void DecreaseProductQuantity()
+        {
+            OnPropertyChanged("SelectedProduct");
+            OnPropertyChanged("Producten");
+            if (SelectedProduct != null)
+                SelectedProduct.Quantity--;
+        }
+
         private async void Reload()
         {
             // reload products
@@ -136,7 +162,7 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
                     string json = await response.Content.ReadAsStringAsync();
                     var products = JsonConvert.DeserializeObject<ObservableCollection<Product>>(json);
 
-                    BesteldeProducten = ProductOrder.ConstructsFromProducts(products);
+                    Producten = ProductOrder.ConstructsFromProducts(products);
                 } catch(Exception e) {
                     Helpers.PostLog.Post(e);
                 }
