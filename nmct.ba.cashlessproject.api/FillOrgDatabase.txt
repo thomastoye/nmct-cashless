@@ -108,7 +108,7 @@ GO
 SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[Registers](
-	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[ID] [int] NOT NULL,
 	[RegisterName] [varchar](50) NULL,
 	[Device] [varchar](50) NULL,
  CONSTRAINT [PK_Registers] PRIMARY KEY CLUSTERED 
@@ -126,7 +126,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Sales](
-	[ID] [nchar](10) NOT NULL,
+	[ID] [int] IDENTITY(1,1) NOT NULL,
 	[Timestamp] [datetime] NULL,
 	[CustomerID] [int] NOT NULL,
 	[RegisterID] [int] NOT NULL,
