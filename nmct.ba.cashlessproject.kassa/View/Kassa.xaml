@@ -31,9 +31,9 @@
         <Button Grid.Column="2" Grid.Row="0" Grid.RowSpan="5" Style="{DynamicResource SquareButtonStyle}" Command="{Binding LaadEidCommand}" Visibility="{Binding IsNogNietGeregistreerd, Converter={StaticResource BoolToVis}}">Laad EID</Button>
         <Label Grid.Column="0" Grid.Row="6" Content="{Binding Error}" Foreground="Red"/>
 
-        <Button Grid.Column="1" Grid.Row="6" Command="{Binding ConfirmOrderCommand}" Style="{DynamicResource SquareButtonStyle}" Visibility="{Binding IsAlGeregistreerd, Converter={StaticResource BoolToVis}}">Bestelling bevestigen</Button>
+        <Button IsEnabled="{Binding KanBestellingPlaatsen}" Grid.Column="1" Grid.Row="6" Command="{Binding ConfirmOrderCommand}" Style="{DynamicResource SquareButtonStyle}" Visibility="{Binding IsAlGeregistreerd, Converter={StaticResource BoolToVis}}">Bestelling bevestigen</Button>
         
-        <ListBox Grid.Column="0" Grid.Row="0" Grid.RowSpan="5" ItemsSource="{Binding BesteldeProducten}" />
+        <ListBox Grid.Column="0" Grid.Row="0" Grid.RowSpan="5" ItemsSource="{Binding BesteldeProducten}" SelectedItem="{Binding SelectedProduct}" />
 
         <Button Content="Herladen" Command="{Binding ReloadCommand}" Grid.Row="6" Grid.Column="0" Style="{DynamicResource SquareButtonStyle}" />
 

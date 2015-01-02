@@ -37,7 +37,7 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
         public Customer Klant
         {
             get { return _klant; }
-            set { _klant = value; OnPropertyChanged("Klant"); }
+            set { _klant = value; OnPropertyChanged("Klant"); OnPropertyChanged("KanBestellingPlaatsen"); }
         }
 
         private bool _isNogNietGeregistreerd = true;
@@ -45,7 +45,10 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
         public bool IsNogNietGeregistreerd
         {
             get { return _isNogNietGeregistreerd; }
-            set { _isNogNietGeregistreerd = value; OnPropertyChanged("IsNogNietGeregistreerd"); OnPropertyChanged("IsAlGeregistreerd"); }
+            set { _isNogNietGeregistreerd = value;
+                OnPropertyChanged("IsNogNietGeregistreerd");
+                OnPropertyChanged("IsAlGeregistreerd");
+                OnPropertyChanged("KanBestellingPlaatsen"); }
         }
 
         public bool IsAlGeregistreerd { get { return !IsNogNietGeregistreerd; } }
@@ -57,6 +60,15 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
             get { return _besteldeProducten; }
             set { _besteldeProducten = value; OnPropertyChanged("BesteldeProducten"); }
         }
+
+        private ProductOrder _selectedProduct;
+
+        public ProductOrder SelectedProduct
+        {
+            get { return _selectedProduct; }
+            set { _selectedProduct = value; OnPropertyChanged("KanBestellingPlaatsen"); }
+        }
+        
 
         private ObservableCollection<Employee> _employees;
 
@@ -71,9 +83,14 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
         public Employee SelectedEmployee
         {
             get { return _selectedEmployee; }
-            set { _selectedEmployee = value; OnPropertyChanged("SelectedEmployee"); }
+            set { _selectedEmployee = value; OnPropertyChanged("SelectedEmployee"); OnPropertyChanged("KanBestellingPlaatsen"); }
         }
-        
+
+        public bool KanBestellingPlaatsen {
+            get {
+                return SelectedEmployee != null && Klant != null && IsAlGeregistreerd && SelectedProduct != null;
+            }
+        }
 
         private string _error;
 
@@ -148,9 +165,27 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
 
         private async void ConfirmOrder()
         {
-            if (!IsNogNietGeregistreerd)
+            if (KanBestellingPlaatsen)
             {
-                // ...
+                using (HttpClient client = new HttpClient())
+                {
+                    client.SetBearerToken(ConfigurationManager.AppSettings["token"]);
+                    string order = JsonConvert.SerializeObject(SelectedProduct);
+                    string registerID = ConfigurationManager.AppSettings["username"];
+                    HttpResponseMessage response = await client.PostAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/Sales/?registerID=" + registerID + "&customerID=" + Klant.ID,
+                        new StringContent(order, Encoding.UTF8, "application/json"));
+                }
+            }
+            else
+            {
+                if(!IsAlGeregistreerd)
+                    Helpers.PostLog.Post(new Exception("Klant was nog niet geregistreerd maar bestelling werd toch geplaatst"));
+
+                if (SelectedEmployee == null)
+                    Helpers.PostLog.Post(new Exception("Er was geen medewerker geselecteerd maar bestelling werd toch geplaatst"));
+
+                if (Klant == null)
+                    Helpers.PostLog.Post(new Exception("Er was geen klant geselecteerd maar bestelling werd toch geplaatst"));
             }
         }
 

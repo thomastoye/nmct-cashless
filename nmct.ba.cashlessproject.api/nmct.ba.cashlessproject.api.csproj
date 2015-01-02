@@ -185,6 +185,7 @@
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\OrganisationApiController.cs" />
     <Compile Include="Controllers\RegisterManagerController.cs" />
+    <Compile Include="Controllers\SalesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -201,6 +202,7 @@
     <Compile Include="Models\DataAccess\Employees.cs" />
     <Compile Include="Models\DataAccess\LogDA.cs" />
     <Compile Include="Models\DataAccess\Organisations.cs" />
+    <Compile Include="Models\DataAccess\ProductOrderDA.cs" />
     <Compile Include="Models\DataAccess\Products.cs" />
     <Compile Include="Models\DataAccess\RegistersManagement.cs" />
     <Compile Include="Models\DataAccess\RegistersOrganisation.cs" />
