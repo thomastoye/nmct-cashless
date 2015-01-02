@@ -20,4 +20,5 @@
     </Style>
     <BooleanToVisibilityConverter x:Key="BoolToVis" />
     <conv:StringToImageConverter x:Key="StringToImage"/>
+    <conv:DoubleToBalanceConverter x:Key="DoubleToBalance"/>
 </ResourceDictionary>

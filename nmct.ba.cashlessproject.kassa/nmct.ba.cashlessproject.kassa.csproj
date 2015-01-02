@@ -96,6 +96,7 @@
     <Compile Include="ViewModel\ApplicationVM.cs" />
     <Compile Include="ViewModel\KassaVM.cs" />
     <Compile Include="ViewModel\LoginVM.cs" />
+    <Compile Include="View\Converters\DoubleToBalanceConverter.cs" />
     <Compile Include="View\Converters\StringToImageConverter.cs" />
     <Compile Include="View\Kassa.xaml.cs">
       <DependentUpon>Kassa.xaml</DependentUpon>
