@@ -27,7 +27,7 @@ namespace nmct.ba.cashlessproject.api.Controllers
             return c;
         }
 
-        [Authorize(Roles = "OrganisationManager")]
+        [Authorize(Roles = "OrganisationManager,Register")]
         public HttpStatusCode Put(long id, Customer c)
         {
             Customers.UpdateCustomer(Claims.GetConnectionString(User), id, c);
