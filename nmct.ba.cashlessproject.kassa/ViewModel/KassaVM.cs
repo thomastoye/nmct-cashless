@@ -51,6 +51,22 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
                 OnPropertyChanged("KanBestellingPlaatsen"); }
         }
 
+        public bool CanIncreaseQuantity
+        {
+            get
+            {
+                if (SelectedProduct == null || SelectedProduct.Product == null) return false;
+                return OrderTotal + SelectedProduct.Product.Price < 100;
+            }
+        }
+
+        public bool CanDecreaseQuantity {
+            get {
+                if (SelectedProduct == null || SelectedProduct.Product == null) return false;
+                return SelectedProduct.Quantity != 0;
+            }
+        }
+
         public bool IsAlGeregistreerd { get { return !IsNogNietGeregistreerd; } }
 
         private ObservableCollection<ProductOrder> _producten = new ObservableCollection<ProductOrder>();
@@ -71,6 +87,8 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
                 OnPropertyChanged("KanBestellingPlaatsen");
                 OnPropertyChanged("SelectedProduct");
                 OnPropertyChanged("OrderTotal");
+                OnPropertyChanged("CanIncreaseQuantity");
+                OnPropertyChanged("CanDecreaseQuantity");
             }
         }
 
@@ -148,22 +166,24 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
 
         private async void IncreaseProductQuantity()
         {
-            if(SelectedProduct != null)
-                SelectedProduct.Quantity++;
+            SelectedProduct.Quantity++;
 
             OnPropertyChanged("SelectedProduct");
             OnPropertyChanged("Producten");
             OnPropertyChanged("OrderTotal");
+            OnPropertyChanged("CanIncreaseQuantity");
+            OnPropertyChanged("CanDecreaseQuantity");
         }
 
         private async void DecreaseProductQuantity()
         {
-            if (SelectedProduct != null)
-                SelectedProduct.Quantity--;
+            SelectedProduct.Quantity--;
 
             OnPropertyChanged("SelectedProduct");
             OnPropertyChanged("Producten");
             OnPropertyChanged("OrderTotal");
+            OnPropertyChanged("CanDecreaseQuantity");
+            OnPropertyChanged("CanIncreaseQuantity");
         }
 
         private async void Reload()
