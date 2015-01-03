@@ -66,8 +66,22 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
         public ProductOrder SelectedProduct
         {
             get { return _selectedProduct; }
-            set { _selectedProduct = value; OnPropertyChanged("KanBestellingPlaatsen"); }
+            set {
+                _selectedProduct = value;
+                OnPropertyChanged("KanBestellingPlaatsen");
+                OnPropertyChanged("SelectedProduct");
+                OnPropertyChanged("OrderTotal");
+            }
         }
+
+        public double OrderTotal
+        {
+            get {
+                if (SelectedProduct == null || SelectedProduct.Product == null) return 0;
+                return SelectedProduct.Quantity * SelectedProduct.Product.Price;
+            }
+        }
+        
         
 
         private ObservableCollection<Employee> _employees;
@@ -134,18 +148,22 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
 
         private async void IncreaseProductQuantity()
         {
-            OnPropertyChanged("SelectedProduct");
-            OnPropertyChanged("Producten");
             if(SelectedProduct != null)
                 SelectedProduct.Quantity++;
+
+            OnPropertyChanged("SelectedProduct");
+            OnPropertyChanged("Producten");
+            OnPropertyChanged("OrderTotal");
         }
 
         private async void DecreaseProductQuantity()
         {
-            OnPropertyChanged("SelectedProduct");
-            OnPropertyChanged("Producten");
             if (SelectedProduct != null)
                 SelectedProduct.Quantity--;
+
+            OnPropertyChanged("SelectedProduct");
+            OnPropertyChanged("Producten");
+            OnPropertyChanged("OrderTotal");
         }
 
         private async void Reload()
