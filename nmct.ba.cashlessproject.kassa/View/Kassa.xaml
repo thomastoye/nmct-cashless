@@ -27,19 +27,26 @@
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
         <Label FontSize="25" Grid.Row="0" Grid.Column="2" Content="{Binding Klant.Name}"/>
-        <Label FontSize="20" Grid.Row="1" Grid.Column="2" Content="{Binding Klant.Balance, Converter={StaticResource DoubleToBalance}}"/>
+        <WrapPanel Grid.Column="2" Grid.Row="1">
+            <Label Content="€" Width="20"/>
+            <TextBox Width="50" Text="{Binding Klant.Balance, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ErrorTemplate}" Style="{StaticResource TextboxError}"/>
+            <Button Content="Opslaan" Command="{Binding SaveCustomerCommand}" Width="75"/>
+        </WrapPanel>
+        
         <Image Grid.Row="2" Grid.Column="2" Grid.RowSpan="3" Source="{Binding Klant.Image, Converter={StaticResource StringToImage}}" Height="100"/>
         <Button Grid.Column="2" Grid.Row="6" Style="{DynamicResource SquareButtonStyle}" Command="{Binding LaadEidCommand}">Laad EID</Button>
         <Label Grid.Column="0" Grid.Row="6" Content="{Binding Error}" Foreground="Red"/>
 
         <Label FontSize="25" Grid.Column="1" Grid.Row="0" Content="{Binding SelectedProduct.Product.Name, UpdateSourceTrigger=PropertyChanged}"/>
         <WrapPanel Grid.Column="1" Grid.Row="1">
-            <Label FontSize="20" Content="{Binding SelectedProduct.Quantity}" Width="30"/>
+            <Label FontSize="20" Content="{Binding SelectedProduct.Quantity}" Width="35"/>
             <Label FontSize="20" Content=" x " Width="30"/>
             <Label FontSize="20" Content="{Binding SelectedProduct.Product.Price}" Width="50"/>
             <Label FontSize="20" Content=" = " Width="35"/>
             <Label FontSize="20" Content="{Binding OrderTotal, Converter={StaticResource DoubleToBalance}}" Width="80"/>
         </WrapPanel>
+
+        <Label Grid.Column="1" Grid.Row="2" Content="Totaal groter dan balans klant!" Foreground="Red" Visibility="{Binding OrderTotalTooHigh, Converter={StaticResource BoolToVis}}"/>
         
         <Button IsEnabled="{Binding KanBestellingPlaatsen}" Grid.Column="1" Grid.Row="6" Command="{Binding ConfirmOrderCommand}" Style="{DynamicResource SquareButtonStyle}" Visibility="{Binding IsAlGeregistreerd, Converter={StaticResource BoolToVis}}">Bestelling bevestigen</Button>
         

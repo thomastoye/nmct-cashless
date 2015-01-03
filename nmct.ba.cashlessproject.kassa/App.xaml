@@ -11,7 +11,23 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <ControlTemplate x:Key="ErrorTemplate">
+                <StackPanel>
+                    <Border BorderBrush="Red" BorderThickness="2">
+                        <AdornedElementPlaceholder/>
+                    </Border>
+                    <TextBlock Foreground="Red" Text="{Binding [0].ErrorContent}"/>
+                </StackPanel>
+            </ControlTemplate>
+            <Style x:Key="TextboxError" TargetType="{x:Type TextBox}">
+                <Style.Triggers>
+                    <Trigger Property="Validation.HasError" Value="true">
+                        <Setter Property="Background" Value="Red"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="Margin" Value="0,0,0,20"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
-
 </Application>

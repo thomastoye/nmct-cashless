@@ -87,8 +87,9 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
                 OnPropertyChanged("KanBestellingPlaatsen");
                 OnPropertyChanged("SelectedProduct");
                 OnPropertyChanged("OrderTotal");
-                OnPropertyChanged("CanIncreaseQuantity");
                 OnPropertyChanged("CanDecreaseQuantity");
+                OnPropertyChanged("CanIncreaseQuantity");
+                OnPropertyChanged("OrderTotalTooHigh");
             }
         }
 
@@ -99,8 +100,14 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
                 return SelectedProduct.Quantity * SelectedProduct.Product.Price;
             }
         }
-        
-        
+
+        public bool OrderTotalTooHigh {
+            get {
+                if (SelectedProduct == null || Klant == null || SelectedProduct.Product == null) return false;
+
+                return OrderTotal > Klant.Balance;
+            }
+        }
 
         private ObservableCollection<Employee> _employees;
 
@@ -164,6 +171,23 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
             get { return new RelayCommand(DecreaseProductQuantity); }
         }
 
+        public ICommand SaveCustomerCommand
+        {
+            get { return new RelayCommand(SaveCustomer); }
+        }
+
+        public async void SaveCustomer()
+        {
+            if (Klant == null) return;
+
+            using (HttpClient client = new HttpClient())
+            {
+                client.SetBearerToken(ConfigurationManager.AppSettings["token"]);
+                string Customer = JsonConvert.SerializeObject(Klant);
+                HttpResponseMessage response = await client.PutAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/customer/" + Klant.ID, new StringContent(Customer, Encoding.UTF8, "application/json"));
+            }
+        }
+
         private async void IncreaseProductQuantity()
         {
             SelectedProduct.Quantity++;
@@ -173,6 +197,7 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
             OnPropertyChanged("OrderTotal");
             OnPropertyChanged("CanIncreaseQuantity");
             OnPropertyChanged("CanDecreaseQuantity");
+            OnPropertyChanged("OrderTotalTooHigh");
         }
 
         private async void DecreaseProductQuantity()
@@ -184,6 +209,7 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
             OnPropertyChanged("OrderTotal");
             OnPropertyChanged("CanDecreaseQuantity");
             OnPropertyChanged("CanIncreaseQuantity");
+            OnPropertyChanged("OrderTotalTooHigh");
         }
 
         private async void Reload()
@@ -238,6 +264,20 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
                     string registerID = ConfigurationManager.AppSettings["username"];
                     HttpResponseMessage response = await client.PostAsync(ConfigurationManager.AppSettings["apiUrl"] + "api/Sales/?registerID=" + registerID + "&customerID=" + Klant.ID,
                         new StringContent(order, Encoding.UTF8, "application/json"));
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        Klant.Balance -= OrderTotal;
+                        SelectedProduct.Quantity = 0;
+
+                        OnPropertyChanged("SelectedProduct");
+                        OnPropertyChanged("Producten");
+                        OnPropertyChanged("OrderTotal");
+                        OnPropertyChanged("CanDecreaseQuantity");
+                        OnPropertyChanged("CanIncreaseQuantity");
+                        OnPropertyChanged("OrderTotalTooHigh");
+                        OnPropertyChanged("Klant");
+                    }
                 }
             }
             else
@@ -307,6 +347,14 @@ namespace nmct.ba.cashlessproject.kassa.ViewModel
                                 };
 
                                 Klant = newCustomer;
+
+                                OnPropertyChanged("SelectedProduct");
+                                OnPropertyChanged("Producten");
+                                OnPropertyChanged("OrderTotal");
+                                OnPropertyChanged("CanDecreaseQuantity");
+                                OnPropertyChanged("CanIncreaseQuantity");
+                                OnPropertyChanged("OrderTotalTooHigh");
+                                OnPropertyChanged("Klant");
                                 ControleerOfKlantAlGeregistreerd();
                             }
                             catch (Exception e)
