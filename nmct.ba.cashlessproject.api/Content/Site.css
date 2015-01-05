@@ -22,3 +22,13 @@ select,
 textarea {
     max-width: 280px;
 }
+
+
+.spoiler {
+    background-color: black;
+    color: rgba(255, 255, 255, 0);
+}
+
+.spoiler:hover {
+    color: rgba(255, 255, 255, 100);
+}
