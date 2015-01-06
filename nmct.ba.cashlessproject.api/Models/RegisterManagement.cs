@@ -15,6 +15,7 @@ namespace nmct.ba.cashlessproject.api.Models
     {
         private long _id;
 
+        [ReadOnly(true)]
         public long ID
         {
             get { return _id; }
