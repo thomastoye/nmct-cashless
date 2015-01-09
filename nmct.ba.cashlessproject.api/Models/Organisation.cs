@@ -1,4 +1,5 @@
 ﻿using nmct.ba.cashlessproject.api.Models.Validation;
+using nmct.ba.cashlessproject.model.Validation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -37,6 +38,7 @@ namespace nmct.ba.cashlessproject.api.Models
         [DisplayName("Naam")]
         [Required]
         [StringLength(25, MinimumLength = 3, ErrorMessage = "De naam moet tussen de 3 en 25 karakters bevatten ")]
+        [GeenSpecialeTekens]
         public string OrganisationName { get; set; }
 
         [DisplayName("Adres")]
