@@ -23,7 +23,9 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Password)
+            <span class="spoiler">
+                @Html.DisplayFor(model => model.Password)
+            </span>
         </dd>
 
         <dt>
@@ -47,7 +49,9 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DbPassword)
+            <span class="spoiler">
+                @Html.DisplayFor(model => model.DbPassword)
+            </span>
         </dd>
 
         <dt>
@@ -83,11 +87,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DatabaseName)
+            @Html.DisplayNameFor(model => model.DbName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DatabaseName)
+            @Html.DisplayFor(model => model.DbName)
         </dd>
 
         <dt>
@@ -95,7 +99,9 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DatabaseConnectionString)
+            <span class="spoiler">
+                @Html.DisplayFor(model => model.DatabaseConnectionString)
+            </span>
         </dd>
 
     </dl>
