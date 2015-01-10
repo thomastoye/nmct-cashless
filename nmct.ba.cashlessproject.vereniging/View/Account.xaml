@@ -6,15 +6,6 @@
              mc:Ignorable="d"
              xmlns:src="clr-namespace:nmct.ba.cashlessproject.vereniging.Converter"
              d:DesignHeight="300" d:DesignWidth="300">
-    <UserControl.Resources>
-        <src:InvertBoolConverter x:Key="invertBoolConverter"/>
-        <Style TargetType="TextBox">
-            <Setter Property="Margin" Value="2"/>
-        </Style>
-        <Style TargetType="Button">
-            <Setter Property="Margin" Value="2"/>
-        </Style>
-    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
