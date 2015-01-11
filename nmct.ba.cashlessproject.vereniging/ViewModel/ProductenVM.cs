@@ -62,7 +62,7 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
         {
             get { return new RelayCommand(SaveProduct); }
         }
-        public ICommand RefreshProductsCommand
+        public ICommand RefreshCommand
         {
             get { return new RelayCommand(GetProducts); }
         }

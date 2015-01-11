@@ -33,7 +33,6 @@ namespace nmct.ba.cashlessproject.vereniging.Converter
 
         public static Image ImageFromBytes(byte[] bytes)
         {
-            BitmapImage image = null;
             MemoryStream stream = null;
             try
             {

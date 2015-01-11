@@ -49,5 +49,14 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
         {
             CurrentPage = page;
         }
+
+        public void RefreshAllPages()
+        {
+            if (Pages != null)
+            {
+                foreach (IPage page in Pages)
+                    page.RefreshCommand.Execute(null);
+            }
+        }
     }
 }

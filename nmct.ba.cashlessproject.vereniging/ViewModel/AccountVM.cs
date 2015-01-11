@@ -107,6 +107,8 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
             {
                 TokenOk = true;
                 LoginMessage = "Ingelogd!";
+                ApplicationVM appvm = App.Current.MainWindow.DataContext as ApplicationVM;
+                appvm.RefreshAllPages();
             }
 
             Password = "";
@@ -143,6 +145,16 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
 
             OldPassword = "";
             NewPassword = "";
+        }
+
+        public ICommand RefreshCommand
+        {
+            get { return new RelayCommand(RefreshAccount); }
+        }
+
+        private void RefreshAccount()
+        {
+            return;
         }
     }
 }

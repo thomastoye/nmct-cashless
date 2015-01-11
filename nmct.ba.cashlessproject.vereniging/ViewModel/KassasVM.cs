@@ -50,7 +50,7 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
             get { return _selectedRegister; }
             set { _selectedRegister = value; OnPropertyChanged("SelectedRegister"); }
         }
-        public ICommand UpdateRegistersCommand
+        public ICommand RefreshCommand
         {
             get { return new RelayCommand(GetRegisters); }
         }
