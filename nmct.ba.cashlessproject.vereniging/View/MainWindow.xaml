@@ -9,9 +9,6 @@
         <vm:ApplicationVM/>
     </Window.DataContext>
     <Window.Resources>
-        <DataTemplate DataType="{x:Type vm:PageOneVM}">
-            <v:PageOne/>
-        </DataTemplate>
         <DataTemplate DataType="{x:Type vm:KassasVM}">
             <v:Kassas/>
         </DataTemplate>

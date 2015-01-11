@@ -95,7 +95,6 @@
     <Compile Include="ViewModel\KassasVM.cs" />
     <Compile Include="ViewModel\KlantenVM.cs" />
     <Compile Include="ViewModel\MedewerkersVM.cs" />
-    <Compile Include="ViewModel\PageOneVM.cs" />
     <Compile Include="ViewModel\ProductenVM.cs" />
     <Compile Include="ViewModel\StatistiekenVM.cs" />
     <Compile Include="View\Account.xaml.cs">
@@ -109,9 +108,6 @@
     </Compile>
     <Compile Include="View\Medewerkers.xaml.cs">
       <DependentUpon>Medewerkers.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\PageOne.xaml.cs">
-      <DependentUpon>PageOne.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Producten.xaml.cs">
       <DependentUpon>Producten.xaml</DependentUpon>
@@ -147,10 +143,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\Medewerkers.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\PageOne.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
