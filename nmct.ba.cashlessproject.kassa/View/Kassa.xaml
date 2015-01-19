@@ -49,6 +49,7 @@
         <Label Grid.Column="1" Grid.Row="2" Content="Totaal groter dan balans klant!" Foreground="Red" Visibility="{Binding OrderTotalTooHigh, Converter={StaticResource BoolToVis}}"/>
         
         <Button IsEnabled="{Binding KanBestellingPlaatsen}" Grid.Column="1" Grid.Row="6" Command="{Binding ConfirmOrderCommand}" Style="{DynamicResource SquareButtonStyle}" Visibility="{Binding IsAlGeregistreerd, Converter={StaticResource BoolToVis}}">Bestelling bevestigen</Button>
+        <Label Foreground="Red" Grid.Column="1" Grid.Row="6"  Visibility="{Binding IsNogNietGeregistreerd, Converter={StaticResource BoolToVis}}" Content="Klant niet geregistreerd."/>
         
         <ListBox FontSize="20" Grid.Column="0" Grid.Row="0" Grid.RowSpan="5" ItemsSource="{Binding Producten}" SelectedItem="{Binding SelectedProduct}" />
 
