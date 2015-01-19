@@ -68,7 +68,7 @@ namespace nmct.ba.cashlessproject.vereniging.ViewModel
         }
         public async void AddEmployee()
         {
-            Employee newEmployee = new Employee();
+            Employee newEmployee = new Employee() { Name = "Nieuwe medewerker", Address = "Straat en nummer", Email = "email@adres.be", Phone = "056 55 66 44" };
             using (HttpClient client = new HttpClient())
             {
                 client.SetBearerToken(ConfigurationManager.AppSettings["token"]);
